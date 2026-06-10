@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as *;
+
+.home {
+  &__feature-strip {
+    background: linear-gradient(90deg, $color-primary, $color-primary-hover);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  &__features {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @include respond-to('mobile') {
+      gap: 16px;
+    }
+  }
+
+  &__feature-pill {
+    font-size: $fs-xs;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}

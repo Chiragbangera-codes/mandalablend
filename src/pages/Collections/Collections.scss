@@ -1,0 +1,222 @@
+@use "@/styles/mixins" as *;
+
+.collections-page {
+  padding-top: 90px;
+
+  &__banner {
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '✦';
+      position: absolute;
+      font-size: 300px;
+      color: rgba(255,255,255,0.03);
+      top: -80px;
+      right: -50px;
+    }
+
+    &-eyebrow {
+      display: inline-block;
+      font-size: $fs-xs;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: $color-secondary;
+      margin-bottom: 10px;
+    }
+
+    &-title {
+      font-family: $font-heading;
+      font-size: $fs-page;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    &-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: $fs-body;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 32px 0 24px;
+  }
+
+  &__tab {
+    padding: 8px 20px;
+    border-radius: $radius-pill;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-secondary;
+    border: 1.5px solid rgba($color-text-secondary, 0.2);
+    transition: $transition-fast;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+      background: rgba($color-primary, 0.04);
+    }
+
+    &--active {
+      background: $color-primary;
+      color: #fff;
+      border-color: $color-primary;
+    }
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    padding-bottom: 80px;
+
+    @include respond-to('laptop') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__sidebar {
+    h3 {
+      font-family: $font-heading;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $color-text-primary;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba($color-secondary, 0.2);
+    }
+  }
+
+  &__filter-group {
+    margin-bottom: 24px;
+
+    label {
+      display: block;
+      font-size: $fs-small;
+      font-weight: 600;
+      color: $color-text-secondary;
+      margin-bottom: 8px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid rgba($color-text-secondary, 0.2);
+      border-radius: $radius-sm;
+      font-family: $font-body;
+      font-size: $fs-small;
+      color: $color-text-primary;
+      background: $color-surface;
+      outline: none;
+
+      &:focus {
+        border-color: $color-primary;
+      }
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: $color-primary;
+      margin: 8px 0;
+    }
+  }
+
+  &__price-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: $fs-xs;
+    color: $color-text-muted;
+  }
+
+  &__custom-cta {
+    background: rgba($color-primary, 0.05);
+    border: 1px solid rgba($color-primary, 0.12);
+    border-radius: $radius-card;
+    padding: 20px;
+    margin-top: 8px;
+
+    h4 {
+      font-family: $font-heading;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $color-primary;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: $fs-xs;
+      color: $color-text-secondary;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__custom-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: $color-whatsapp;
+    color: #fff;
+    border-radius: $radius-sm;
+    font-size: $fs-small;
+    font-weight: 600;
+    transition: $transition-base;
+
+    &:hover {
+      background: $color-whatsapp-dark;
+    }
+  }
+
+  &__results-info {
+    font-size: $fs-small;
+    color: $color-text-muted;
+    margin-bottom: 20px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 60px;
+    color: $color-text-muted;
+    font-size: $fs-body;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+  }
+
+  &__page-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    border: 1.5px solid rgba($color-text-secondary, 0.2);
+    transition: $transition-fast;
+
+    &:hover, &.active {
+      background: $color-primary;
+      color: #fff;
+      border-color: $color-primary;
+    }
+  }
+}

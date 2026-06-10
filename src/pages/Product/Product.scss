@@ -1,0 +1,355 @@
+@use "@/styles/mixins" as *;
+
+.product-page {
+  padding-top: 110px;
+  padding-bottom: 80px;
+
+  &__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: $fs-small;
+    color: $color-text-muted;
+    margin-bottom: 32px;
+
+    a {
+      color: $color-primary;
+      font-weight: 500;
+      &:hover { text-decoration: underline; }
+    }
+
+    span:not(:last-child) { color: $color-text-muted; }
+    span:last-child { color: $color-text-primary; font-weight: 500; }
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+
+    @include respond-to('laptop') {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__main-img {
+    border-radius: $radius-card;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: $color-bg;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  &__thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: $transition-fast;
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+
+    &.active {
+      border-color: $color-primary;
+    }
+
+    &:hover:not(.active) {
+      border-color: rgba($color-primary, 0.4);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__category {
+    font-size: $fs-xs;
+    text-transform: capitalize;
+    color: $color-secondary;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $color-text-primary;
+    line-height: 1.2;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+
+    svg.filled { color: $color-secondary; }
+    svg.empty { color: #ddd; }
+
+    span {
+      font-size: $fs-small;
+      color: $color-text-muted;
+      margin-left: 6px;
+    }
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  &__original {
+    font-size: 1rem;
+    color: $color-text-muted;
+    text-decoration: line-through;
+  }
+
+  &__badge {
+    padding: 4px 12px;
+    background: $color-secondary;
+    color: $color-primary;
+    border-radius: $radius-pill;
+    font-size: $fs-xs;
+    font-weight: 700;
+  }
+
+  &__desc {
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    line-height: 1.75;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba($color-secondary, 0.15);
+  }
+
+  &__specs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__spec {
+    display: flex;
+    justify-content: space-between;
+    font-size: $fs-small;
+
+    span:first-child { color: $color-text-muted; font-weight: 500; }
+    span:last-child { color: $color-text-primary; font-weight: 600; }
+  }
+
+  &__sizes {
+    label {
+      display: block;
+      font-size: $fs-small;
+      font-weight: 600;
+      color: $color-text-secondary;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__size-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__size-btn {
+    padding: 8px 16px;
+    border: 1.5px solid rgba($color-text-secondary, 0.25);
+    border-radius: $radius-sm;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-secondary;
+    transition: $transition-fast;
+
+    &:hover, &.active {
+      border-color: $color-primary;
+      color: $color-primary;
+      background: rgba($color-primary, 0.06);
+    }
+  }
+
+  &__qty {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    label {
+      font-size: $fs-small;
+      font-weight: 600;
+      color: $color-text-secondary;
+    }
+  }
+
+  &__qty-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1.5px solid rgba($color-text-secondary, 0.25);
+    border-radius: $radius-sm;
+    overflow: hidden;
+
+    button {
+      width: 38px;
+      height: 38px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $color-primary;
+      transition: $transition-fast;
+
+      &:hover { background: rgba($color-primary, 0.08); }
+    }
+
+    span {
+      width: 44px;
+      text-align: center;
+      font-weight: 700;
+      font-size: $fs-body;
+      color: $color-text-primary;
+      border-left: 1px solid rgba($color-text-secondary, 0.15);
+      border-right: 1px solid rgba($color-text-secondary, 0.15);
+    }
+  }
+
+  &__order-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    background: $color-whatsapp;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: $transition-base;
+    margin-top: 8px;
+
+    svg { font-size: 22px; }
+
+    &:hover {
+      background: $color-whatsapp-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba($color-whatsapp, 0.35);
+    }
+  }
+
+  &__delivery {
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    text-align: center;
+  }
+
+  &__trust {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 16px;
+    background: rgba($color-primary, 0.04);
+    border-radius: $radius-card;
+    border: 1px solid rgba($color-primary, 0.08);
+
+    @include respond-to('mobile') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      font-size: $fs-xs;
+      color: $color-primary;
+      font-weight: 600;
+
+      span:first-child {
+        font-size: 18px;
+        color: $color-secondary;
+      }
+    }
+  }
+
+  &__tabs {
+    margin: 48px 0;
+    border: 1px solid rgba($color-secondary, 0.15);
+    border-radius: $radius-card;
+    overflow: hidden;
+  }
+
+  &__tab-nav {
+    display: flex;
+    border-bottom: 1px solid rgba($color-secondary, 0.15);
+  }
+
+  &__tab-btn {
+    flex: 1;
+    padding: 16px;
+    font-size: $fs-small;
+    font-weight: 600;
+    color: $color-text-secondary;
+    transition: $transition-fast;
+    border-right: 1px solid rgba($color-secondary, 0.15);
+
+    &:last-child { border-right: none; }
+
+    &:hover { background: rgba($color-primary, 0.04); color: $color-primary; }
+    &.active { background: $color-primary; color: #fff; }
+  }
+
+  &__tab-content {
+    padding: 24px;
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    line-height: 1.75;
+  }
+
+  &__related {
+    h2 {
+      font-family: $font-heading;
+      font-size: $fs-section;
+      font-weight: 700;
+      color: $color-text-primary;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}

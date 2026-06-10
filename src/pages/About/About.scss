@@ -1,0 +1,271 @@
+@use "@/styles/mixins" as *;
+
+.about-page {
+  padding-top: 90px;
+
+  &__eyebrow, &__section-label {
+    display: inline-block;
+    font-size: $fs-xs;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-secondary;
+    margin-bottom: 10px;
+  }
+
+  &__hero {
+    background: $color-bg;
+
+    &-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+
+      @include respond-to('laptop') { grid-template-columns: 1fr; }
+    }
+
+    &-title {
+      font-family: $font-heading;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: $color-text-primary;
+      line-height: 1.15;
+      margin-bottom: 20px;
+
+      span { color: $color-primary; font-style: italic; }
+    }
+
+    &-desc {
+      font-size: $fs-body;
+      color: $color-text-secondary;
+      line-height: 1.8;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    &-img {
+      border-radius: $radius-card;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba($color-primary, 0.2);
+
+      img { width: 100%; object-fit: cover; border-radius: $radius-card; }
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: $color-primary;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: $fs-small;
+    transition: $transition-base;
+
+    &:hover {
+      background: $color-primary-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba($color-primary, 0.35);
+    }
+  }
+
+  &__section-title {
+    font-family: $font-heading;
+    font-size: $fs-section;
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-bottom: 40px;
+
+    &::after {
+      @include gold-divider;
+    }
+  }
+
+  &__process {
+    background: $color-surface;
+
+    &-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+
+      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
+      @include respond-to('mobile') { grid-template-columns: 1fr; }
+    }
+
+    &-step {
+      text-align: center;
+      position: relative;
+
+      h3 {
+        font-family: $font-heading;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: $fs-small;
+        color: $color-text-secondary;
+        line-height: 1.6;
+      }
+    }
+
+    &-num {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, $color-primary, $color-primary-hover);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $font-heading;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 16px;
+    }
+
+    &-line {
+      position: absolute;
+      top: 32px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, $color-secondary, transparent);
+      z-index: 0;
+
+      @include respond-to('tablet') { display: none; }
+    }
+  }
+
+  &__why {
+    background: $color-bg;
+
+    &-header { margin-bottom: 40px; }
+
+    &-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+
+      @include respond-to('laptop') { grid-template-columns: repeat(3, 1fr); }
+      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
+      @include respond-to('mobile') { grid-template-columns: 1fr; }
+    }
+
+    &-card {
+      background: $color-surface;
+      border-radius: $radius-card;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: $shadow-card;
+      transition: $transition-base;
+      border: 1px solid rgba($color-secondary, 0.1);
+
+      &:hover {
+        box-shadow: $shadow-card-hover;
+        transform: translateY(-4px);
+        border-color: rgba($color-secondary, 0.25);
+      }
+
+      &-icon {
+        width: 54px;
+        height: 54px;
+        background: rgba($color-primary, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        color: $color-primary;
+        font-size: 22px;
+      }
+
+      h3 {
+        font-family: $font-heading;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: $fs-xs;
+        color: $color-text-secondary;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  &__artist {
+    background: $color-surface;
+
+    &-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      align-items: center;
+      gap: 60px;
+
+      @include respond-to('laptop') { grid-template-columns: 1fr; }
+    }
+
+    &-img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: $radius-card;
+      box-shadow: 0 30px 80px rgba($color-primary, 0.18);
+    }
+
+    p {
+      font-size: $fs-body;
+      color: $color-text-secondary;
+      line-height: 1.8;
+    }
+  }
+
+  &__artist-signature {
+    font-family: $font-heading;
+    font-style: italic;
+    color: $color-primary;
+    font-size: 1.1rem;
+    margin-top: 16px;
+  }
+
+  &__stats {
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+    padding: 60px 0;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+
+      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
+    }
+  }
+
+  &__stat {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &-value {
+      font-family: $font-heading;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: $color-secondary;
+    }
+
+    &-label {
+      font-size: $fs-small;
+      color: rgba(255,255,255,0.75);
+    }
+  }
+}

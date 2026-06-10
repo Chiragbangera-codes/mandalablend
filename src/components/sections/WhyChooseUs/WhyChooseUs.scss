@@ -1,0 +1,109 @@
+@use "@/styles/mixins" as *;
+
+.why-choose {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '✦';
+    position: absolute;
+    font-size: 400px;
+    color: rgba(255, 255, 255, 0.02);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+    font-family: serif;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  &__header {
+    text-align: center;
+    color: #fff;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-size: $fs-xs;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-secondary;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $fs-section;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: $fs-body;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+
+    @include respond-to('laptop') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: $radius-card;
+    padding: 32px 24px;
+    text-align: center;
+    transition: $transition-base;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-4px);
+      border-color: rgba($color-secondary, 0.3);
+    }
+
+    &-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba($color-secondary, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: $color-secondary;
+      font-size: 24px;
+    }
+
+    &-title {
+      font-family: $font-heading;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    &-desc {
+      font-size: $fs-small;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+  }
+}

@@ -1,0 +1,138 @@
+@use "@/styles/mixins" as *;
+
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: $z-mobile-menu - 1;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(380px, 90vw);
+  background: linear-gradient(160deg, $color-primary 0%, $color-primary-dark 100%);
+  z-index: $z-mobile-menu;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  &__logo {
+    &-img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__close {
+    color: rgba(255,255,255,0.8);
+    font-size: 24px;
+    padding: 8px;
+    border-radius: $radius-sm;
+    transition: $transition-fast;
+
+    &:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+  }
+
+  &__decor {
+    font-size: 2rem;
+    color: $color-secondary;
+    text-align: center;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  &__link {
+    display: block;
+    padding: 14px 20px;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: $radius-sm;
+    transition: $transition-fast;
+    border-left: 3px solid transparent;
+
+    &:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-left-color: $color-secondary;
+    }
+
+    &--active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-weight: 600;
+      border-left-color: $color-secondary;
+    }
+  }
+
+  &__whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    background: $color-whatsapp;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 24px;
+    transition: $transition-base;
+
+    svg { font-size: 20px; }
+
+    &:hover {
+      background: $color-whatsapp-dark;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: rgba(255,255,255,0.8);
+      font-size: 20px;
+      transition: $transition-fast;
+
+      &:hover {
+        background: rgba(255,255,255,0.2);
+        color: #fff;
+      }
+    }
+  }
+}

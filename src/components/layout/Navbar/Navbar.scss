@@ -1,0 +1,127 @@
+@use "@/styles/mixins" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-navbar;
+  height: 90px;
+  background: rgba($color-bg, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba($color-secondary, 0.15);
+  transition: $transition-base;
+
+  &--scrolled {
+    box-shadow: $shadow-navbar;
+    height: 80px;
+  }
+
+  &__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    &-img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      // Keep logo crisp and visible against navbar bg
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
+      transition: $transition-base;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+
+    @include respond-to('laptop') {
+      display: none;
+    }
+  }
+
+  &__link {
+    padding: 8px 16px;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-secondary;
+    border-radius: $radius-pill;
+    transition: $transition-fast;
+    position: relative;
+
+    &:hover {
+      color: $color-primary;
+      background: rgba($color-primary, 0.06);
+    }
+
+    &--active {
+      color: $color-primary;
+      font-weight: 600;
+      background: rgba($color-primary, 0.08);
+    }
+  }
+
+  &__whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: $color-primary;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: $fs-small;
+    font-weight: 600;
+    transition: $transition-base;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    svg {
+      font-size: 18px;
+    }
+
+    &:hover {
+      background: $color-primary-hover;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba($color-primary, 0.3);
+    }
+
+    @include respond-to('laptop') {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    font-size: 24px;
+    color: $color-primary;
+    padding: 8px;
+    border-radius: $radius-sm;
+    transition: $transition-fast;
+
+    &:hover {
+      background: rgba($color-primary, 0.08);
+    }
+
+    @include respond-to('laptop') {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,1349 @@
+=== PRD.docx ===
+Document 1: Product Requirements Document (PRD)
+1. Product Overview
+Product Name
+Mandala Blend
+Product Type
+Art Showcase + WhatsApp Commerce Website
+Version
+V1.0
+Product Goal
+Mandala Blend needs a premium website that:
+Showcases handmade mandala artwork 
+Displays collections beautifully 
+Builds trust with customers 
+Enables customers to place orders via WhatsApp 
+Acts as a digital portfolio and sales channel 
+The website is not a traditional e-commerce store.
+Instead:
+Browse Products
+↓
+View Details
+↓
+Contact on WhatsApp
+↓
+Order Confirmation
+↓
+Manual Fulfillment
+2. Business Goals
+Primary Goals
+G1. Increase Product Visibility
+Customers should easily discover:
+Frames 
+Keychains 
+Name Boards 
+Customized Gifts 
+Wall Decor 
+G2. Increase WhatsApp Orders
+Main conversion event:
+User clicks:
+Order on WhatsApp
+G3. Build Brand Trust
+Website should communicate:
+Handmade 
+Premium Quality 
+Trusted 
+Artistic 
+G4. Mobile First Experience
+Expected traffic:
+80% Mobile
+20% Desktop
+3. User Personas
+Persona 1
+Home Decor Buyer
+Age:
+25-45
+Goal:
+Purchase artwork for home decoration.
+Pain Points:
+Doesn't trust Instagram-only sellers. 
+Wants clear product photos. 
+Needs:
+High-quality images. 
+Product details. 
+Easy ordering. 
+Persona 2
+Gift Buyer
+Age:
+18-35
+Goal:
+Purchase customized gifts.
+Needs:
+Personalization options. 
+Quick communication. 
+Persona 3
+Custom Artwork Customer
+Goal:
+Request custom designs.
+Needs:
+Portfolio 
+Contact Information 
+Trust 
+4. User Journey
+Journey A
+Browsing Products
+Home Page
+↓
+Collections
+↓
+Product Detail
+↓
+WhatsApp
+↓
+Order
+Journey B
+Custom Order
+Home
+↓
+About
+↓
+Contact
+↓
+WhatsApp
+↓
+Custom Design Request
+5. Information Architecture
+Home
+
+Collections
+ ├ Frames
+ ├ Keychains
+ ├ Name Boards
+ ├ Customized Gifts
+ └ New Arrivals
+
+Product Details
+
+Gallery
+
+About
+
+Contact
+6. Functional Requirements
+Home Page
+Purpose
+Introduce the brand.
+Sections
+H1 Hero Section
+Contains:
+Heading 
+Subheading 
+CTA buttons 
+Hero artwork 
+Actions:
+Explore Collections 
+Order on WhatsApp 
+H2 Feature Strip
+Icons:
+Handmade 
+Customizable 
+Premium Quality 
+Safe Delivery 
+H3 Collection Categories
+Cards:
+Keychains 
+Frames 
+Name Boards 
+Customized Gifts 
+New Arrivals 
+H4 Why Choose Us
+Benefits:
+Eco Friendly 
+Made With Love 
+Unique Designs 
+Happy Customers 
+H5 Testimonials
+Customer Reviews
+H6 Instagram Preview
+Artwork thumbnails
+H7 Footer
+Navigation
+Social links
+Newsletter
+Collections Page
+Purpose
+Display products.
+Components
+Collection Banner
+Category Tabs
+Product Grid
+Pagination
+Instagram Preview
+Footer
+Product Card
+Contains:
+Product Image 
+Product Name 
+Price 
+Wishlist Icon 
+WhatsApp CTA 
+Product Detail Page
+Purpose
+Detailed product information.
+Components
+Image Gallery
+Product Information
+Specifications
+Size Selection
+Quantity Selection
+WhatsApp Order CTA
+Description Tabs
+Customization Card
+Related Products
+Trust Indicators
+Trust Indicators
+Handmade 
+Premium Quality 
+Safe Packaging 
+Pan India Delivery 
+Gallery Page
+Purpose
+Portfolio Showcase
+Categories
+Frames 
+Keychains 
+Name Boards 
+Work In Progress 
+Happy Customers 
+Features
+Image Grid
+Filters
+Testimonials
+Statistics
+About Page
+Purpose
+Brand Story
+Sections
+Hero Story
+Our Story
+Creative Process
+Why Choose Us
+Meet The Artist
+Statistics
+Contact Page
+Purpose
+Customer Communication
+Sections
+Hero Banner
+Contact Form
+Contact Cards
+Map
+Store Hours
+FAQ
+Instagram Section
+Footer
+7. WhatsApp Ordering Flow
+Trigger
+Click:
+Order On WhatsApp
+Message Format
+Hello Mandala Blend,
+
+I would like to order:
+
+Product:
+Price:
+
+Please share availability and payment details.
+
+Thank you.
+8. Non Functional Requirements
+Performance
+Page Load:
+< 3 seconds
+SEO
+Meta Titles
+Meta Descriptions
+Open Graph
+Sitemap
+Robots.txt
+Accessibility
+Keyboard Navigation
+Alt Text
+Contrast Compliance
+Security
+HTTPS
+Sanitized Inputs
+No Sensitive Data Storage
+9. Success Metrics
+Conversion Metric
+WhatsApp Click Rate
+Target:
+10%
+Bounce Rate
+Target:
+<40%
+Mobile Score
+Target:
+95+
+Lighthouse
+Target:
+95+
+10. Future Roadmap
+V2
+Admin Dashboard 
+Product Management 
+Reviews 
+Razorpay 
+Order Tracking 
+Analytics 
+V3
+Full E-commerce 
+Customer Accounts 
+Wishlist 
+AI Product Recommendations 
+Acceptance Criteria
+The website is considered complete when:
+✅ All 6 pages match the approved mockups
+✅ Fully responsive
+✅ WhatsApp ordering works
+✅ SEO implemented
+✅ Performance > 90 Lighthouse
+✅ Mobile experience polished
+✅ Production deployment completed
+
+=== Design.docx ===
+Document 3: UI/UX Design Specification (Design System)
+This document is based directly on the mockups you approved (Home, Collections, Product Details, Gallery, About, Contact).
+1. Design Vision
+Brand Name
+Mandala Blend
+Brand Positioning
+Premium Handmade Mandala Art Studio
+Not:
+❌ Amazon
+❌ Flipkart
+❌ Generic E-commerce
+Should feel like:
+✅ Luxury Decor Brand
+✅ Boutique Art Gallery
+✅ Premium Handmade Studio
+Design Keywords
+Elegant
+Warm
+Premium
+Handcrafted
+Minimal
+Artistic
+Luxury
+Trustworthy
+2. Visual Identity
+Design Style
+Modern Luxury + Handmade Craft
+The design should balance:
+Minimalism
++
+Indian Artistic Culture
+Emotional Goal
+Visitors should feel:
+Beautiful
+
+Premium
+
+Authentic
+
+Handcrafted
+
+Trustworthy
+within first 5 seconds.
+3. Color System
+Primary Brand Color
+Burgundy
+#5A1433
+Usage:
+Primary Buttons 
+Active Links 
+Footer 
+CTA Areas 
+Secondary Color
+Gold
+#C79A4D
+Usage:
+Decorative accents 
+Dividers 
+Small icons 
+Background
+Warm Ivory
+#FFF8F1
+Main website background.
+Surface Color
+#FFFFFF
+Cards
+Forms
+Testimonials
+Text Primary
+#1E1E1E
+Text Secondary
+#666666
+Success
+WhatsApp
+#25D366
+4. Typography System
+Heading Font
+Playfair Display
+Used for:
+Hero Titles
+
+Page Titles
+
+Section Titles
+
+Product Titles
+Body Font
+Poppins
+Used for:
+Descriptions
+
+Navigation
+
+Buttons
+
+Forms
+Font Scale
+Hero Heading
+64px
+font-weight:700
+Example:
+Mandala Art
+made with love
+Page Heading
+48px
+Example:
+Our Collections
+
+Our Gallery
+
+Contact Us
+Section Heading
+36px
+Card Title
+22px
+Body
+16px
+Small Text
+14px
+5. Spacing System
+Layout Container
+max-width:1280px;
+margin:auto;
+padding:0 24px;
+Section Gap
+Desktop
+100px
+Tablet
+80px
+Mobile
+60px
+6. Grid System
+Desktop
+12 Columns
+Tablet
+8 Columns
+Mobile
+4 Columns
+7. Border Radius
+Buttons
+999px
+Cards
+20px
+Forms
+14px
+8. Shadow System
+Normal Card
+0 10px 30px rgba(0,0,0,.06)
+Hover Card
+0 15px 40px rgba(0,0,0,.12)
+9. Navbar Design
+Based on mockup.
+Height:
+90px
+Layout
+Logo
+
+Home
+
+Collections
+
+Gallery
+
+About
+
+Contact
+
+WhatsApp CTA
+Announcement Bar
+Top strip
+Height:
+40px
+Contains:
+Free Shipping on Orders Above ₹999
+Navbar Behavior
+Desktop
+Fixed top
+Mobile
+Hamburger Menu
+Slide from Right
+WhatsApp CTA
+Background
+#5A1433
+Hover
+#6C1B42
+10. Home Page Design
+Hero Section
+Height
+750px
+Layout
+Left:
+Content
+
+Right:
+Artwork Showcase
+Contains
+Heading
+Subheading
+2 CTA Buttons
+Feature Icons
+Hero Artwork
+Mobile Preview Mockup
+Feature Icons
+4 Equal Columns
+100% Handmade
+
+Customizable
+
+Premium Quality
+
+Safe Delivery
+Collection Section
+5 Category Cards
+Layout
+Keychains
+
+Frames
+
+Name Boards
+
+Customized Gifts
+
+New Arrivals
+Card Structure
+Image
+
+Category Name
+
+Explore →
+Why Choose Us
+Dark Burgundy Banner
+4 Columns
+Eco Friendly
+
+Made With Love
+
+Unique Designs
+
+Happy Customers
+Testimonials
+3 Cards
+Structure
+Quote Icon
+
+Stars
+
+Review
+
+Customer Image
+
+Customer Name
+Instagram Strip
+Horizontal Gallery
+8 Images
+11. Collections Page
+Hero Banner
+Height
+280px
+Contains:
+Artwork
+Title
+Description
+Category Tabs
+Pill Buttons
+All
+
+Keychains
+
+Frames
+
+Name Boards
+
+Customized Gifts
+
+New Arrivals
+Sidebar Filters
+Categories
+Price Slider
+Sort
+Custom Order CTA
+Product Grid
+Desktop
+4 Columns
+Tablet
+2 Columns
+Mobile
+1 Column
+Product Card
+Contains
+Image
+
+Name
+
+Price
+
+Wishlist
+
+WhatsApp CTA
+Hover
+Image Zoom
+Card Lift
+Shadow Increase
+12. Product Details Page
+Layout
+Desktop
+Left:
+Gallery
+
+Right:
+Details
+Gallery
+Main Image
+Thumbnail Strip
+Previous
+Next
+Zoom
+Product Info
+Title
+Rating
+Price
+Description
+Specifications
+Size Selector
+Button Group
+8x8
+
+12x12
+
+16x16
+Quantity Selector
+-
+1
++
+Primary CTA
+Green WhatsApp Button
+Full Width
+Trust Strip
+4 Columns
+Handmade
+
+Premium
+
+Packaging
+
+Delivery
+Product Tabs
+Description
+
+Materials
+
+Care
+
+Shipping
+Related Products
+5 Products
+Horizontal Layout
+13. Gallery Page
+Header Banner
+Title
+Description
+Artwork
+Filter Bar
+All
+
+Frames
+
+Keychains
+
+Name Boards
+
+Work In Progress
+
+Happy Customers
+Gallery Grid
+Desktop
+4 Columns
+Mixed Image Heights
+Hover
+Dark Overlay
+Zoom
+Customer Showcase
+Customer Cards
+Rating
+Location
+Statistics
+1500+
+
+2500+
+
+4.8
+
+100%
+14. About Page
+Story Hero
+Left
+Story
+CTA
+Right
+Artist Image
+Our Story
+Image Grid
+Description
+Benefits
+Creative Process
+Timeline
+Inspiration
+
+Handcrafting
+
+Coloring
+
+Finishing
+Why Choose Us
+5 Cards
+Meet The Artist
+Image
+Biography
+Signature Message
+Stats Banner
+Dark Burgundy Background
+15. Contact Page
+Hero
+Title
+Description
+CTA
+Artwork
+Contact Section
+2 Columns
+Left
+Form
+Fields
+Name
+
+Email
+
+Phone
+
+Inquiry Type
+
+Message
+Right
+Contact Cards
+WhatsApp
+
+Instagram
+
+Email
+
+Location
+Map Section
+Google Maps Embed
+Store Hours
+Card Design
+FAQ
+Accordion
+Final CTA
+Still Have Questions?
+WhatsApp Button
+16. Footer
+Height
+320px
+Gradient
+#5A1433
+to
+#3B0A1F
+Columns
+Brand
+
+Quick Links
+
+Collections
+
+Customer Care
+
+Newsletter
+Social Icons
+Instagram
+Facebook
+WhatsApp
+Pinterest
+17. Mobile Design
+Breakpoints
+Mobile:
+320-576
+
+Tablet:
+577-768
+
+Laptop:
+769-1024
+
+Desktop:
+1025+
+Mobile Menu
+Fullscreen Overlay
+Dark Burgundy
+Mandala Pattern Background
+Contains:
+Home
+
+Collections
+
+Gallery
+
+About
+
+Contact
+
+WhatsApp CTA
+Sticky WhatsApp
+Bottom Right
+Visible On Every Page
+18. Animation System
+Using Framer Motion
+Hero
+Fade Up
+Cards
+Scale 1.03
+Gallery
+Zoom 1.08
+Buttons
+Scale 1.05
+Page Transition
+Opacity 0 → 1
+Duration 0.5s
+Final Design Goal
+When a visitor opens Mandala Blend, they should immediately feel:
+"This is a premium handmade art brand, not just another Instagram seller."
+
+=== Tech.docx ===
+Document 2: Technical Design Document (TDD)
+Project Overview
+Project Name
+Mandala Blend
+Tech Stack
+Frontend:
+React 19 
+TypeScript 
+Vite 
+Styling:
+SCSS 
+CSS Variables 
+Routing:
+React Router DOM 
+Animations:
+Framer Motion 
+Icons:
+React Icons 
+Gallery:
+React Photo View 
+Hosting:
+Vercel 
+Image Storage:
+Cloudinary 
+Source Control:
+GitHub 
+System Architecture
+User Browser
+      │
+      ▼
+React SPA (Vite)
+      │
+      ▼
+Local Product Data
+      │
+      ▼
+WhatsApp Integration
+      │
+      ▼
+Business Owner
+V1 requires:
+❌ Backend
+❌ Database
+❌ Authentication
+❌ Payment Gateway
+Everything is static.
+Project Folder Structure
+src/
+
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   ├── patterns/
+│   └── logos/
+
+├── components/
+
+│   ├── common/
+│   │   ├── Button/
+│   │   ├── SectionTitle/
+│   │   ├── Badge/
+│   │   ├── Loader/
+│   │   └── EmptyState/
+
+│   ├── layout/
+│   │   ├── Navbar/
+│   │   ├── Footer/
+│   │   ├── AnnouncementBar/
+│   │   └── MobileMenu/
+
+│   ├── product/
+│   │   ├── ProductCard/
+│   │   ├── ProductGallery/
+│   │   ├── ProductInfo/
+│   │   ├── RelatedProducts/
+│   │   └── ProductTabs/
+
+│   ├── gallery/
+│   │   ├── GalleryGrid/
+│   │   ├── GalleryCard/
+│   │   └── GalleryFilters/
+
+│   ├── contact/
+│   │   ├── ContactForm/
+│   │   ├── ContactCard/
+│   │   ├── FAQ/
+│   │   └── StoreHours/
+
+│   └── sections/
+│       ├── Hero/
+│       ├── Collections/
+│       ├── Testimonials/
+│       ├── InstagramFeed/
+│       ├── WhyChooseUs/
+│       └── Statistics/
+
+├── pages/
+
+│   ├── Home/
+│   ├── Collections/
+│   ├── Product/
+│   ├── Gallery/
+│   ├── About/
+│   └── Contact/
+
+├── data/
+
+│   ├── products.ts
+│   ├── testimonials.ts
+│   ├── gallery.ts
+│   └── faq.ts
+
+├── hooks/
+
+│   ├── useWindowSize.ts
+│   ├── useWhatsapp.ts
+│   ├── useScrollReveal.ts
+│   └── usePagination.ts
+
+├── services/
+
+│   ├── whatsapp.ts
+│   └── cloudinary.ts
+
+├── routes/
+
+│   └── AppRoutes.tsx
+
+├── styles/
+
+│   ├── global.scss
+│   ├── variables.scss
+│   ├── mixins.scss
+│   ├── animations.scss
+│   └── typography.scss
+
+├── utils/
+
+│   ├── constants.ts
+│   ├── helpers.ts
+│   └── formatters.ts
+
+├── App.tsx
+└── main.tsx
+Routing Architecture
+/
+
+Home
+
+/collections
+
+Collections Listing
+
+/collections/:slug
+
+Product Detail
+
+/gallery
+
+Gallery
+
+/about
+
+About
+
+/contact
+
+Contact
+
+/*
+404 Page
+Data Models
+Product Model
+interface Product {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  price: number;
+  description: string;
+  images: string[];
+  sizes: string[];
+  material: string;
+  customizable: boolean;
+  featured: boolean;
+  bestSeller: boolean;
+  deliveryTime: string;
+}
+Testimonial Model
+interface Testimonial {
+  id: string;
+  name: string;
+  city: string;
+  image: string;
+  rating: number;
+  review: string;
+}
+Gallery Item
+interface GalleryItem {
+  id: string;
+  image: string;
+  category: string;
+  title: string;
+}
+State Management
+For V1:
+Use React Context.
+No Redux.
+Contexts:
+ProductContext
+
+GalleryContext
+
+ThemeContext
+Page Architecture
+Home Page
+AnnouncementBar
+
+Navbar
+
+HeroSection
+
+FeatureStrip
+
+CollectionCategories
+
+WhyChooseUs
+
+Testimonials
+
+InstagramPreview
+
+Footer
+Collections Page
+AnnouncementBar
+
+Navbar
+
+CollectionBanner
+
+CategoryTabs
+
+Filters
+
+ProductGrid
+
+Pagination
+
+FeatureStrip
+
+InstagramPreview
+
+Footer
+Product Detail Page
+AnnouncementBar
+
+Navbar
+
+Breadcrumb
+
+ProductGallery
+
+ProductInformation
+
+TrustStrip
+
+ProductTabs
+
+CustomizationCard
+
+RelatedProducts
+
+Footer
+Gallery Page
+AnnouncementBar
+
+Navbar
+
+GalleryBanner
+
+CategoryFilters
+
+GalleryGrid
+
+CustomerShowcase
+
+StatisticsSection
+
+Footer
+About Page
+AnnouncementBar
+
+Navbar
+
+StoryHero
+
+StorySection
+
+CreativeProcess
+
+WhyChooseUs
+
+MeetArtist
+
+Statistics
+
+Footer
+Contact Page
+AnnouncementBar
+
+Navbar
+
+ContactHero
+
+ContactForm
+
+ContactCards
+
+Map
+
+StoreHours
+
+FAQ
+
+InstagramSection
+
+Footer
+Component Specifications
+Navbar
+Features:
+Sticky on scroll 
+Active link indicator 
+Desktop navigation 
+Mobile menu 
+States:
+isScrolled
+isMenuOpen
+activeRoute
+Product Card
+Props:
+interface ProductCardProps {
+ product: Product
+}
+Features:
+Hover animation 
+Image zoom 
+Wishlist icon 
+WhatsApp button 
+Product Gallery
+Features:
+Main image 
+Thumbnail navigation 
+Mobile swipe 
+Lightbox 
+Library:
+react-photo-view
+Mobile Menu
+Animation:
+Right → Left Slide
+Duration:
+300ms
+Backdrop:
+rgba(0,0,0,.5)
+WhatsApp Service
+export const createWhatsappLink = (
+ productName,
+ price
+)
+Output:
+https://wa.me/91XXXXXXXXXX
+Generated Message:
+Hello Mandala Blend,
+
+I would like to order:
+
+Product:
+Price:
+
+Please share availability.
+
+Thank You.
+Framer Motion Architecture
+Variants
+fadeUp
+
+fadeIn
+
+slideLeft
+
+slideRight
+
+scaleIn
+
+staggerContainer
+Animation Mapping
+Hero
+Fade Up
+Collection Cards
+Scale Hover
+Testimonials
+Stagger Animation
+Gallery
+Zoom Hover
+Page Change
+Fade Transition
+Image Strategy
+Format:
+WebP
+Responsive Sizes
+400px
+
+800px
+
+1200px
+Cloudinary Folder Structure
+mandala-blend/
+
+products/
+
+gallery/
+
+about/
+
+instagram/
+SEO Architecture
+Each page:
+title
+
+description
+
+og:title
+
+og:image
+
+canonical
+Example:
+Mandala Frames | Mandala Blend
+Performance Optimization
+Lazy Loading
+React.lazy()
+Route Splitting
+Suspense
+Image Lazy Loading
+loading="lazy"
+Target Scores
+Performance:
+95+
+Accessibility:
+95+
+SEO:
+95+
+Best Practices:
+95+
+Responsive Breakpoints
+$mobile: 576px;
+
+$tablet: 768px;
+
+$laptop: 1024px;
+
+$desktop: 1440px;
+Deployment Architecture
+GitHub
+   ↓
+Vercel Preview
+   ↓
+Production Build
+Branch Strategy
+main
+
+development
+
+feature/home
+
+feature/gallery
+
+feature/contact
+Error Handling
+404 Page
+Image Fallback
+Form Validation
+WhatsApp Link Validation
+Empty Product State
+Security
+Sanitize Inputs
+No Client Secrets
+HTTPS Only
+Environment Variables
+Future Backend Migration
+Current:
+JSON Data
+Future:
+React
+ ↓
+Node.js
+ ↓
+MongoDB
+Possible Features:
+Admin Dashboard 
+Product Uploads 
+Reviews 
+Order Tracking 
+Inventory 
+Analytics 
+Definition of Done
+A feature is complete when:
+✅ Responsive
+✅ Accessible
+✅ Tested
+✅ No console errors
+✅ SEO configured
+✅ Animations implemented
+✅ Matches design specification
+

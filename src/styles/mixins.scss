@@ -1,0 +1,73 @@
+@use 'variables' as *;
+@forward 'variables';
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: #{$mobile}) { @content; }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: #{$tablet}) { @content; }
+  } @else if $breakpoint == 'laptop' {
+    @media (max-width: #{$laptop}) { @content; }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: #{$desktop}) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+@mixin section-padding {
+  padding: $section-gap-desktop 0;
+
+  @include respond-to('tablet') {
+    padding: $section-gap-tablet 0;
+  }
+
+  @include respond-to('mobile') {
+    padding: $section-gap-mobile 0;
+  }
+}
+
+@mixin card-base {
+  background: $color-surface;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    transform: translateY(-4px);
+  }
+}
+
+@mixin gold-divider {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, $color-secondary, $color-secondary-light);
+  border-radius: 2px;
+  margin: 12px 0 0;
+}
+
+@mixin text-gradient {
+  background: linear-gradient(135deg, $color-primary, $color-primary-hover);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
