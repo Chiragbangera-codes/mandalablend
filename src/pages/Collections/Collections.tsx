@@ -97,7 +97,7 @@ const Collections: React.FC = () => {
             <div className="collections-page__custom-cta">
               <h4>Need a Custom Order?</h4>
               <p>Tell us your design and we'll create something just for you.</p>
-              <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" className="collections-page__custom-btn">
+              <a href="https://wa.me/919480675351" target="_blank" rel="noopener noreferrer" className="collections-page__custom-btn">
                 WhatsApp Us
               </a>
             </div>

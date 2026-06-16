@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Hello Mandala Blend! 🎨\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nInquiry: ${form.type}\n\nMessage:\n${form.message}\n\nThank you!`;
-    window.open(`https://wa.me/919999999999?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/919480675351?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
   };
 
