@@ -1,143 +1,209 @@
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { staggerContainer, fadeUp, viewportConfig } from '@/utils/animations';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiFilter, FiX, FiChevronDown } from 'react-icons/fi';
+import { staggerContainer, fadeUp, fadeLeft, viewportConfig } from '@/animations/variants';
 import { products, getProductsByCategory } from '@/data/products';
 import { PRODUCT_CATEGORIES } from '@/utils/constants';
 import ProductCard from '@/components/product/ProductCard/ProductCard';
-import SectionTitle from '@/components/common/SectionTitle/SectionTitle';
 import InstagramFeed from '@/components/sections/InstagramFeed/InstagramFeed';
 import './Collections.scss';
 
 const ITEMS_PER_PAGE = 8;
 
+const sortOptions = [
+  { value: 'default',    label: 'Featured' },
+  { value: 'newest',     label: 'Newest' },
+  { value: 'price-asc',  label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'rating',     label: 'Top Rated' },
+];
+
 const Collections: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState('default');
   const [maxPrice, setMaxPrice] = useState(5000);
+  const [filterOpen, setFilterOpen] = useState(false); // mobile filter drawer
+  const [availability, setAvailability] = useState({ available: false, custom: false });
 
   const activeCategory = searchParams.get('cat') || 'all';
 
   const filtered = useMemo(() => {
     let result = getProductsByCategory(activeCategory);
     result = result.filter(p => p.price <= maxPrice);
-    if (sortBy === 'price-asc') result = [...result].sort((a, b) => a.price - b.price);
+    if (availability.custom) result = result.filter(p => p.customizable);
+    if (sortBy === 'price-asc')  result = [...result].sort((a, b) => a.price - b.price);
     if (sortBy === 'price-desc') result = [...result].sort((a, b) => b.price - a.price);
-    if (sortBy === 'rating') result = [...result].sort((a, b) => b.rating - a.rating);
+    if (sortBy === 'rating')     result = [...result].sort((a, b) => b.rating - a.rating);
     return result;
-  }, [activeCategory, sortBy, maxPrice]);
-
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paginated = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  }, [activeCategory, sortBy, maxPrice, availability]);
 
   const setCategory = (cat: string) => {
     setSearchParams(cat === 'all' ? {} : { cat });
-    setCurrentPage(1);
+  };
+
+  const resetFilters = () => {
+    setMaxPrice(5000);
+    setSortBy('default');
+    setAvailability({ available: false, custom: false });
   };
 
   return (
     <div className="collections-page">
-      {/* Banner */}
+      {/* Chapter 4.5 — Hero Banner */}
       <div className="collections-page__banner">
         <div className="container">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="collections-page__banner-eyebrow">Our Creations</span>
-            <h1 className="collections-page__banner-title">Mandala Collections</h1>
+            <h1 className="collections-page__banner-title">Our Collections</h1>
             <p className="collections-page__banner-desc">
-              Browse our curated collection of handmade mandala art — each piece crafted with love.
+              Discover handcrafted mandala artwork made with love and precision.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="container collections-page__body">
-        {/* Category Tabs */}
-        <div className="collections-page__tabs">
-          {PRODUCT_CATEGORIES.map((cat) => (
-            <button
-              key={cat.value}
-              className={`collections-page__tab ${activeCategory === cat.value ? 'collections-page__tab--active' : ''}`}
-              onClick={() => setCategory(cat.value)}
-              id={`tab-${cat.value}`}
-            >
-              {cat.label}
-            </button>
-          ))}
+      {/* Chapter 4.6 — Category Navigation Pills */}
+      <div className="collections-page__pills-bar">
+        <div className="container">
+          <div className="collections-page__pills">
+            {PRODUCT_CATEGORIES.map((cat) => (
+              <button
+                key={cat.value}
+                className={`collections-page__pill ${activeCategory === cat.value ? 'collections-page__pill--active' : ''}`}
+                onClick={() => setCategory(cat.value)}
+                id={`tab-${cat.value}`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
+      </div>
 
+      <div className="container collections-page__body">
         <div className="collections-page__layout">
-          {/* Sidebar */}
-          <aside className="collections-page__sidebar">
-            <h3>Filters</h3>
+
+          {/* Chapter 4.8 — Sticky Sidebar */}
+          <aside className="collections-page__sidebar" aria-label="Filters">
+            <h3 className="collections-page__sidebar-heading">Filters</h3>
+
+            {/* Categories */}
             <div className="collections-page__filter-group">
-              <label>Sort By</label>
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-                <option value="default">Default</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="rating">Top Rated</option>
-              </select>
+              <h4 className="collections-page__filter-label">Categories</h4>
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <button
+                  key={cat.value}
+                  className={`collections-page__sidebar-cat ${activeCategory === cat.value ? 'active' : ''}`}
+                  onClick={() => setCategory(cat.value)}
+                >
+                  {activeCategory === cat.value && (
+                    <span className="collections-page__sidebar-dot" aria-hidden="true" />
+                  )}
+                  {cat.label}
+                </button>
+              ))}
             </div>
+
+            {/* Price Range */}
             <div className="collections-page__filter-group">
-              <label>Max Price: ₹{maxPrice.toLocaleString('en-IN')}</label>
+              <h4 className="collections-page__filter-label">
+                Max Price: ₹{maxPrice.toLocaleString('en-IN')}
+              </h4>
               <input
                 type="range"
+                className="collections-page__price-slider"
                 min={200}
                 max={5000}
                 step={100}
                 value={maxPrice}
-                onChange={e => { setMaxPrice(Number(e.target.value)); setCurrentPage(1); }}
+                onChange={e => { setMaxPrice(Number(e.target.value)); }}
+                aria-label={`Maximum price: ₹${maxPrice}`}
               />
               <div className="collections-page__price-range">
                 <span>₹200</span>
-                <span>₹5000</span>
+                <span>₹5,000</span>
               </div>
             </div>
+
+            {/* Availability */}
+            <div className="collections-page__filter-group">
+              <h4 className="collections-page__filter-label">Options</h4>
+              <label className="collections-page__checkbox">
+                <input
+                  type="checkbox"
+                  checked={availability.custom}
+                  onChange={e => { setAvailability(a => ({ ...a, custom: e.target.checked })); }}
+                />
+                <span>Customizable Only</span>
+              </label>
+            </div>
+
+            {/* Reset */}
+            <button className="collections-page__reset-btn" onClick={resetFilters}>
+              Reset Filters
+            </button>
+
+            {/* Custom Order CTA */}
             <div className="collections-page__custom-cta">
               <h4>Need a Custom Order?</h4>
-              <p>Tell us your design and we'll create something just for you.</p>
-              <a href="https://wa.me/919480675351" target="_blank" rel="noopener noreferrer" className="collections-page__custom-btn">
+              <p>Tell us your design and we'll create it just for you.</p>
+              <a
+                href="https://wa.me/919480675351"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="collections-page__custom-btn"
+              >
                 WhatsApp Us
               </a>
             </div>
           </aside>
 
-          {/* Product Grid */}
+          {/* Main Product Grid */}
           <div className="collections-page__main">
-            <div className="collections-page__results-info">
-              <span>{filtered.length} products found</span>
+            {/* Chapter 4.7 — Toolbar */}
+            <div className="collections-page__toolbar">
+              <span className="collections-page__results-info">
+                Showing <strong>{filtered.length}</strong> products
+              </span>
+              <select
+                className="collections-page__sort"
+                value={sortBy}
+                onChange={e => setSortBy(e.target.value)}
+                aria-label="Sort products"
+              >
+                {sortOptions.map(o => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
             </div>
-            {paginated.length > 0 ? (
+
+            {/* Product Grid */}
+            {filtered.length > 0 ? (
               <motion.div
                 className="collections-page__grid"
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                key={activeCategory + currentPage}
+                key={activeCategory + sortBy}
               >
-                {paginated.map(product => (
+                {filtered.map(product => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </motion.div>
             ) : (
+              /* Chapter 4.12 — Empty State */
               <div className="collections-page__empty">
-                <p>No products found. Try different filters.</p>
-              </div>
-            )}
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="collections-page__pagination">
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button
-                    key={i}
-                    className={`collections-page__page-btn ${currentPage === i + 1 ? 'active' : ''}`}
-                    onClick={() => setCurrentPage(i + 1)}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+                <div className="collections-page__empty-icon">🖼️</div>
+                <h3>No Products Found</h3>
+                <p>Try adjusting your filters or browse all collections.</p>
+                <button onClick={resetFilters} className="collections-page__empty-btn">
+                  Browse All Collections
+                </button>
               </div>
             )}
           </div>

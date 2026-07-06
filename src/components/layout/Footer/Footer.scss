@@ -1,216 +1,238 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 2.14 — Footer
+// Background: #1F1F22, 5 columns, padding-top 72px, padding-bottom 32px
 
 .footer {
-  background: linear-gradient(160deg, $color-primary 0%, $color-primary-dark 100%);
-  color: rgba(255, 255, 255, 0.85);
-  padding-top: 60px;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    left: -80px;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba($color-secondary, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  &__mandala-top {
-    text-align: center;
-    color: $color-secondary;
-    font-size: 1.2rem;
-    letter-spacing: 12px;
-    margin-bottom: 48px;
-    opacity: 0.6;
-  }
+  background: #1F1F22;
+  color: rgba(255,255,255,.85);
+  padding-top: 72px;
 
   &__inner {
     display: grid;
-    grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr 1.2fr;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr 1.4fr;
     gap: 40px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
 
-    @include respond-to('laptop') {
-      grid-template-columns: 1fr 1fr 1fr;
+    @media (max-width: $laptop) {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    @include respond-to('tablet') {
-      grid-template-columns: 1fr 1fr;
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
     }
 
-    @include respond-to('mobile') {
+    @media (max-width: $mobile) {
       grid-template-columns: 1fr;
+      gap: 28px;
     }
   }
 
-  &__brand {
-    &-desc {
-      font-size: $fs-small;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.65);
-      margin-top: 12px;
-      max-width: 240px;
-    }
-  }
-
-  &__logo {
-    &-img {
-      height: 72px;
-      width: auto;
-      object-fit: contain;
-      margin-bottom: 4px;
-    }
-  }
-
-  &__socials {
+  &__col {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 16px;
 
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 17px;
-      transition: $transition-fast;
+    &--brand {
+      @media (max-width: $laptop) {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px;
+        align-items: flex-start;
+      }
 
-      &:hover {
-        background: $color-secondary;
-        color: $color-primary;
-        transform: translateY(-2px);
+      @media (max-width: $mobile) {
+        flex-direction: column;
+      }
+    }
+
+    &--newsletter {
+      @media (max-width: $laptop) {
+        grid-column: 1 / -1;
+      }
+
+      @media (max-width: $mobile) {
+        grid-column: auto;
       }
     }
   }
 
-  &__heading {
-    font-family: $font-heading;
-    font-size: 1rem;
-    font-weight: 600;
-    color: $color-secondary;
-    margin-bottom: 16px;
-    letter-spacing: 0.02em;
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-img {
+      height: 44px;
+      width: auto;
+    }
   }
 
+  &__brand-name {
+    font-family: $font-heading;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  &__brand-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,.55);
+    max-width: 280px;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  &__social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.7);
+    font-size: 16px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(122, 23, 56, .6);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    &--whatsapp:hover {
+      background: rgba(37, 211, 102, .3);
+    }
+  }
+
+  // Column heading
+  &__heading {
+    font-family: $font-body;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+
+  // Link lists
   &__list {
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    li a {
-      font-size: $fs-small;
-      color: rgba(255, 255, 255, 0.7);
-      transition: $transition-fast;
+    li a,
+    li span {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      transition: color 0.2s ease;
+      line-height: 1.4;
 
       &:hover {
-        color: $color-secondary;
-        padding-left: 4px;
+        color: rgba(122, 23, 56, .9);
+        color: #c06080;
       }
     }
   }
 
-  &__contact-list {
+  // Newsletter
+  &__newsletter-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.6;
+    max-width: 240px;
+  }
+
+  &__newsletter-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    margin-top: 4px;
 
-    li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: $fs-small;
-      color: rgba(255, 255, 255, 0.7);
+    input {
+      height: 46px;
+      padding: 0 16px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      font-family: $font-body;
+      transition: border-color 0.2s ease;
 
-      svg {
-        flex-shrink: 0;
-        margin-top: 2px;
-        color: $color-secondary;
-        font-size: 15px;
+      &::placeholder {
+        color: rgba(255,255,255,.35);
       }
 
-      a {
-        color: rgba(255, 255, 255, 0.7);
-        transition: $transition-fast;
-
-        &:hover {
-          color: $color-secondary;
-        }
-      }
-    }
-  }
-
-  &__newsletter {
-    p {
-      font-size: $fs-small;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
-
-    &-form {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      input {
-        padding: 10px 14px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: $radius-form;
-        color: #fff;
-        font-size: $fs-small;
+      &:focus {
+        border-color: $color-wine;
         outline: none;
-        transition: $transition-fast;
-
-        &::placeholder {
-          color: rgba(255, 255, 255, 0.4);
-        }
-
-        &:focus {
-          border-color: $color-secondary;
-          background: rgba(255, 255, 255, 0.15);
-        }
+        background: rgba(255,255,255,.1);
       }
+    }
 
-      button {
-        padding: 10px 20px;
-        background: $color-secondary;
-        color: $color-primary;
-        border-radius: $radius-form;
-        font-weight: 600;
-        font-size: $fs-small;
-        transition: $transition-base;
+    button {
+      height: 46px;
+      background: $color-wine;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: $font-body;
+      cursor: pointer;
+      transition: all 0.2s ease;
 
-        &:hover {
-          background: $color-secondary-light;
-          transform: translateY(-1px);
-        }
+      &:hover {
+        background: darken(#7A1738, 5%);
+        transform: translateY(-1px);
       }
     }
   }
 
-  &__bottom {
-    margin-top: 48px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 0;
+  &__subscribed {
+    color: #3BB273;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    &-inner {
-      display: flex;
-      justify-content: space-between;
+    span {
+      display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #3BB273;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
 
-      p {
-        font-size: $fs-xs;
-        color: rgba(255, 255, 255, 0.5);
-      }
+  // Bottom bar
+  &__bottom {
+    padding: 24px 0;
+  }
+
+  &__bottom-inner {
+    text-align: center;
+
+    p {
+      font-size: 13px;
+      color: rgba(255,255,255,.35);
     }
   }
 }

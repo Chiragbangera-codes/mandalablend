@@ -1,33 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaWhatsapp, FaInstagram, FaFacebook, FaPinterest } from 'react-icons/fa';
-import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
-import { INSTAGRAM_URL, FACEBOOK_URL, PINTEREST_URL, EMAIL, PHONE, ADDRESS } from '@/utils/constants';
+import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { INSTAGRAM_URL, FACEBOOK_URL, EMAIL, PHONE } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import './Footer.scss';
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubscribed(true);
+  };
+
   return (
     <footer className="footer">
-      <div className="footer__mandala-top">✦ ❋ ✦</div>
       <div className="container footer__inner">
-        {/* Brand */}
-        <div className="footer__col footer__brand">
+        {/* Column 1: Brand */}
+        <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <img src="/logo-white.png?v=2" alt="The Mandala Blend" className="footer__logo-img" />
+            <img
+              src="/logo-white.png?v=2"
+              alt="The Mandala Blend"
+              className="footer__logo-img"
+              onError={(e) => {
+                // Fallback to text if white logo not found
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+            <span className="footer__brand-name">Mandala Blend</span>
           </div>
           <p className="footer__brand-desc">
-            Premium handmade mandala art crafted with love. Every piece is unique, every stroke is intentional.
+            Premium handmade mandala art crafted with love from Jaipur, India.
+            Every piece is unique, every stroke is intentional.
           </p>
           <div className="footer__socials">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebook /></a>
-            <a href={createGeneralWhatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
-            <a href={PINTEREST_URL} target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><FaPinterest /></a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Instagram"
+              className="footer__social-link"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Facebook"
+              className="footer__social-link"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href={createGeneralWhatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="footer__social-link footer__social-link--whatsapp"
+            >
+              <FaWhatsapp />
+            </a>
           </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Column 2: Quick Links */}
         <div className="footer__col">
           <h3 className="footer__heading">Quick Links</h3>
           <ul className="footer__list">
@@ -39,7 +78,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Collections */}
+        {/* Column 3: Collections */}
         <div className="footer__col">
           <h3 className="footer__heading">Collections</h3>
           <ul className="footer__list">
@@ -51,44 +90,48 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Column 4: Customer Care */}
         <div className="footer__col">
-          <h3 className="footer__heading">Get In Touch</h3>
-          <ul className="footer__contact-list">
-            <li>
-              <MdPhone />
-              <a href={`tel:${PHONE}`}>{PHONE}</a>
-            </li>
-            <li>
-              <MdEmail />
-              <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            </li>
-            <li>
-              <MdLocationOn />
-              <span>{ADDRESS}</span>
-            </li>
-            <li>
-              <FaWhatsapp />
-              <a href={createGeneralWhatsappLink()} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-            </li>
+          <h3 className="footer__heading">Customer Care</h3>
+          <ul className="footer__list">
+            <li><a href={createGeneralWhatsappLink()} target="_blank" rel="noopener noreferrer">Order on WhatsApp</a></li>
+            <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+            <li><a href={`tel:${PHONE}`}>{PHONE}</a></li>
+            <li><Link to="/contact">Custom Orders</Link></li>
+            <li><Link to="/contact#faq">FAQs</Link></li>
           </ul>
         </div>
 
-        {/* Newsletter */}
-        <div className="footer__col footer__newsletter">
-          <h3 className="footer__heading">Stay Updated</h3>
-          <p>Get notified about new designs, offers and more.</p>
-          <form className="footer__newsletter-form" onSubmit={e => e.preventDefault()}>
-            <input type="email" placeholder="Your email address" aria-label="Email for newsletter" />
-            <button type="submit">Subscribe</button>
-          </form>
+        {/* Column 5: Newsletter */}
+        <div className="footer__col footer__col--newsletter">
+          <h3 className="footer__heading">Stay Connected</h3>
+          <p className="footer__newsletter-desc">
+            Get notified about new designs, festivals, and exclusive offers.
+          </p>
+          {subscribed ? (
+            <div className="footer__subscribed">
+              <span>✓</span> Thank you for subscribing!
+            </div>
+          ) : (
+            <form className="footer__newsletter-form" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                aria-label="Email for newsletter"
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          )}
         </div>
       </div>
 
+      {/* Bottom Bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <p>© {new Date().getFullYear()} Mandala Blend. All rights reserved. Made with ❤️ in India.</p>
-          <p>Handcrafted Art · Pan India Delivery · 100% Original</p>
         </div>
       </div>
     </footer>

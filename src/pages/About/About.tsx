@@ -1,94 +1,302 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaLeaf, FaHeart, FaStar, FaAward, FaPalette } from 'react-icons/fa';
-import { fadeLeft, fadeRight, staggerContainer, fadeUp, viewportConfig } from '@/utils/animations';
+import { FiFeather, FiHeart, FiStar, FiAward, FiEdit3, FiCompass, FiPenTool, FiImage, FiBox, FiTruck, FiSmile, FiEye } from 'react-icons/fi';
+import { fadeLeft, fadeRight, staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
 import { STATS } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import Counter from '@/components/common/Counter/Counter';
 import './About.scss';
 
-const WHY_CARDS = [
-  { icon: <FaLeaf />, title: 'Eco Friendly Materials', desc: 'Sustainably sourced materials, recyclable packaging.' },
-  { icon: <FaHeart />, title: 'Made with Love', desc: 'Every piece drawn with full devotion and passion.' },
-  { icon: <FaStar />, title: 'Unique Designs', desc: 'Original, never-repeated mandala patterns.' },
-  { icon: <FaAward />, title: 'Premium Quality', desc: 'Archival inks and quality materials for lasting beauty.' },
-  { icon: <FaPalette />, title: 'Fully Customizable', desc: 'Any name, size, color — made just for you.' },
+// Chapter 7.7 — Mission & Vision cards
+const MISSION_VISION = [
+  {
+    type: 'Mission',
+    icon: <FiHeart />,
+    desc: 'To create premium handmade mandala art that transforms spaces, uplifts souls, and celebrates the timeless tradition of Indian art — one stroke at a time.',
+  },
+  {
+    type: 'Vision',
+    icon: <FiStar />,
+    desc: 'To become India\'s most loved mandala art brand, making handcrafted art accessible to every home and heart across the country.',
+  },
 ];
 
-const PROCESS = [
-  { step: '01', title: 'Inspiration', desc: 'Drawing inspiration from nature, culture, and sacred geometry.' },
-  { step: '02', title: 'Handcrafting', desc: 'Carefully hand-drawing each mandala with fine precision pens.' },
-  { step: '03', title: 'Coloring', desc: 'Adding depth with gold ink, watercolors, and pigment pens.' },
-  { step: '04', title: 'Finishing', desc: 'Quality check, framing, and premium packaging for delivery.' },
+// Chapter 7.8 — "From Idea to Artwork" Creative Journey Timeline
+const TIMELINE_STEPS = [
+  { step: '1', icon: <FiCompass />, title: 'Idea', desc: 'Conceiving the geometric patterns and color palettes.' },
+  { step: '2', icon: <FiEdit3 />, title: 'Sketch', desc: 'Drafting the foundational concentric grid with compasses.' },
+  { step: '3', icon: <FiPenTool />, title: 'Painting', desc: 'Drawing the intricate symmetry lines by hand.' },
+  { step: '4', icon: <FiFeather />, title: 'Detailing', desc: 'Adding micro-patterns and highlighting with metallic inks.' },
+  { step: '5', icon: <FiImage />, title: 'Framing', desc: 'Mounting the art in a high-grade wooden frame.' },
+  { step: '6', icon: <FiBox />, title: 'Packaging', desc: 'Securely bubble-wrapping the piece in a robust box.' },
+  { step: '7', icon: <FiTruck />, title: 'Delivery', desc: 'Pan-India shipping to your door.' },
+];
+
+// Chapter 7.9 — Craftsmanship Process Cards
+const CRAFT_CARDS = [
+  { stepId: 'c1', icon: <FiPenTool />, title: 'Hand Drawn', desc: 'No printing machines. Every line is carefully drawn by hand, resulting in a unique, organic feel.' },
+  { stepId: 'c2', icon: <FiAward />, title: 'Premium Materials', desc: 'We use acid-free 300 GSM cotton paper and lightfast pigments to prevent yellowing or fading.' },
+  { stepId: 'c3', icon: <FiFeather />, title: 'Careful Finishing', desc: 'Sealed with protective matte coats or high-gloss resin depending on the collection.' },
+  { stepId: 'c4', icon: <FiEye />, title: 'Quality Inspection', desc: 'Every artwork undergoes an inspection for symmetry, line consistency, and mounting.' },
+  { stepId: 'c5', icon: <FiBox />, title: 'Safe Packaging', desc: 'Double-walled wooden boxes or rigid hardboards to guarantee zero damage in transit.' },
+];
+
+// Chapter 7.10 — Why Choose Us / Brand Values
+const WHY_CARDS = [
+  { icon: <FiFeather />,  title: 'Eco Friendly Materials', desc: 'Sustainably sourced, recyclable packaging for every order.' },
+  { icon: <FiHeart />,   title: 'Made with Love', desc: 'Every stroke drawn with full devotion and creative passion.' },
+  { icon: <FiStar />,    title: 'Unique Designs', desc: 'Original, never-repeated mandala patterns in every piece.' },
+  { icon: <FiAward />,   title: 'Premium Quality', desc: 'Archival inks and quality materials for lasting beauty.' },
+  { icon: <FiEdit3 />,   title: 'Fully Customizable', desc: 'Any name, size, color — made just for you, from scratch.' },
 ];
 
 const About: React.FC = () => {
   return (
     <div className="about-page">
-      {/* Hero */}
-      <section className="about-page__hero section">
+
+      {/* Chapter 7.5 — Hero Section */}
+      <section className="about-page__hero section" aria-labelledby="about-hero-heading">
         <div className="container about-page__hero-inner">
-          <motion.div className="about-page__hero-content" variants={fadeLeft} initial="hidden" whileInView="visible" viewport={viewportConfig}>
+          <motion.div
+            className="about-page__hero-content"
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
             <span className="about-page__eyebrow">Our Story</span>
-            <h1 className="about-page__hero-title">Where Art Meets<br /><span>Devotion</span></h1>
+            <h1 className="about-page__hero-title" id="about-hero-heading">
+              Where Art Meets<br />
+              <span>Devotion</span>
+            </h1>
+            <div className="about-page__divider" aria-hidden="true">
+              <span className="about-page__divider-line" />
+              <span className="about-page__divider-ornament">✦</span>
+              <span className="about-page__divider-line" />
+            </div>
             <p className="about-page__hero-desc">
               Mandala Blend was born from a simple belief — that handmade art can transform spaces and
               uplift souls. We are a boutique mandala art studio based in Jaipur, India, creating
               premium handcrafted artwork one stroke at a time.
             </p>
-            <a href={createGeneralWhatsappLink()} target="_blank" rel="noopener noreferrer" className="about-page__cta">
-              Order Custom Art on WhatsApp
-            </a>
+            <div className="about-page__hero-actions">
+              <Link to="/collections" className="btn-primary">
+                Explore Collections
+              </Link>
+              <a
+                href={createGeneralWhatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                id="about-cta-whatsapp"
+              >
+                Start a Custom Order
+              </a>
+            </div>
           </motion.div>
-          <motion.div className="about-page__hero-img" variants={fadeRight} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-            <img src="/images/artist.png" alt="Mandala Blend Artist" />
+
+          <motion.div
+            className="about-page__hero-img-panel"
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            <img
+              src="/images/artist.png"
+              alt="Our artist creating a mandala — Mandala Blend"
+              onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+            />
           </motion.div>
         </div>
       </section>
 
-      {/* Creative Process */}
-      <section className="about-page__process section">
+      {/* Chapter 7.6 — Brand Story (3 Paragraphs) */}
+      <section className="about-page__story section" aria-labelledby="story-heading">
         <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeUp}>
-            <div className="about-page__section-label">How We Create</div>
-            <h2 className="about-page__section-title">The Creative Process</h2>
-          </motion.div>
           <motion.div
-            className="about-page__process-steps"
+            className="about-page__story-inner"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
+            <motion.div className="about-page__story-content" variants={fadeLeft}>
+              <span className="about-page__eyebrow">The Story</span>
+              <h2 className="about-page__section-title" id="story-heading">From Passion to Purpose</h2>
+              
+              <p>
+                What began as meditative drawing sessions in Jaipur grew into something extraordinary.
+                The founder discovered that mandala art wasn't just beautiful — it was healing.
+                Every symmetrical line, every intricate detail, brought calm and focus. What started
+                as a private form of meditation quickly captured the hearts of everyone who saw the process.
+              </p>
+              
+              <p>
+                Friends and family were gifted these pieces, and soon strangers were asking to buy them.
+                That's when Mandala Blend was officially born — not from a business plan, but from pure
+                love for the art form. The name reflects our vision to blend traditional hand-drawn mandala
+                geometries with modern aesthetic sensibilities.
+              </p>
+
+              <p>
+                Today, Mandala Blend ships premium handcrafted name boards, frames, and keychains all across India.
+                We operate with the strict belief that an artwork is only complete when it carries authentic human energy.
+                We continue to create every piece completely from scratch, carrying forward a lineage of devotion.
+              </p>
+            </motion.div>
+            <motion.div className="about-page__story-img" variants={fadeRight}>
+              <div className="about-page__story-img-wrap">
+                <img
+                  src="/images/hero-mandala.png"
+                  alt="Mandala art creation process"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Chapter 7.7 — Mission & Vision */}
+      <section className="about-page__mv section" aria-labelledby="mv-heading">
+        <div className="container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeUp}
+            className="about-page__mv-header"
+          >
+            <span className="about-page__eyebrow">Purpose</span>
+            <h2 className="about-page__section-title" id="mv-heading">Mission & Vision</h2>
+          </motion.div>
+
+          <motion.div
+            className="about-page__mv-cards"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
           >
-            {PROCESS.map((step, idx) => (
-              <motion.div key={step.step} className="about-page__process-step" variants={fadeUp}>
-                <div className="about-page__process-num">{step.step}</div>
-                {idx < PROCESS.length - 1 && <div className="about-page__process-line" />}
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
+            {MISSION_VISION.map((item) => (
+              <motion.div key={item.type} className={`about-page__mv-card about-page__mv-card--${item.type.toLowerCase()}`} variants={fadeUp}>
+                <div className="about-page__mv-icon" aria-hidden="true">{item.icon}</div>
+                <h3 className="about-page__mv-type">{item.type}</h3>
+                <p>{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="about-page__why section">
+      {/* Chapter 7.8 — Timeline (From Idea to Artwork) */}
+      <section className="about-page__timeline section" aria-labelledby="timeline-heading">
         <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeUp} className="about-page__why-header">
-            <div className="about-page__section-label">Why Us</div>
-            <h2 className="about-page__section-title">What Makes Us Different</h2>
-          </motion.div>
           <motion.div
-            className="about-page__why-cards"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeUp}
+            className="about-page__timeline-header"
+          >
+            <span className="about-page__eyebrow">Journey</span>
+            <h2 className="about-page__section-title" id="timeline-heading">From Idea to Artwork</h2>
+          </motion.div>
+
+          <div className="about-page__timeline-container">
+            <motion.div
+              className="about-page__timeline-track"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+            >
+              {TIMELINE_STEPS.map((step) => (
+                <motion.div key={step.step} className="about-page__timeline-item" variants={fadeUp}>
+                  <div className="about-page__timeline-node">
+                    <div className="about-page__timeline-icon" aria-hidden="true">{step.icon}</div>
+                    <div className="about-page__timeline-number">{step.step}</div>
+                  </div>
+                  <div className="about-page__timeline-body">
+                    <h3>{step.title}</h3>
+                    <p>{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter 7.9 — Craftsmanship Process (2 Columns: Left Image / Right Cards) */}
+      <section className="about-page__craftsmanship section" aria-labelledby="craftsmanship-heading">
+        <div className="container">
+          <div className="about-page__craftsmanship-header">
+            <span className="about-page__eyebrow">Craftsmanship</span>
+            <h2 id="craftsmanship-heading" className="about-page__section-title">Our Handmade Workflow</h2>
+          </div>
+
+          <div className="about-page__craftsmanship-layout">
+            <motion.div
+              className="about-page__craftsmanship-image"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              variants={fadeLeft}
+            >
+              <img
+                src="/images/hero-mandala.png"
+                alt="Intricate handmade mandala process detail"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+              />
+            </motion.div>
+            
+            <motion.div
+              className="about-page__craftsmanship-cards"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+            >
+              {CRAFT_CARDS.map((card) => (
+                <motion.div key={card.stepId} className="about-page__craftsmanship-card" variants={fadeUp}>
+                  <div className="about-page__craftsmanship-icon" aria-hidden="true">{card.icon}</div>
+                  <div className="about-page__craftsmanship-content">
+                    <h3>{card.title}</h3>
+                    <p>{card.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter 7.10 — Why Choose Us / Brand Values */}
+      <section className="about-page__craft section" aria-labelledby="craft-heading">
+        <div className="container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeUp}
+            style={{ textAlign: 'center', marginBottom: '48px' }}
+          >
+            <span className="about-page__eyebrow">Our Values</span>
+            <h2 className="about-page__section-title" id="craft-heading">Why Choose Mandala Blend?</h2>
+          </motion.div>
+
+          <motion.div
+            className="about-page__craft-grid"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
           >
             {WHY_CARDS.map((card) => (
-              <motion.div key={card.title} className="about-page__why-card" variants={fadeUp}>
-                <div className="about-page__why-card-icon">{card.icon}</div>
+              <motion.div key={card.title} className="about-page__craft-card" variants={fadeUp}>
+                <div className="about-page__craft-icon" aria-hidden="true">{card.icon}</div>
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
               </motion.div>
@@ -97,40 +305,90 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Meet the Artist */}
-      <section className="about-page__artist section">
-        <div className="container about-page__artist-inner">
-          <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-            <img src="/images/artist.png" alt="Founder of Mandala Blend" className="about-page__artist-img" />
-          </motion.div>
-          <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-            <div className="about-page__section-label">Meet the Artist</div>
-            <h2 className="about-page__section-title">The Hand Behind the Art</h2>
-            <p>
-              With over 5 years of practice in mandala art, our founder has poured her heart into creating
-              a brand that celebrates the ancient art of mandalas in a contemporary way. Every piece carries
-              her signature devotion — a quiet meditation in every line.
-            </p>
-            <p style={{ marginTop: 16 }}>
-              "Art is not what I do — it is who I am. Every mandala I draw is a prayer, and I hope
-              you feel that energy in every piece you receive."
-            </p>
-            <div className="about-page__artist-signature">— Founder, Mandala Blend</div>
+      {/* Chapter 7.11 — Meet the Artist */}
+      <section className="about-page__artist section" aria-labelledby="artist-heading">
+        <div className="container">
+          <motion.div
+            className="about-page__artist-layout"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
+            <motion.div className="about-page__artist-image" variants={fadeLeft}>
+              <div className="about-page__artist-circle">
+                <img
+                  src="/images/artist.png"
+                  alt="Founder and Artist of Mandala Blend"
+                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+                />
+              </div>
+            </motion.div>
+            
+            <motion.div className="about-page__artist-bio" variants={fadeRight}>
+              <span className="about-page__eyebrow">The Creator</span>
+              <h2 id="artist-heading" className="about-page__section-title">Meet the Artist</h2>
+              <p>
+                Hello, I am the artist behind Mandala Blend. My artistic journey started right here in the
+                culturally rich city of Jaipur. Surrounded by ancient architectures, block prints, and royal
+                heritage, I fell in love with symmetry and traditional patterns early on.
+              </p>
+              <p>
+                Each mandala I create is a personal meditation. I sit with a compass, ruler, and fine pens
+                for hours—sometimes days—to finish a single piece. For me, these drawings are not just decor;
+                they are symbols of center, calm, and positive energy that I hope radiates inside your home.
+              </p>
+              <div className="about-page__artist-signature">
+                <span>The Mandala Blend</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Banner */}
-      <section className="about-page__stats">
+      {/* Stats with scroll counter animation + CTA */}
+      <section className="about-page__stats section">
         <div className="container">
-          <div className="about-page__stats-grid">
+          <motion.div
+            className="about-page__stats-grid"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
             {STATS.map((stat) => (
-              <div key={stat.label} className="about-page__stat">
-                <span className="about-page__stat-value">{stat.value}</span>
+              <motion.div key={stat.label} className="about-page__stat" variants={fadeUp}>
+                <span className="about-page__stat-value">
+                  <Counter value={stat.value} />
+                </span>
                 <span className="about-page__stat-label">{stat.label}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+
+          <motion.div
+            className="about-page__cta-wrap"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            <h2>Ready to Order Your Custom Mandala?</h2>
+            <p>Tell us your vision and we'll bring it to life, handcrafted just for you.</p>
+            <div className="about-page__cta-actions">
+              <a
+                href={createGeneralWhatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-page__cta"
+              >
+                Order on WhatsApp
+              </a>
+              <Link to="/collections" className="about-page__cta-sec">
+                Browse Collections
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

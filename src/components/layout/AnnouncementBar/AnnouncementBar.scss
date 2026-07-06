@@ -1,50 +1,55 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
 
+// Chapter 2.1: Announcement Bar
+// Height: 40px, bg: #F8F8F8, border-bottom 1px #ECECEC, single message, no slider
 .announcement-bar {
-  background: linear-gradient(90deg, $color-primary, $color-primary-hover, $color-primary);
-  background-size: 200% 100%;
-  animation: shimmer 4s ease infinite;
-  color: #fff;
   height: 40px;
+  background: #F8F8F8;
+  border-bottom: 1px solid $color-border;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   padding: 0 48px;
 
-  @keyframes shimmer {
-    0% {
-      background-position: 200% center;
-    }
-
-    100% {
-      background-position: -200% center;
-    }
-  }
-
   &__text {
-    font-size: $fs-xs;
+    font-family: $font-body;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    color: #555555;
     text-align: center;
-
-    @include respond-to('mobile') {
-      font-size: 10px;
-    }
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__close {
     position: absolute;
-    right: 12px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 16px;
-    transition: $transition-fast;
+    color: $color-text-muted;
+    font-size: 14px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: $transition-fast;
 
     &:hover {
-      color: #fff;
+      color: $color-text-secondary;
+      background: $color-border;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    height: 36px;
+
+    &__text {
+      font-size: 12px;
     }
   }
 }

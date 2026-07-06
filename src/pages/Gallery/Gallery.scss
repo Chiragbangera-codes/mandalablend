@@ -1,159 +1,588 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 6 — Gallery Page
 
 .gallery-page {
-  padding-top: 90px;
 
+  // Chapter 6.5 — Hero
   &__banner {
-    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
-    padding: 60px 0;
-    text-align: center;
+    background: $color-surface;
+    padding: 56px 0;
+    border-bottom: 1px solid $color-border;
 
     &-eyebrow {
       display: inline-block;
-      font-size: $fs-xs;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-size: $fs-small;
+      font-weight: 500;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: $color-secondary;
-      margin-bottom: 10px;
+      color: $color-text-muted;
+      margin-bottom: 8px;
     }
 
     &-title {
       font-family: $font-heading;
-      font-size: $fs-page;
+      font-size: 3rem;
       font-weight: 700;
-      color: #fff;
+      color: $color-text-primary;
       margin-bottom: 12px;
     }
 
     &-desc {
-      color: rgba(255,255,255,0.75);
-      max-width: 480px;
-      margin: 0 auto;
+      color: $color-text-secondary;
+      font-size: $fs-body;
+      max-width: 520px;
+      line-height: 1.6;
     }
   }
 
-  &__body {
-    padding: 48px 0 80px;
+  // Chapter 6.6 — Category Pills
+  &__pills-bar {
+    background: $color-card;
+    border-bottom: 1px solid $color-border;
+    position: sticky;
+    top: calc(40px + 88px);
+    z-index: 50;
   }
 
-  &__filters {
+  &__pills {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 36px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
   }
 
-  &__filter-btn {
-    padding: 8px 20px;
+  &__pill {
+    height: 44px;
+    padding: 0 20px;
     border-radius: $radius-pill;
     font-size: $fs-small;
     font-weight: 500;
     color: $color-text-secondary;
-    border: 1.5px solid rgba($color-text-secondary, 0.2);
-    transition: $transition-fast;
+    border: 1px solid $color-border;
+    background: #fff;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 
     &:hover {
-      border-color: $color-primary;
-      color: $color-primary;
+      border-color: $color-wine;
+      color: $color-wine;
     }
 
-    &.active {
-      background: $color-primary;
+    &--active {
+      background: $color-wine;
       color: #fff;
-      border-color: $color-primary;
+      border-color: $color-wine;
     }
   }
 
+  // Body
+  &__body {
+    padding-top: 48px;
+    padding-bottom: 80px;
+  }
+
+  // Chapter 6.7 — Gallery Grid
   &__grid {
-    columns: 4;
-    column-gap: 16px;
-
-    @include respond-to('laptop') { columns: 3; }
-    @include respond-to('tablet') { columns: 2; }
-    @include respond-to('mobile') { columns: 1; }
-  }
-
-  &__item {
-    break-inside: avoid;
-    margin-bottom: 16px;
-    border-radius: $radius-sm;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-
-    &--short { }
-    &--medium { }
-    &--tall { }
-
-    img {
-      width: 100%;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    &-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba($color-primary, 0.85) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 16px;
-      opacity: 0;
-      transition: $transition-base;
-
-      h3 {
-        font-family: $font-heading;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fff;
-        margin-bottom: 4px;
-      }
-
-      span {
-        font-size: $fs-xs;
-        color: $color-secondary;
-        text-transform: capitalize;
-        font-weight: 500;
-      }
-    }
-
-    &:hover {
-      img { transform: scale(1.06); }
-      .gallery-page__item-overlay { opacity: 1; }
-    }
-  }
-
-  &__stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
-    border-radius: $radius-card;
-    padding: 40px;
-    margin-top: 60px;
+    margin-bottom: 80px;
 
-    @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
-    @include respond-to('mobile') { grid-template-columns: repeat(2, 1fr); padding: 24px; }
+    @media (max-width: $laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+
+  // Gallery item
+  &__item {
+    border-radius: $radius-card;
+    overflow: hidden;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    position: relative;
+  }
+
+  &__item-btn {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    cursor: zoom-in;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+  }
+
+  // Chapter 6.8 — Hover overlay
+  &__item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__zoom-icon {
+    color: #fff;
+    font-size: 28px;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  &__item:hover &__item-btn img {
+    transform: scale(1.04);
+  }
+
+  &__item:hover &__item-overlay {
+    opacity: 1;
+  }
+
+  &__item:hover &__zoom-icon {
+    transform: scale(1);
+  }
+
+  &__item-info {
+    padding: 12px 14px;
+    background: $color-card;
+    border-top: 1px solid $color-border;
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 11px;
+      text-transform: capitalize;
+      color: $color-text-muted;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  // Empty state
+  &__empty {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 24px;
+    text-align: center;
+
+    &-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    h3 {
+      font-family: $font-heading;
+      font-size: 24px;
+      color: $color-text-primary;
+      margin-bottom: 8px;
+    }
+
+    p { color: $color-text-muted; margin-bottom: 20px; }
+
+    button {
+      height: 44px;
+      padding: 0 24px;
+      background: $color-wine;
+      color: #fff;
+      border-radius: $radius-pill;
+      font-size: $fs-small;
+      font-weight: 600;
+    }
+  }
+
+  // Chapter 6.14 — Statistics
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    background: $color-surface;
+    border-radius: 20px;
+    padding: 48px 40px;
+    margin-bottom: 80px;
+    border: 1px solid $color-border;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 32px 24px;
+      gap: 24px;
+    }
   }
 
   &__stat {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
 
     &-value {
+      display: block;
       font-family: $font-heading;
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: $color-secondary;
+      color: $color-wine;
+      line-height: 1;
+      margin-bottom: 8px;
+
+      @media (max-width: $mobile) {
+        font-size: 2rem;
+      }
     }
 
     &-label {
+      display: block;
       font-size: $fs-small;
-      color: rgba(255,255,255,0.75);
+      color: $color-text-muted;
+      font-weight: 500;
     }
   }
+
+  // Chapter 6.9 — Lightbox
+  &__lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.9);
+    z-index: $z-lightbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  &__lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    position: relative;
+
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+  }
+
+  &__lightbox-info {
+    position: absolute;
+    bottom: -48px;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    h3 {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    span {
+      color: rgba(255,255,255,.6);
+      font-size: 13px;
+      text-transform: capitalize;
+    }
+  }
+
+  &__lightbox-close,
+  &__lightbox-prev,
+  &__lightbox-next {
+    position: fixed;
+    background: rgba(255,255,255,.12);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+
+    &:hover {
+      background: rgba(255,255,255,.22);
+    }
+  }
+
+  &__lightbox-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  &__lightbox-prev {
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__lightbox-next {
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // Chapter 6.10 — Featured Custom Orders
+  &__custom-orders {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
+  &__section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__section-title {
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-top: 10px;
+  }
+
+  &__custom-orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  &__custom-order {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: $shadow-card;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    &:nth-child(even) {
+      direction: rtl;
+
+      .gallery-page__custom-order-info {
+        direction: ltr;
+      }
+    }
+  }
+
+  &__custom-order-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__custom-order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h3 {
+      font-family: $font-heading;
+      font-size: 1.75rem;
+      color: $color-text-primary;
+    }
+  }
+
+  &__custom-order-detail {
+    strong {
+      display: block;
+      font-size: 14px;
+      color: $color-text-primary;
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 14px;
+      color: $color-text-secondary;
+      line-height: 1.6;
+    }
+  }
+
+  &__custom-order-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+    padding: 15px 0;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    strong {
+      font-size: 12px;
+      color: $color-text-muted;
+      text-transform: uppercase;
+    }
+
+    span {
+      font-size: 14px;
+      color: $color-text-primary;
+      font-weight: 500;
+    }
+  }
+
+  &__custom-order-cta {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(4px);
+    }
+  }
+
+  // Chapter 6.11 — Customer Showcase
+  &__showcase {
+    margin-bottom: 100px;
+  }
+
+  &__showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__showcase-card {
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: $shadow-card;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-card-hover;
+    }
+  }
+
+  &__showcase-artwork {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__showcase-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__showcase-review {
+    font-size: 14px;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    font-style: italic;
+    min-height: 80px;
+  }
+
+  &__showcase-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__showcase-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: $color-wine-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    span {
+      font-family: $font-heading;
+      font-weight: 700;
+      color: $color-wine;
+      z-index: 1;
+    }
+  }
+
+  &__showcase-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-text-primary;
+  }
+
+  &__showcase-location {
+    font-size: 12px;
+    color: $color-text-muted;
+  }
 }
+

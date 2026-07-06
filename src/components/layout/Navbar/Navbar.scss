@@ -1,21 +1,22 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 2.2 — Navbar
+// Height: 88px, White bg, 1px #ECECEC border-bottom, sticky, z-index 1000
 
 .navbar {
   position: fixed;
-  top: 0;
+  top: 40px; // account for announcement bar
   left: 0;
   right: 0;
   z-index: $z-navbar;
-  height: 90px;
-  background: rgba($color-bg, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba($color-secondary, 0.15);
-  transition: $transition-base;
+  height: 88px;
+  background: #FFFFFF;
+  border-bottom: 1px solid $color-border;
+  transition: all 0.3s ease-out;
 
   &--scrolled {
-    box-shadow: $shadow-navbar;
-    height: 80px;
+    top: 0;
+    box-shadow: 0 2px 16px rgba(0,0,0,.06);
   }
 
   &__inner {
@@ -26,100 +27,225 @@
     gap: 24px;
   }
 
+  // Logo
   &__logo {
     display: flex;
     align-items: center;
     flex-shrink: 0;
 
     &-img {
-      height: 64px;
+      height: 52px;
       width: auto;
       object-fit: contain;
       display: block;
-      // Keep logo crisp and visible against navbar bg
-      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
-      transition: $transition-base;
+      transition: transform 0.2s ease-out;
 
       &:hover {
         transform: scale(1.02);
       }
     }
+
+    @media (max-width: $mobile) {
+      &-img {
+        height: 42px;
+      }
+    }
   }
 
+  // Nav links list
   &__links {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0;
     list-style: none;
+    flex: 1;
+    justify-content: center;
 
-    @include respond-to('laptop') {
+    @media (max-width: $laptop) {
       display: none;
     }
   }
 
-  &__link {
-    padding: 8px 16px;
-    font-size: $fs-small;
-    font-weight: 500;
-    color: $color-text-secondary;
-    border-radius: $radius-pill;
-    transition: $transition-fast;
+  &__item {
     position: relative;
 
-    &:hover {
-      color: $color-primary;
-      background: rgba($color-primary, 0.06);
-    }
-
-    &--active {
-      color: $color-primary;
-      font-weight: 600;
-      background: rgba($color-primary, 0.08);
+    &--dropdown {
+      position: relative;
     }
   }
 
+  // Nav link
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 18px;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-secondary;
+    position: relative;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+
+    // Active underline
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 18px;
+      right: 18px;
+      height: 2px;
+      background: $color-wine;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      border-radius: 1px;
+    }
+
+    &:hover {
+      color: $color-wine;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &--active {
+      color: $color-wine;
+      font-weight: 600;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // Chevron
+  &__chevron {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    margin-left: 2px;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Dropdown trigger (hover zone)
+  &__dropdown-trigger {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 8px;
+    min-width: 200px;
+    z-index: $z-dropdown;
+  }
+
+  // Dropdown menu
+  &__dropdown {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid $color-border;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  &__dropdown-item {
+    display: block;
+    padding: 10px 16px;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-secondary;
+    border-radius: 10px;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: $color-wine;
+      background: rgba(122, 23, 56, 0.06);
+    }
+  }
+
+  // Right section
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    @media (max-width: $laptop) {
+      gap: 12px;
+    }
+  }
+
+  // Social icons
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    @media (max-width: $laptop) {
+      display: none;
+    }
+  }
+
+  &__social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $color-wine;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      color: darken(#7A1738, 10%);
+    }
+  }
+
+  // WhatsApp CTA button
   &__whatsapp {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
-    background: $color-primary;
+    height: 44px;
+    padding: 0 20px;
+    background: $color-wine;
     color: #fff;
     border-radius: $radius-pill;
     font-size: $fs-small;
     font-weight: 600;
-    transition: $transition-base;
+    transition: all 0.2s ease;
     white-space: nowrap;
-    flex-shrink: 0;
 
     svg {
       font-size: 18px;
     }
 
     &:hover {
-      background: $color-primary-hover;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba($color-primary, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(122, 23, 56, .2);
+      background: darken(#7A1738, 5%);
     }
 
-    @include respond-to('laptop') {
+    @media (max-width: $laptop) {
       display: none;
     }
   }
 
+  // Hamburger
   &__hamburger {
     display: none;
-    font-size: 24px;
-    color: $color-primary;
+    font-size: 22px;
+    color: $color-text-primary;
     padding: 8px;
-    border-radius: $radius-sm;
-    transition: $transition-fast;
+    border-radius: 8px;
+    transition: all 0.15s ease;
 
     &:hover {
-      background: rgba($color-primary, 0.08);
+      background: $color-surface;
+      color: $color-wine;
     }
 
-    @include respond-to('laptop') {
+    @media (max-width: $laptop) {
       display: flex;
       align-items: center;
     }

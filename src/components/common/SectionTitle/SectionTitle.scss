@@ -1,34 +1,48 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 2.8 — Section Title Component
+// Pattern: eyebrow (small caps) → Heading (Playfair) → optional divider → optional desc
 
 .section-title {
   &__subtitle {
     display: inline-block;
-    font-size: $fs-xs;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: $fs-small;
+    font-weight: 500;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: $color-secondary;
+    color: $color-text-muted;
     margin-bottom: 8px;
   }
 
   &__heading {
     font-family: $font-heading;
-    font-size: $fs-section;
+    font-size: $fs-page;
     font-weight: 700;
     color: $color-text-primary;
-    line-height: 1.25;
+    line-height: 1.2;
+    margin-bottom: 16px;
   }
 
   &__divider {
-    width: 56px;
-    height: 3px;
-    background: linear-gradient(90deg, $color-secondary, $color-secondary-light);
-    border-radius: 2px;
-    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    &-line {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: #D8D8D8;
+    }
+
+    &-ornament {
+      color: #D8D8D8;
+      font-size: 12px;
+    }
   }
 
   &__desc {
-    margin-top: 16px;
     font-size: $fs-body;
     color: $color-text-secondary;
     line-height: 1.7;
@@ -39,23 +53,12 @@
     text-align: center;
 
     .section-title__divider {
-      margin-left: auto;
-      margin-right: auto;
+      justify-content: center;
     }
 
     .section-title__desc {
       margin-left: auto;
       margin-right: auto;
-    }
-  }
-
-  &--light {
-    .section-title__heading {
-      color: #fff;
-    }
-
-    .section-title__desc {
-      color: rgba(255,255,255,0.75);
     }
   }
 }

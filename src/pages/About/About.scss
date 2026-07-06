@@ -1,271 +1,719 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 7 — About Page
 
 .about-page {
-  padding-top: 90px;
 
-  &__eyebrow, &__section-label {
+  // Shared eyebrow label
+  &__eyebrow {
     display: inline-block;
-    font-size: $fs-xs;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: $color-secondary;
-    margin-bottom: 10px;
-  }
-
-  &__hero {
-    background: $color-bg;
-
-    &-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 60px;
-
-      @include respond-to('laptop') { grid-template-columns: 1fr; }
-    }
-
-    &-title {
-      font-family: $font-heading;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: $color-text-primary;
-      line-height: 1.15;
-      margin-bottom: 20px;
-
-      span { color: $color-primary; font-style: italic; }
-    }
-
-    &-desc {
-      font-size: $fs-body;
-      color: $color-text-secondary;
-      line-height: 1.8;
-      margin-bottom: 28px;
-      max-width: 480px;
-    }
-
-    &-img {
-      border-radius: $radius-card;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba($color-primary, 0.2);
-
-      img { width: 100%; object-fit: cover; border-radius: $radius-card; }
-    }
-  }
-
-  &__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    background: $color-primary;
-    color: #fff;
-    border-radius: $radius-pill;
-    font-weight: 600;
     font-size: $fs-small;
-    transition: $transition-base;
-
-    &:hover {
-      background: $color-primary-hover;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba($color-primary, 0.35);
-    }
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    margin-bottom: 8px;
   }
 
   &__section-title {
     font-family: $font-heading;
-    font-size: $fs-section;
+    font-size: $fs-page;
     font-weight: 700;
     color: $color-text-primary;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
 
-    &::after {
-      @include gold-divider;
+    @media (max-width: $mobile) {
+      font-size: 2rem;
     }
   }
 
-  &__process {
-    background: $color-surface;
-
-    &-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      position: relative;
-
-      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
-      @include respond-to('mobile') { grid-template-columns: 1fr; }
-    }
-
-    &-step {
-      text-align: center;
-      position: relative;
-
-      h3 {
-        font-family: $font-heading;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: $color-text-primary;
-        margin-bottom: 8px;
-      }
-
-      p {
-        font-size: $fs-small;
-        color: $color-text-secondary;
-        line-height: 1.6;
-      }
-    }
-
-    &-num {
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, $color-primary, $color-primary-hover);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $font-heading;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 auto 16px;
-    }
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0 20px;
 
     &-line {
-      position: absolute;
-      top: 32px;
-      right: -50%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, $color-secondary, transparent);
-      z-index: 0;
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: #D8D8D8;
+    }
 
-      @include respond-to('tablet') { display: none; }
+    &-ornament {
+      color: #D8D8D8;
+      font-size: 12px;
     }
   }
 
-  &__why {
+  // Chapter 7.5 — Hero
+  &__hero {
     background: $color-bg;
+  }
 
-    &-header { margin-bottom: 40px; }
+  &__hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 
-    &-cards {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-
-      @include respond-to('laptop') { grid-template-columns: repeat(3, 1fr); }
-      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
-      @include respond-to('mobile') { grid-template-columns: 1fr; }
-    }
-
-    &-card {
-      background: $color-surface;
-      border-radius: $radius-card;
-      padding: 28px 20px;
-      text-align: center;
-      box-shadow: $shadow-card;
-      transition: $transition-base;
-      border: 1px solid rgba($color-secondary, 0.1);
-
-      &:hover {
-        box-shadow: $shadow-card-hover;
-        transform: translateY(-4px);
-        border-color: rgba($color-secondary, 0.25);
-      }
-
-      &-icon {
-        width: 54px;
-        height: 54px;
-        background: rgba($color-primary, 0.08);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 16px;
-        color: $color-primary;
-        font-size: 22px;
-      }
-
-      h3 {
-        font-family: $font-heading;
-        font-size: 1rem;
-        font-weight: 600;
-        color: $color-text-primary;
-        margin-bottom: 8px;
-      }
-
-      p {
-        font-size: $fs-xs;
-        color: $color-text-secondary;
-        line-height: 1.6;
-      }
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
   }
 
-  &__artist {
+  &__hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__hero-title {
+    font-family: $font-heading;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $color-text-primary;
+    margin-bottom: 16px;
+
+    span { color: $color-wine; font-style: italic; }
+
+    @media (max-width: $laptop) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: $mobile) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__hero-desc {
+    font-size: $fs-body;
+    color: $color-text-secondary;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+
+  &__hero-img-panel {
+    background: $color-surface;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // CTA Button
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 52px;
+    padding: 0 28px;
+    background: $color-wine;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: $fs-body;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: fit-content;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-btn;
+    }
+  }
+
+  &__cta-sec {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 52px;
+    padding: 0 28px;
+    background: transparent;
+    color: $color-text-primary;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-pill;
+    font-size: $fs-body;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $color-wine;
+      color: $color-wine;
+    }
+  }
+
+  // Chapter 7.6 — Brand Story
+  &__story {
+    background: $color-surface;
+  }
+
+  &__story-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__story-content {
+    p {
+      font-size: $fs-body;
+      color: $color-text-secondary;
+      line-height: 1.8;
+      margin-bottom: 16px;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  &__story-img-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
     background: $color-surface;
 
-    &-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      align-items: center;
-      gap: 60px;
-
-      @include respond-to('laptop') { grid-template-columns: 1fr; }
-    }
-
-    &-img {
+    img {
       width: 100%;
-      max-width: 420px;
-      border-radius: $radius-card;
-      box-shadow: 0 30px 80px rgba($color-primary, 0.18);
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Chapter 7.7 — Mission & Vision
+  &__mv {
+    background: $color-bg;
+  }
+
+  &__mv-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__mv-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__mv-card {
+    border-radius: $radius-card;
+    padding: 40px;
+    border: 1px solid $color-border;
+    background: $color-card;
+    box-shadow: $shadow-card;
+    transition: all 0.3s ease;
+
+    &--mission { border-left: 4px solid $color-wine; }
+    &--vision  { border-left: 4px solid #6699CC; }
+
+    &:hover {
+      box-shadow: $shadow-card-hover;
+      transform: translateY(-2px);
     }
 
     p {
       font-size: $fs-body;
+      color: $color-text-secondary;
+      line-height: 1.7;
+    }
+  }
+
+  &__mv-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(122,23,56,.08);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-wine;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  &__mv-type {
+    font-family: $font-heading;
+    font-size: 22px;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 12px;
+  }
+
+  // Chapter 7.8 — Timeline styling
+  &__timeline {
+    background: $color-surface;
+  }
+
+  &__timeline-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__timeline-container {
+    overflow-x: auto;
+    padding: 20px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__timeline-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    min-width: 1000px;
+    padding-bottom: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 50px;
+      right: 50px;
+      height: 2px;
+      background: $color-border;
+      z-index: 0;
+    }
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      min-width: 100%;
+      gap: 40px;
+      padding-left: 20px;
+
+      &::before {
+        left: 24px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        height: 100%;
+      }
+    }
+  }
+
+  &__timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: $tablet) {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
+
+  &__timeline-node {
+    position: relative;
+    margin-bottom: 16px;
+
+    @media (max-width: $tablet) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__timeline-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $color-text-secondary;
+    box-shadow: $shadow-card;
+    transition: all 0.2s ease;
+
+    .about-page__timeline-item:hover & {
+      border-color: $color-wine;
+      color: $color-wine;
+      transform: scale(1.05);
+    }
+  }
+
+  &__timeline-number {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-wine;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__timeline-body {
+    padding: 0 10px;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 12px;
+      color: $color-text-muted;
+      line-height: 1.6;
+    }
+  }
+
+  // Chapter 7.9 — Craftsmanship Process
+  &__craftsmanship {
+    background: $color-bg;
+  }
+
+  &__craftsmanship-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__craftsmanship-layout {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  &__craftsmanship-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: $shadow-card;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__craftsmanship-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__craftsmanship-card {
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: $shadow-card;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-card-hover;
+    }
+  }
+
+  &__craftsmanship-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: $color-wine-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-wine;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  &__craftsmanship-content {
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: $color-text-secondary;
+      line-height: 1.6;
+    }
+  }
+
+  // Chapter 7.10 — Why Choose Us
+  &__craft {
+    background: $color-surface;
+  }
+
+  &__craft-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    @media (max-width: $laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__craft-card {
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: $shadow-card;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-card-hover;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 12px;
+      color: $color-text-muted;
+      line-height: 1.5;
+    }
+  }
+
+  &__craft-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(122,23,56,.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-wine;
+    font-size: 22px;
+    margin: 0 auto 16px;
+  }
+
+  // Chapter 7.10 — Process (Optional/legacy)
+  &__process {
+    background: $color-surface;
+  }
+
+  &__process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__process-step {
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
+    padding: 28px 24px;
+    position: relative;
+    text-align: center;
+    box-shadow: $shadow-card;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 13px;
+      color: $color-text-muted;
+      line-height: 1.5;
+    }
+  }
+
+  &__process-num {
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(122,23,56,.12);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  &__process-arrow {
+    display: none;
+  }
+
+  // Chapter 7.11 — Meet the Artist
+  &__artist {
+    background: $color-bg;
+  }
+
+  &__artist-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+  }
+
+  &__artist-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__artist-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: $shadow-card-hover;
+    background: $color-surface;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__artist-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+
+    @media (max-width: $tablet) {
+      text-align: center;
+    }
+
+    p {
+      font-size: 15px;
       color: $color-text-secondary;
       line-height: 1.8;
     }
   }
 
   &__artist-signature {
-    font-family: $font-heading;
+    margin-top: 10px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
     font-style: italic;
-    color: $color-primary;
-    font-size: 1.1rem;
-    margin-top: 16px;
+    color: $color-wine;
   }
 
+  // Stats + CTA
   &__stats {
-    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
-    padding: 60px 0;
+    background: $color-surface;
+  }
 
-    &-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+  &__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    background: $color-card;
+    border-radius: 20px;
+    padding: 48px 40px;
+    border: 1px solid $color-border;
+    margin-bottom: 64px;
+    text-align: center;
 
-      @include respond-to('tablet') { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  &__stat {
+  &__stat-value {
+    display: block;
+    font-family: $font-heading;
+    font-size: 3rem;
+    font-weight: 700;
+    color: $color-wine;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  &__stat-label {
+    display: block;
+    font-size: $fs-small;
+    color: $color-text-muted;
+  }
+
+  &__cta-wrap {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
 
-    &-value {
+    h2 {
       font-family: $font-heading;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: $color-secondary;
+      color: $color-text-primary;
+      margin-bottom: 12px;
     }
 
-    &-label {
-      font-size: $fs-small;
-      color: rgba(255,255,255,0.75);
+    p {
+      color: $color-text-secondary;
+      margin-bottom: 28px;
+      font-size: $fs-body;
     }
+  }
+
+  &__cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 }

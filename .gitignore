@@ -25,3 +25,10 @@ tsconfig.tsbuildinfo
 # Temporary scripts
 fix_scss.py
 fix_scss2.py
+process_images.py
+
+# Word files and doc summaries
+Chapter*.docx
+~$*.docx
+chapters_content.txt
+chapters_full.txt

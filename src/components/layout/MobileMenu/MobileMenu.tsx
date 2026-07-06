@@ -44,7 +44,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="mobile-menu__header">
               <div className="mobile-menu__logo">
-                <img src="/logo-white.png?v=2" alt="The Mandala Blend" className="mobile-menu__logo-img" />
+                <img src="/logo.png?v=2" alt="The Mandala Blend" className="mobile-menu__logo-img" />
               </div>
               <button className="mobile-menu__close" onClick={onClose} aria-label="Close menu">
                 <FiX />

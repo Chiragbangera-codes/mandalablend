@@ -1,163 +1,242 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 4 — Collections Page
 
 .collections-page {
-  padding-top: 90px;
 
+  // Chapter 4.5 — Hero Banner
   &__banner {
-    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
-    padding: 60px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '✦';
-      position: absolute;
-      font-size: 300px;
-      color: rgba(255,255,255,0.03);
-      top: -80px;
-      right: -50px;
-    }
+    background: $color-surface;
+    padding: 56px 0;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
 
     &-eyebrow {
       display: inline-block;
-      font-size: $fs-xs;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-size: $fs-small;
+      font-weight: 500;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: $color-secondary;
-      margin-bottom: 10px;
+      color: $color-text-muted;
+      margin-bottom: 8px;
     }
 
     &-title {
       font-family: $font-heading;
-      font-size: $fs-page;
+      font-size: 3rem;
       font-weight: 700;
-      color: #fff;
+      color: $color-text-primary;
       margin-bottom: 12px;
     }
 
     &-desc {
-      color: rgba(255,255,255,0.75);
+      color: $color-text-secondary;
       font-size: $fs-body;
       max-width: 500px;
-      margin: 0 auto;
     }
   }
 
-  &__tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 32px 0 24px;
+  // Chapter 4.6 — Category Navigation Pills
+  &__pills-bar {
+    background: $color-card;
+    border-bottom: 1px solid $color-border;
+    position: sticky;
+    top: calc(40px + 88px); // announcement + navbar
+    z-index: 50;
   }
 
-  &__tab {
-    padding: 8px 20px;
+  &__pills {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__pill {
+    height: 42px;
+    padding: 0 20px;
     border-radius: $radius-pill;
     font-size: $fs-small;
     font-weight: 500;
     color: $color-text-secondary;
-    border: 1.5px solid rgba($color-text-secondary, 0.2);
-    transition: $transition-fast;
+    border: 1px solid $color-border;
+    background: #fff;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 
     &:hover {
-      border-color: $color-primary;
-      color: $color-primary;
-      background: rgba($color-primary, 0.04);
+      border-color: $color-wine;
+      color: $color-wine;
     }
 
     &--active {
-      background: $color-primary;
+      background: $color-wine;
       color: #fff;
-      border-color: $color-primary;
+      border-color: $color-wine;
     }
   }
 
+  // Body layout
+  &__body {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  // Sidebar + grid layout
   &__layout {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 32px;
-    padding-bottom: 80px;
+    align-items: flex-start;
 
-    @include respond-to('laptop') {
+    @media (max-width: $laptop) {
       grid-template-columns: 1fr;
     }
   }
 
+  // Chapter 4.8 — Sidebar
   &__sidebar {
-    h3 {
-      font-family: $font-heading;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: $color-text-primary;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba($color-secondary, 0.2);
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
+    padding: 24px;
+    position: sticky;
+    top: calc(40px + 88px + 74px + 24px); // announcement + navbar + pills + gap
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    @media (max-width: $laptop) {
+      display: none; // On tablet/mobile becomes a drawer
     }
+  }
+
+  &__sidebar-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-text-primary;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $color-border;
+    margin-bottom: 20px;
   }
 
   &__filter-group {
     margin-bottom: 24px;
+  }
 
-    label {
-      display: block;
-      font-size: $fs-small;
+  &__filter-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  // Sidebar category list
+  &__sidebar-cat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    border-radius: 8px;
+    text-align: left;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: $color-wine;
+      background: rgba(122, 23, 56, .05);
+    }
+
+    &.active {
+      color: $color-wine;
       font-weight: 600;
-      color: $color-text-secondary;
-      margin-bottom: 8px;
     }
+  }
 
-    select {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1.5px solid rgba($color-text-secondary, 0.2);
-      border-radius: $radius-sm;
-      font-family: $font-body;
-      font-size: $fs-small;
-      color: $color-text-primary;
-      background: $color-surface;
-      outline: none;
+  &__sidebar-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-wine;
+    flex-shrink: 0;
+  }
 
-      &:focus {
-        border-color: $color-primary;
-      }
-    }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: $color-primary;
-      margin: 8px 0;
-    }
+  // Price slider
+  &__price-slider {
+    width: 100%;
+    accent-color: $color-wine;
+    margin: 10px 0;
+    height: 3px;
   }
 
   &__price-range {
     display: flex;
     justify-content: space-between;
-    font-size: $fs-xs;
+    font-size: 12px;
     color: $color-text-muted;
+    margin-top: 4px;
   }
 
+  // Checkbox
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: $fs-small;
+    color: $color-text-secondary;
+    cursor: pointer;
+    padding: 4px 0;
+
+    input[type="checkbox"] {
+      accent-color: $color-wine;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Reset button
+  &__reset-btn {
+    font-size: 13px;
+    color: $color-text-muted;
+    font-weight: 500;
+    text-decoration: underline;
+    padding: 4px 0;
+    margin-bottom: 20px;
+    text-align: left;
+    transition: color 0.15s ease;
+
+    &:hover { color: $color-wine; }
+  }
+
+  // Custom order CTA in sidebar
   &__custom-cta {
-    background: rgba($color-primary, 0.05);
-    border: 1px solid rgba($color-primary, 0.12);
-    border-radius: $radius-card;
-    padding: 20px;
-    margin-top: 8px;
+    background: rgba(122, 23, 56, .05);
+    border: 1px solid rgba(122, 23, 56, .12);
+    border-radius: 14px;
+    padding: 18px;
 
     h4 {
-      font-family: $font-heading;
-      font-size: 1rem;
+      font-size: 14px;
       font-weight: 600;
-      color: $color-primary;
-      margin-bottom: 8px;
+      color: $color-wine;
+      margin-bottom: 6px;
     }
 
     p {
-      font-size: $fs-xs;
+      font-size: 12px;
       color: $color-text-secondary;
       line-height: 1.6;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
   }
 
@@ -167,56 +246,173 @@
     padding: 10px;
     background: $color-whatsapp;
     color: #fff;
-    border-radius: $radius-sm;
-    font-size: $fs-small;
+    border-radius: 10px;
+    font-size: 13px;
     font-weight: 600;
-    transition: $transition-base;
+    transition: all 0.2s ease;
 
-    &:hover {
-      background: $color-whatsapp-dark;
-    }
+    &:hover { background: $color-whatsapp-dark; }
+  }
+
+  // Main content
+  &__main {
+    min-width: 0;
+  }
+
+  // Chapter 4.7 — Toolbar
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $color-border;
+
+    gap: 12px;
   }
 
   &__results-info {
     font-size: $fs-small;
-    color: $color-text-muted;
-    margin-bottom: 20px;
+    color: $color-text-secondary;
+
+    strong { color: $color-text-primary; font-weight: 600; }
   }
 
+  &__sort {
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid $color-border;
+    border-radius: $radius-input;
+    font-family: $font-body;
+    font-size: $fs-small;
+    color: $color-text-primary;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s ease;
+
+    &:focus { border-color: $color-wine; }
+  }
+
+  // Product Grid — 4 columns
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+
+    @media (max-width: $laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
   }
 
+  // Chapter 4.12 — Empty State
   &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
     text-align: center;
-    padding: 60px;
-    color: $color-text-muted;
-    font-size: $fs-body;
+
+    &-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+
+    h3 {
+      font-family: $font-heading;
+      font-size: 24px;
+      color: $color-text-primary;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: $color-text-muted;
+      font-size: $fs-small;
+      margin-bottom: 24px;
+    }
   }
 
+  &__empty-btn {
+    height: 48px;
+    padding: 0 28px;
+    background: $color-wine;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: $fs-small;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(122,23,56,.2);
+    }
+  }
+
+  // Chapter 4.11 — Pagination
   &__pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
-    margin-top: 40px;
+    margin-top: 48px;
   }
 
   &__page-btn {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-weight: 600;
+    font-weight: 500;
     font-size: $fs-small;
     color: $color-text-secondary;
-    border: 1.5px solid rgba($color-text-secondary, 0.2);
-    transition: $transition-fast;
+    border: 1px solid $color-border;
+    background: #fff;
+    transition: all 0.2s ease;
 
-    &:hover, &.active {
-      background: $color-primary;
+    &:hover {
+      border-color: $color-wine;
+      color: $color-wine;
+    }
+
+    &.active {
+      background: $color-wine;
       color: #fff;
-      border-color: $color-primary;
+      border-color: $color-wine;
+    }
+  }
+
+  &__page-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: $color-text-secondary;
+    border: 1px solid $color-border;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    line-height: 1;
+
+    &:hover:not(:disabled) {
+      border-color: $color-wine;
+      color: $color-wine;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
   }
 }

@@ -1,135 +1,212 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 5 — Product Details Page
 
 .product-page {
-  padding-top: 110px;
   padding-bottom: 80px;
 
+  // Chapter 5.5 — Breadcrumb
   &__breadcrumb {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     font-size: $fs-small;
     color: $color-text-muted;
     margin-bottom: 32px;
+    padding: 20px 0;
 
     a {
-      color: $color-primary;
+      color: $color-text-secondary;
       font-weight: 500;
-      &:hover { text-decoration: underline; }
+      transition: color 0.15s ease;
+      &:hover { color: $color-wine; }
     }
 
-    span:not(:last-child) { color: $color-text-muted; }
-    span:last-child { color: $color-text-primary; font-weight: 500; }
+    // Current page
+    span[aria-current="page"] {
+      color: $color-wine;
+      font-weight: 500;
+    }
   }
 
+  // Chapter 5.4 — Layout 55/45
   &__layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
+    grid-template-columns: 55fr 45fr;
+    gap: 48px;
+    margin-bottom: 64px;
+    align-items: flex-start;
 
-    @include respond-to('laptop') {
+    @media (max-width: $laptop) {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: $tablet) {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
     }
   }
 
+  // Chapter 5.6 — Gallery
   &__gallery {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    @media (max-width: $tablet) {
+      position: static;
+    }
   }
 
   &__main-img {
-    border-radius: $radius-card;
+    border-radius: 20px;
     overflow: hidden;
     aspect-ratio: 1;
-    background: $color-bg;
+    background: $color-surface;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Prev/next buttons on image
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $color-text-primary;
+    box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    transition: all 0.15s ease;
+    z-index: 2;
+
+    &:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &--prev { left: 12px; }
+    &--next { right: 12px; }
+  }
+
+  // Thumbnails
+  &__thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__thumb {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid $color-border;
+    transition: border-color 0.15s ease;
+    background: $color-surface;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-  }
-
-  &__thumbs {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-
-  &__thumb {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: $radius-sm;
-    overflow: hidden;
-    border: 2px solid transparent;
-    transition: $transition-fast;
-
-    img { width: 100%; height: 100%; object-fit: cover; }
 
     &.active {
-      border-color: $color-primary;
+      border-color: $color-wine;
     }
 
-    &:hover:not(.active) {
-      border-color: rgba($color-primary, 0.4);
+    &:hover {
+      border-color: $color-wine;
     }
   }
 
+  // Chapter 5.7 — Product Info
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    position: sticky;
+    top: calc(40px + 88px + 24px);
+
+    @media (max-width: $tablet) {
+      position: static;
+    }
   }
 
-  &__category {
-    font-size: $fs-xs;
-    text-transform: capitalize;
-    color: $color-secondary;
+  // Category badge
+  &__category-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid rgba(122,23,56,.3);
+    border-radius: $radius-pill;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    color: $color-wine;
+    width: fit-content;
   }
 
   &__name {
     font-family: $font-heading;
-    font-size: 1.8rem;
+    font-size: 2.625rem; // ~42px
     font-weight: 700;
     color: $color-text-primary;
     line-height: 1.2;
+
+    @media (max-width: $laptop) {
+      font-size: 2rem;
+    }
   }
 
   &__rating {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 14px;
+    gap: 3px;
+    font-size: 16px;
 
-    svg.filled { color: $color-secondary; }
-    svg.empty { color: #ddd; }
+    .filled { color: $color-wine; }
+    .empty  { color: $color-border; }
+  }
 
-    span {
-      font-size: $fs-small;
-      color: $color-text-muted;
-      margin-left: 6px;
-    }
+  &__rating-score {
+    font-weight: 600;
+    color: $color-text-primary;
+    font-size: $fs-small;
+    margin-left: 6px;
+  }
+
+  &__rating-count {
+    color: $color-text-muted;
+    font-size: $fs-small;
   }
 
   &__price-row {
     display: flex;
     align-items: baseline;
     gap: 12px;
-    flex-wrap: wrap;
   }
 
   &__price {
-    font-family: $font-heading;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: $color-primary;
+    color: $color-wine;
+    font-family: $font-body;
   }
 
   &__original {
@@ -138,218 +215,351 @@
     text-decoration: line-through;
   }
 
-  &__badge {
-    padding: 4px 12px;
-    background: $color-secondary;
-    color: $color-primary;
-    border-radius: $radius-pill;
-    font-size: $fs-xs;
-    font-weight: 700;
-  }
-
-  &__desc {
-    font-size: $fs-small;
-    color: $color-text-secondary;
-    line-height: 1.75;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba($color-secondary, 0.15);
-  }
-
-  &__specs {
+  &__meta-row {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 16px;
+    font-size: $fs-small;
+  }
+
+  &__instock {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: $color-success;
+    font-weight: 600;
+
+    svg { font-size: 14px; }
+  }
+
+  &__delivery {
+    color: $color-text-muted;
+  }
+
+  &__short-desc {
+    font-size: $fs-body;
+    color: $color-text-secondary;
+    line-height: 1.7;
+  }
+
+  // Chapter 5.8 — Specs
+  &__specs {
+    background: $color-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-card;
+    overflow: hidden;
   }
 
   &__spec {
     display: flex;
     justify-content: space-between;
+    padding: 10px 16px;
     font-size: $fs-small;
+    border-bottom: 1px solid $color-border;
 
-    span:first-child { color: $color-text-muted; font-weight: 500; }
-    span:last-child { color: $color-text-primary; font-weight: 600; }
+    &:last-child { border-bottom: none; }
+
+    &-key { color: $color-text-muted; }
+    &-val { color: $color-text-primary; font-weight: 500; }
   }
 
+  // Chapter 5.9 — Sizes
   &__sizes {
-    label {
-      display: block;
-      font-size: $fs-small;
-      font-weight: 600;
-      color: $color-text-secondary;
-      margin-bottom: 10px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__sizes-label {
+    font-size: $fs-small;
+    font-weight: 600;
+    color: $color-text-primary;
   }
 
   &__size-btns {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   &__size-btn {
-    padding: 8px 16px;
-    border: 1.5px solid rgba($color-text-secondary, 0.25);
-    border-radius: $radius-sm;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: 1px solid $color-border;
     font-size: $fs-small;
     font-weight: 500;
     color: $color-text-secondary;
-    transition: $transition-fast;
+    background: #fff;
+    transition: all 0.15s ease;
 
-    &:hover, &.active {
-      border-color: $color-primary;
-      color: $color-primary;
-      background: rgba($color-primary, 0.06);
+    &:hover {
+      border-color: $color-wine;
+      color: $color-wine;
+    }
+
+    &.active {
+      background: $color-wine;
+      color: #fff;
+      border-color: $color-wine;
     }
   }
 
-  &__qty {
+  &__size-error {
+    font-size: 13px;
+    color: $color-error;
+    font-weight: 500;
+    margin-top: 4px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
+  }
 
-    label {
-      font-size: $fs-small;
-      font-weight: 600;
-      color: $color-text-secondary;
-    }
+  // Chapter 5.11 — Quantity
+  &__qty {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   &__qty-ctrl {
     display: flex;
     align-items: center;
     gap: 0;
-    border: 1.5px solid rgba($color-text-secondary, 0.25);
-    border-radius: $radius-sm;
+    border: 1px solid $color-border;
+    border-radius: 10px;
     overflow: hidden;
+    width: fit-content;
 
     button {
-      width: 38px;
-      height: 38px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: $color-primary;
-      transition: $transition-fast;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      color: $color-text-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
 
-      &:hover { background: rgba($color-primary, 0.08); }
+      &:hover:not(:disabled) {
+        background: $color-surface;
+        color: $color-wine;
+      }
+
+      &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
     }
 
     span {
-      width: 44px;
+      width: 48px;
       text-align: center;
-      font-weight: 700;
+      font-weight: 600;
       font-size: $fs-body;
-      color: $color-text-primary;
-      border-left: 1px solid rgba($color-text-secondary, 0.15);
-      border-right: 1px solid rgba($color-text-secondary, 0.15);
+      border-left: 1px solid $color-border;
+      border-right: 1px solid $color-border;
     }
   }
 
+  // Chapter 5.12 — WhatsApp CTA
   &__order-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 16px;
+    width: 100%;
+    height: 56px;
     background: $color-whatsapp;
     color: #fff;
     border-radius: $radius-pill;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: $transition-base;
-    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: $font-body;
+    transition: all 0.2s ease;
 
-    svg { font-size: 22px; }
+    svg { font-size: 20px; }
 
     &:hover {
       background: $color-whatsapp-dark;
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba($color-whatsapp, 0.35);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, .3);
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 
-  &__delivery {
-    font-size: $fs-small;
-    color: $color-text-secondary;
-    text-align: center;
-  }
-
+  // Chapter 5.13 — Trust Indicators
   &__trust {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 16px;
-    background: rgba($color-primary, 0.04);
-    border-radius: $radius-card;
-    border: 1px solid rgba($color-primary, 0.08);
+    gap: 12px;
+    padding: 20px;
+    background: $color-surface;
+    border-radius: 14px;
 
-    @include respond-to('mobile') {
+    @media (max-width: $mobile) {
       grid-template-columns: repeat(2, 1fr);
-    }
-
-    &-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-align: center;
-      font-size: $fs-xs;
-      color: $color-primary;
-      font-weight: 600;
-
-      span:first-child {
-        font-size: 18px;
-        color: $color-secondary;
-      }
     }
   }
 
+  &__trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+
+    span:first-child {
+      color: $color-wine;
+      font-size: 20px;
+    }
+
+    span:last-child {
+      font-size: 11px;
+      font-weight: 500;
+      color: $color-text-secondary;
+      line-height: 1.3;
+    }
+  }
+
+  // Chapter 5.14 — Tabs
   &__tabs {
     margin: 48px 0;
-    border: 1px solid rgba($color-secondary, 0.15);
+    border: 1px solid $color-border;
     border-radius: $radius-card;
     overflow: hidden;
   }
 
   &__tab-nav {
     display: flex;
-    border-bottom: 1px solid rgba($color-secondary, 0.15);
+    border-bottom: 1px solid $color-border;
+    background: $color-surface;
+    overflow-x: auto;
   }
 
   &__tab-btn {
-    flex: 1;
-    padding: 16px;
+    padding: 16px 24px;
     font-size: $fs-small;
-    font-weight: 600;
-    color: $color-text-secondary;
-    transition: $transition-fast;
-    border-right: 1px solid rgba($color-secondary, 0.15);
+    font-weight: 500;
+    color: $color-text-muted;
+    position: relative;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 
-    &:last-child { border-right: none; }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $color-wine;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
 
-    &:hover { background: rgba($color-primary, 0.04); color: $color-primary; }
-    &.active { background: $color-primary; color: #fff; }
+    &.active {
+      color: $color-wine;
+      font-weight: 600;
+      background: #fff;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:hover:not(.active) {
+      color: $color-text-secondary;
+    }
   }
 
   &__tab-content {
-    padding: 24px;
-    font-size: $fs-small;
-    color: $color-text-secondary;
-    line-height: 1.75;
+    padding: 28px 32px;
+    background: #fff;
+
+    p {
+      font-size: $fs-body;
+      color: $color-text-secondary;
+      line-height: 1.8;
+    }
+
+    strong { color: $color-text-primary; }
   }
 
+  // Chapter 5.15 — Related Products
   &__related {
-    h2 {
-      font-family: $font-heading;
-      font-size: $fs-section;
-      font-weight: 700;
-      color: $color-text-primary;
-      margin-bottom: 24px;
-    }
+    margin: 64px 0 32px;
+  }
+
+  &__related-title {
+    font-family: $font-heading;
+    font-size: $fs-sub;
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-bottom: 32px;
   }
 
   &__related-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+
+    @media (max-width: $laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  // Chapter 5.21 — Sticky Mobile Bottom Bar
+  &__mobile-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid $color-border;
+    padding: 12px 20px;
+    z-index: 100;
+    box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+    align-items: center;
+    gap: 16px;
+
+    @media (max-width: $tablet) {
+      display: flex;
+    }
+  }
+
+  &__mobile-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: $color-wine;
+    white-space: nowrap;
+  }
+
+  &__mobile-order {
+    flex: 1;
+    height: 48px;
+    background: $color-whatsapp;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-size: $fs-small;
+    font-weight: 600;
+    font-family: $font-body;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+
+    svg { font-size: 18px; }
+
+    &:active { background: $color-whatsapp-dark; }
   }
 }

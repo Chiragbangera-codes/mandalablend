@@ -2,8 +2,11 @@
 @use "mixins" as *;
 
 /* ============================================================
-   GLOBAL STYLES — Mandala Blend
+   GLOBAL STYLES — Mandala Blend Design System v2.0
+   Chapter 1: Foundation
    ============================================================ */
+
+/* Google Fonts — imported in index.html */
 
 /* Reset */
 *,
@@ -57,6 +60,7 @@ input,
 textarea,
 select {
   font-family: $font-body;
+  outline: none;
 }
 
 /* Container */
@@ -64,9 +68,18 @@ select {
   @include container;
 }
 
-/* Section Padding */
+/* Section padding */
 .section {
   @include section-padding;
+}
+
+/* Buttons */
+.btn-primary {
+  @include btn-primary;
+}
+
+.btn-secondary {
+  @include btn-secondary;
 }
 
 /* Visually Hidden (accessibility) */
@@ -92,12 +105,178 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-primary;
+  background: $color-wine;
   border-radius: 3px;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(90, 20, 51, 0.15);
-  color: $color-primary;
+  background: rgba(122, 23, 56, 0.12);
+  color: $color-wine;
+}
+
+/* Focus Ring — Chapter 1 accessibility */
+:focus-visible {
+  outline: 2px solid $color-wine;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Page Transition Wrapper */
+.page-wrapper {
+  animation: pageFadeIn 0.45s ease-out;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Label */
+.section-label {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: $fs-small;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $color-text-muted;
+  margin-bottom: $sp-3;
+}
+
+/* Section Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: $sp-3;
+  justify-content: center;
+  margin: $sp-4 0 $sp-6;
+
+  &__line {
+    width: 48px;
+    height: 1px;
+    background: #D8D8D8;
+  }
+
+  &__ornament {
+    color: #D8D8D8;
+    font-size: 14px;
+  }
+}
+
+/* WhatsApp FAB */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: $color-whatsapp;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: $z-whatsapp-fab;
+  transition: $transition-fast;
+  animation: fabFloat 6s ease-in-out infinite;
+
+  &:hover {
+    transform: scale(1.08);
+    animation-play-state: paused;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &__tooltip {
+    position: absolute;
+    right: 72px;
+    white-space: nowrap;
+    background: #1F1F22;
+    color: #fff;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-right: none;
+      border-left-color: #1F1F22;
+    }
+  }
+
+  &:hover &__tooltip {
+    opacity: 1;
+  }
+}
+
+@keyframes fabFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Skeleton Loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.4s infinite;
+  border-radius: $radius-sm;
+
+  &--card {
+    height: 390px;
+    border-radius: $radius-card;
+  }
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $sp-20 $sp-6;
+  text-align: center;
+
+  &__icon {
+    font-size: 48px;
+    color: $color-border;
+    margin-bottom: $sp-4;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $fs-sub;
+    color: $color-text-primary;
+    margin-bottom: $sp-3;
+  }
+
+  &__desc {
+    color: $color-text-muted;
+    font-size: $fs-small;
+    margin-bottom: $sp-6;
+    max-width: 340px;
+  }
 }

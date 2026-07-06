@@ -1,29 +1,55 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
 
 .home {
+  // Feature strip between Hero and Collections
   &__feature-strip {
-    background: linear-gradient(90deg, $color-primary, $color-primary-hover);
-    padding: 14px 0;
+    background: $color-card;
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+    padding: 16px 0;
     overflow: hidden;
   }
 
   &__features {
     display: flex;
-    gap: 32px;
+    gap: 0;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-wrap: nowrap;
 
-    @include respond-to('mobile') {
-      gap: 16px;
+    @media (max-width: $tablet) {
+      flex-wrap: wrap;
+      gap: 8px;
     }
   }
 
   &__feature-pill {
-    font-size: $fs-xs;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: 0.08em;
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-text-secondary;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
+    padding: 0 28px;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 14px;
+      background: $color-border;
+    }
+
+    @media (max-width: $tablet) {
+      padding: 4px 16px;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 }

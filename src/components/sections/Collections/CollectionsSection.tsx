@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { staggerContainer, fadeUp, viewportConfig } from '@/utils/animations';
-import SectionTitle from '@/components/common/SectionTitle/SectionTitle';
+import { staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
 import './CollectionsSection.scss';
 
+// Chapter 3.7 — 5 equal cards
 const categories = [
   { label: 'Keychains', slug: 'keychains', image: '/images/cat-keychains.png', count: '20+ Designs' },
   { label: 'Frames', slug: 'frames', image: '/images/cat-frames.png', count: '35+ Designs' },
@@ -15,22 +15,28 @@ const categories = [
 
 const CollectionsSection: React.FC = () => {
   return (
-    <section className="collections-section section">
+    <section className="collections-section section" aria-labelledby="collections-heading">
       <div className="container">
+        {/* Section Heading — Chapter 2.8 pattern */}
         <motion.div
+          className="collections-section__header"
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
         >
-          <SectionTitle
-            subtitle="Shop by Category"
-            title="Our Collections"
-            description="Each piece is hand-crafted with devotion — explore our categories and find your perfect mandala art."
-            centered
-          />
+          <span className="collections-section__eyebrow">Our Bestsellers</span>
+          <h2 className="collections-section__title" id="collections-heading">
+            Shop Our Collections
+          </h2>
+          <div className="collections-section__divider" aria-hidden="true">
+            <span className="collections-section__divider-line" />
+            <span className="collections-section__divider-ornament">✦</span>
+            <span className="collections-section__divider-line" />
+          </div>
         </motion.div>
 
+        {/* 5-column card grid */}
         <motion.div
           className="collections-section__grid"
           variants={staggerContainer}
@@ -44,10 +50,19 @@ const CollectionsSection: React.FC = () => {
                 to={`/collections?cat=${cat.slug}`}
                 className="collections-section__card"
                 id={`cat-card-${cat.slug}`}
+                aria-label={`Browse ${cat.label} collection`}
               >
                 <div className="collections-section__card-img-wrap">
-                  <img src={cat.image} alt={cat.label} className="collections-section__card-img" />
-                  <div className="collections-section__card-overlay" />
+                  <img
+                    src={cat.image}
+                    alt={cat.label}
+                    className="collections-section__card-img"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/images/hero-mandala.png';
+                    }}
+                  />
+                  <div className="collections-section__card-overlay" aria-hidden="true" />
                 </div>
                 <div className="collections-section__card-content">
                   <span className="collections-section__card-count">{cat.count}</span>

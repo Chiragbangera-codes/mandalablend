@@ -1,53 +1,101 @@
-@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+// Chapter 3.9 — Testimonials
+// White cards, wine quote icon, wine stars, 3 cards horizontal
 
 .testimonials {
   background: $color-bg;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-size: $fs-small;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $fs-page;
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-bottom: 16px;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+
+    &-line {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: #D8D8D8;
+    }
+
+    &-ornament {
+      color: #D8D8D8;
+      font-size: 12px;
+    }
+  }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 48px;
 
-    @include respond-to('laptop') {
+    @media (max-width: $tablet) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include respond-to('mobile') {
+    @media (max-width: $mobile) {
       grid-template-columns: 1fr;
     }
   }
 
   &__card {
-    background: $color-surface;
+    background: $color-card;
+    border: 1px solid $color-border;
     border-radius: $radius-card;
     padding: 32px;
     box-shadow: $shadow-card;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    border: 1px solid rgba($color-secondary, 0.1);
-    transition: $transition-base;
-    position: relative;
+    transition: all 0.3s ease-out;
 
     &:hover {
       box-shadow: $shadow-card-hover;
-      transform: translateY(-4px);
-      border-color: rgba($color-secondary, 0.25);
+      transform: translateY(-2px);
     }
   }
 
+  // Wine quote icon
   &__quote-icon {
-    color: $color-secondary;
+    color: $color-wine;
     font-size: 20px;
-    opacity: 0.5;
+    opacity: 0.7;
   }
 
+  // Stars — wine color
   &__stars {
     display: flex;
     gap: 3px;
-    color: $color-secondary;
     font-size: 14px;
+  }
+
+  &__star {
+    &--filled { color: $color-wine; }
+    &--empty  { color: $color-border; }
   }
 
   &__review {
@@ -63,43 +111,40 @@
     align-items: center;
     gap: 12px;
     padding-top: 16px;
-    border-top: 1px solid rgba($color-secondary, 0.12);
+    border-top: 1px solid $color-border;
+    margin-top: auto;
   }
 
   &__avatar {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, $color-primary, $color-primary-hover);
-    color: #fff;
+    background: rgba(122, 23, 56, .12);
+    color: $color-wine;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: $font-heading;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     flex-shrink: 0;
+    border: 1px solid rgba(122, 23, 56, .2);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   &__name {
-    display: block;
     font-weight: 600;
     color: $color-text-primary;
     font-size: $fs-small;
   }
 
-  &__city {
-    display: block;
-    font-size: $fs-xs;
+  &__meta {
+    font-size: 12px;
     color: $color-text-muted;
-    margin-top: 2px;
-  }
-
-  &__product {
-    display: block;
-    font-size: $fs-xs;
-    color: $color-secondary;
-    font-weight: 500;
-    margin-top: 2px;
   }
 }

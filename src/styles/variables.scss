@@ -1,61 +1,104 @@
-// Color System
-$color-primary: #5A1433;
-$color-primary-dark: #3B0A1F;
-$color-primary-hover: #6C1B42;
-$color-secondary: #C79A4D;
-$color-secondary-light: #DDB96A;
-$color-bg: #FFF8F1;
-$color-surface: #FFFFFF;
-$color-text-primary: #1E1E1E;
-$color-text-secondary: #666666;
-$color-text-muted: #999999;
-$color-whatsapp: #25D366;
-$color-whatsapp-dark: #1DA851;
+// ============================================================
+//  DESIGN TOKENS — Mandala Blend Design System v2.0
+//  Chapter 1: Foundation
+// ============================================================
 
-// Typography
-$font-heading: 'Playfair Display', Georgia, serif;
-$font-body: 'Poppins', system-ui, sans-serif;
+// --- Color System ---
+$color-bg:               #FAFAFA;   // Entire website background
+$color-surface:          #F3F3F3;   // Hero artwork bg, feature strip, why choose us
+$color-card:             #FFFFFF;   // Product cards, testimonials, forms, collection cards
+$color-footer:           #1F1F22;   // Flat charcoal — footer only
+$color-divider:          #E8E8E8;
+$color-border:           #ECECEC;   // Cards
+$color-border-input:     #DCDCDC;   // Inputs
+$color-border-secondary: #DDDDDD;   // Secondary buttons
 
-// Font Scale
-$fs-hero: clamp(2.5rem, 5vw, 4rem);
-$fs-page: clamp(2rem, 4vw, 3rem);
-$fs-section: clamp(1.6rem, 3vw, 2.25rem);
-$fs-card: 1.375rem;
-$fs-body: 1rem;
-$fs-small: 0.875rem;
-$fs-xs: 0.75rem;
+// Text
+$color-text-primary:     #111111;
+$color-text-secondary:   #6F6F6F;
+$color-text-muted:       #999999;
 
-// Spacing
-$container-max: 1280px;
-$container-padding: 24px;
-$section-gap-desktop: 100px;
-$section-gap-tablet: 80px;
-$section-gap-mobile: 60px;
+// Accent
+$color-wine:             #7A1738;   // Primary accent — buttons, active nav, links
+$color-wine-light:       rgba(122, 23, 56, 0.08);
+$color-wine-hover-shadow: rgba(122, 23, 56, 0.18);
 
-// Border Radius
-$radius-pill: 999px;
-$radius-card: 20px;
-$radius-form: 14px;
-$radius-sm: 8px;
+// Status
+$color-whatsapp:         #25D366;
+$color-whatsapp-dark:    #1da851;
+$color-success:          #3BB273;
+$color-error:            #D64545;
+$color-warning:          #D99800;
 
-// Shadows
-$shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
-$shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.14);
-$shadow-navbar: 0 4px 24px rgba(90, 20, 51, 0.12);
+// --- Typography ---
+$font-heading:  'Playfair Display', Georgia, serif;
+$font-body:     'Poppins', system-ui, sans-serif;
 
-// Breakpoints
-$mobile: 576px;
-$tablet: 768px;
-$laptop: 1024px;
+// Font Scale (desktop reference)
+$fs-hero:     4.5rem;    // 72px
+$fs-page:     3rem;      // 48px — section headings
+$fs-sub:      1.75rem;   // 28px — sub headings
+$fs-card:     1.375rem;  // 22px — card headings
+$fs-body:     1rem;      // 16px
+$fs-small:    0.875rem;  // 14px
+$fs-caption:  0.75rem;   // 12px
+
+// --- Spacing (8-pt grid) ---
+$sp-1:  4px;
+$sp-2:  8px;
+$sp-3:  12px;
+$sp-4:  16px;
+$sp-6:  24px;
+$sp-8:  32px;
+$sp-10: 40px;
+$sp-12: 48px;
+$sp-16: 64px;
+$sp-20: 80px;
+$sp-24: 96px;
+$sp-30: 120px;
+
+// --- Layout ---
+$container-max:     1320px;
+$page-padding-desk: 80px;
+$page-padding-tab:  48px;
+$page-padding-mob:  24px;
+
+$section-gap-desk:  120px;
+$section-gap-tab:   96px;
+$section-gap-mob:   64px;
+
+// --- Border Radius ---
+$radius-pill:   999px;   // Buttons, badges
+$radius-card:   18px;    // Cards, images
+$radius-input:  14px;    // Inputs
+$radius-large:  20px;    // Feature sections
+$radius-sm:     8px;
+
+// --- Shadows ---
+$shadow-card:       0 8px 20px rgba(0,0,0,.05);
+$shadow-card-hover: 0 12px 28px rgba(0,0,0,.08);
+$shadow-btn:        0 8px 18px rgba(122,23,56,.18);
+$shadow-nav:        none;   // Navbar uses border, no shadow
+$shadow-nav-border: 1px solid $color-border;
+
+// --- Breakpoints ---
+$mobile:  768px;
+$tablet:  992px;
+$laptop:  1200px;
 $desktop: 1440px;
 
-// Transitions
-$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-$transition-fast: all 0.15s ease;
-$transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+// --- Transitions ---
+$transition-instant: all 0.1s ease-out;   // Hover/active states
+$transition-fast:    all 0.2s ease-out;   // Buttons, icons
+$transition-base:    all 0.3s ease-out;   // Cards, nav, dropdown
+$transition-slow:    all 0.5s ease-in-out; // Hero, page transitions
 
-// Z-index
-$z-navbar: 1000;
-$z-mobile-menu: 1100;
+// --- Z-index ---
+$z-base:         1;
+$z-card:         10;
+$z-dropdown:     100;
+$z-navbar:       1000;
+$z-mobile-menu:  1100;
+$z-overlay:      1200;
+$z-lightbox:     1300;
 $z-whatsapp-fab: 900;
-$z-overlay: 1200;
