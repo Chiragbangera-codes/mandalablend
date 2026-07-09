@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
+import LazyImage from '@/components/common/LazyImage';
 import './CollectionsSection.scss';
 
 // Chapter 3.7 — 5 equal cards
@@ -13,7 +14,7 @@ const categories = [
   { label: 'New Arrivals', slug: 'new-arrivals', image: '/images/cat-newarrivals.png', count: 'Latest Drops' },
 ];
 
-const CollectionsSection: React.FC = () => {
+const CollectionsSection: React.FC = React.memo(() => {
   return (
     <section className="collections-section section" aria-labelledby="collections-heading">
       <div className="container">
@@ -53,14 +54,10 @@ const CollectionsSection: React.FC = () => {
                 aria-label={`Browse ${cat.label} collection`}
               >
                 <div className="collections-section__card-img-wrap">
-                  <img
+                  <LazyImage
                     src={cat.image}
                     alt={cat.label}
                     className="collections-section__card-img"
-                    loading="lazy"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/images/hero-mandala.png';
-                    }}
                   />
                   <div className="collections-section__card-overlay" aria-hidden="true" />
                 </div>
@@ -76,6 +73,6 @@ const CollectionsSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default CollectionsSection;

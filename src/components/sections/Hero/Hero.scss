@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/variables" as *;
 
 // Chapter 3.5 — Hero Section
@@ -168,7 +169,7 @@
       &:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 18px rgba(122,23,56,.2);
-        background: darken(#7A1738, 5%);
+        background: color.adjust(#7A1738, $lightness: -5%);
       }
     }
 

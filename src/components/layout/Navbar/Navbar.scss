@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/variables" as *;
 
 // Chapter 2.2 — Navbar
@@ -197,7 +198,7 @@
 
     &:hover {
       transform: scale(1.1);
-      color: darken(#7A1738, 10%);
+      color: color.adjust(#7A1738, $lightness: -10%);
     }
   }
 
@@ -223,7 +224,7 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 18px rgba(122, 23, 56, .2);
-      background: darken(#7A1738, 5%);
+      background: color.adjust(#7A1738, $lightness: -5%);
     }
 
     @media (max-width: $laptop) {

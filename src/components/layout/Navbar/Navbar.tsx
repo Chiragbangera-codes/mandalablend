@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiChevronDown, FiX } from 'react-icons/fi';
-import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa';
-import { NAV_LINKS, INSTAGRAM_URL, FACEBOOK_URL, PRODUCT_CATEGORIES } from '@/utils/constants';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { NAV_LINKS, INSTAGRAM_URL, GMAIL_URL, PRODUCT_CATEGORIES } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import MobileMenu from '../MobileMenu/MobileMenu';
+import LazyImage from '@/components/common/LazyImage';
 import './Navbar.scss';
 
 const collectionDropdown = PRODUCT_CATEGORIES.filter(c => c.value !== 'all').map(c => ({
@@ -42,10 +44,11 @@ const Navbar: React.FC = () => {
         <div className="container navbar__inner">
           {/* Logo */}
           <Link to="/" className="navbar__logo" aria-label="Mandala Blend — Home">
-            <img
+            <LazyImage
               src="/logo.png?v=2"
               alt="The Mandala Blend — Handcrafted with Love"
               className="navbar__logo-img"
+              priority
             />
           </Link>
 
@@ -128,13 +131,11 @@ const Navbar: React.FC = () => {
                 <FaInstagram />
               </a>
               <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={GMAIL_URL}
                 className="navbar__social-icon"
-                aria-label="Follow on Facebook"
+                aria-label="Email us on Gmail"
               >
-                <FaFacebookF />
+                <MdEmail />
               </a>
             </div>
 

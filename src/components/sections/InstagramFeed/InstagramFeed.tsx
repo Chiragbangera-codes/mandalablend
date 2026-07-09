@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaInstagram } from 'react-icons/fa';
 import { staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
 import { INSTAGRAM_URL } from '@/utils/constants';
+import LazyImage from '@/components/common/LazyImage';
 import './InstagramFeed.scss';
 
 // Chapter 3.10 — 7 images
@@ -16,7 +17,7 @@ const instagramImages = [
   '/images/cat-frames.png',
 ];
 
-const InstagramFeed: React.FC = () => {
+const InstagramFeed: React.FC = React.memo(() => {
   return (
     <section className="instagram section" aria-labelledby="instagram-heading">
       <div className="container">
@@ -60,13 +61,9 @@ const InstagramFeed: React.FC = () => {
               variants={fadeUp}
               aria-label={`View Instagram post ${i + 1}`}
             >
-              <img
+              <LazyImage
                 src={img}
                 alt={`Mandala Blend artwork post ${i + 1}`}
-                loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/images/hero-mandala.png';
-                }}
               />
               <div className="instagram__item-overlay" aria-hidden="true">
                 <FaInstagram />
@@ -77,6 +74,6 @@ const InstagramFeed: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default InstagramFeed;

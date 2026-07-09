@@ -28,7 +28,7 @@ const reasons = [
   },
 ];
 
-const WhyChooseUs: React.FC = () => {
+const WhyChooseUs: React.FC = React.memo(() => {
   return (
     <section className="why-choose section" aria-labelledby="why-choose-heading">
       <div className="container">
@@ -62,6 +62,6 @@ const WhyChooseUs: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default WhyChooseUs;

@@ -6,6 +6,7 @@ import { fadeLeft, fadeRight, staggerContainer, fadeUp, viewportConfig } from '@
 import { STATS } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import Counter from '@/components/common/Counter/Counter';
+import LazyImage from '@/components/common/LazyImage';
 import './About.scss';
 
 // Chapter 7.7 — Mission & Vision cards
@@ -103,10 +104,9 @@ const About: React.FC = () => {
             whileInView="visible"
             viewport={viewportConfig}
           >
-            <img
+            <LazyImage
               src="/images/artist.png"
               alt="Our artist creating a mandala — Mandala Blend"
-              onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
             />
           </motion.div>
         </div>
@@ -148,7 +148,7 @@ const About: React.FC = () => {
             </motion.div>
             <motion.div className="about-page__story-img" variants={fadeRight}>
               <div className="about-page__story-img-wrap">
-                <img
+                <LazyImage
                   src="/images/hero-mandala.png"
                   alt="Mandala art creation process"
                 />
@@ -245,10 +245,9 @@ const About: React.FC = () => {
               viewport={viewportConfig}
               variants={fadeLeft}
             >
-              <img
+              <LazyImage
                 src="/images/hero-mandala.png"
                 alt="Intricate handmade mandala process detail"
-                onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
               />
             </motion.div>
             
@@ -317,10 +316,10 @@ const About: React.FC = () => {
           >
             <motion.div className="about-page__artist-image" variants={fadeLeft}>
               <div className="about-page__artist-circle">
-                <img
+                <LazyImage
                   src="/images/artist.png"
                   alt="Founder and Artist of Mandala Blend"
-                  onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+                  objectFit="cover"
                 />
               </div>
             </motion.div>

@@ -66,7 +66,8 @@
     background: $color-surface;
     position: relative;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -122,7 +123,8 @@
     transition: border-color 0.15s ease;
     background: $color-surface;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -361,28 +363,37 @@
     }
   }
 
-  // Chapter 5.12 — WhatsApp CTA
+  // Chapter 5.12 — WhatsApp CTA (hero secondary style)
   &__order-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
     height: 56px;
-    background: $color-whatsapp;
-    color: #fff;
+    padding: 0 28px;
+    background: $color-card;
+    color: $color-text-primary;
+    border: 1px solid $color-border-secondary;
     border-radius: $radius-pill;
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 600;
     font-family: $font-body;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
 
-    svg { font-size: 20px; }
+    svg {
+      font-size: 20px;
+      color: $color-whatsapp;
+    }
 
     &:hover {
-      background: $color-whatsapp-dark;
+      border-color: $color-wine;
+      color: $color-wine;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 211, 102, .3);
+      box-shadow: 0 8px 18px rgba(122,23,56,.12);
+
+      svg { color: $color-wine; }
     }
 
     &:active {
@@ -546,8 +557,9 @@
   &__mobile-order {
     flex: 1;
     height: 48px;
-    background: $color-whatsapp;
-    color: #fff;
+    background: $color-card;
+    color: $color-text-primary;
+    border: 1px solid $color-border-secondary;
     border-radius: $radius-pill;
     font-size: $fs-small;
     font-weight: 600;
@@ -556,10 +568,187 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
 
-    svg { font-size: 18px; }
+    svg {
+      font-size: 18px;
+      color: $color-whatsapp;
+    }
 
-    &:active { background: $color-whatsapp-dark; }
+    &:active {
+      background: $color-surface;
+      border-color: $color-wine;
+      color: $color-wine;
+    }
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  &__share-container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 56px;
+    padding: 0 28px;
+    background: #fff;
+    color: $color-text-secondary;
+    border: 1px solid $color-border;
+    border-radius: $radius-pill;
+    font-size: $fs-body;
+    font-weight: 600;
+    font-family: $font-body;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+
+    svg {
+      font-size: 18px;
+      color: $color-text-secondary;
+      transition: color 0.15s ease;
+    }
+
+    &:hover {
+      border-color: $color-wine;
+      color: $color-wine;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(122, 23, 56, 0.06);
+
+      svg { color: $color-wine; }
+    }
+
+    &.active {
+      background: $color-surface;
+      border-color: $color-wine;
+      color: $color-wine;
+      svg { color: $color-wine; }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__share-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid $color-border;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__share-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: $fs-small;
+    font-weight: 500;
+    color: $color-text-primary;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+
+    svg {
+      font-size: 18px;
+      
+      &.icon-whatsapp {
+        color: $color-whatsapp;
+      }
+      &.icon-copy {
+        color: $color-text-secondary;
+      }
+      &.icon-check {
+        color: $color-success;
+      }
+      &.icon-share {
+        color: $color-wine;
+      }
+    }
+
+    &:hover {
+      background: $color-surface;
+      color: $color-wine;
+    }
+  }
+
+  &__mobile-actions {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    align-items: center;
+  }
+
+  &__mobile-share-wrapper {
+    position: relative;
+    display: flex;
+  }
+
+  &__mobile-share {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    color: $color-text-secondary;
+    border: 1px solid $color-border;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+
+    &:active, &.active {
+      border-color: $color-wine;
+      color: $color-wine;
+      background: $color-surface;
+    }
+  }
+
+  &__mobile-share-dropdown {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
+    background: #fff;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 140px;
+
+    .product-page__share-item {
+      padding: 8px 12px;
+      font-size: 12px;
+      gap: 8px;
+      svg { font-size: 16px; }
+    }
   }
 }

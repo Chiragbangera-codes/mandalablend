@@ -10,6 +10,7 @@ import {
   viewportConfig,
 } from '@/animations/variants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import LazyImage from '@/components/common/LazyImage';
 import './Hero.scss';
 
 const features = [
@@ -113,14 +114,12 @@ const Hero: React.FC = () => {
         >
           <div className="hero__artwork-bg" aria-hidden="true" />
           <div className="hero__artwork-frame">
-            <img
+            <LazyImage
               src="/front.png"
               alt="Premium mandala artwork — Mandala Blend handcrafted art"
               className="hero__artwork-img"
-              loading="eager"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = '/logo.png';
-              }}
+              priority
+              fallbackSrc="/logo.png"
             />
           </div>
           {/* Badge */}

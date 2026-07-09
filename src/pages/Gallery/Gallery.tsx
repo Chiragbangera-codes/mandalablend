@@ -9,12 +9,13 @@ import { GALLERY_CATEGORIES, STATS } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import InstagramFeed from '@/components/sections/InstagramFeed/InstagramFeed';
 import Counter from '@/components/common/Counter/Counter';
+import LazyImage from '@/components/common/LazyImage';
 import './Gallery.scss';
 
 const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const filtered = getGalleryByCategory(activeCategory);
+  const filtered = React.useMemo(() => getGalleryByCategory(activeCategory), [activeCategory]);
 
   // Lightbox navigation
   const openLightbox = useCallback((idx: number) => setLightboxIndex(idx), []);
@@ -64,10 +65,10 @@ const Gallery: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <img
+            <LazyImage
               src="/images/hero-mandala.png"
               alt="Featured custom mandala frame artwork"
-              onError={(e) => { (e.target as HTMLImageElement).src = '/logo.png'; }}
+              fallbackSrc="/logo.png"
             />
           </motion.div>
         </div>
@@ -114,11 +115,9 @@ const Gallery: React.FC = () => {
                     onClick={() => openLightbox(idx)}
                     aria-label={`View ${item.title} in fullscreen`}
                   >
-                    <img
+                    <LazyImage
                       src={item.image}
                       alt={item.title}
-                      loading="lazy"
-                      onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
                     />
                     <div className="gallery-page__item-overlay" aria-hidden="true">
                       <FiZoomIn className="gallery-page__zoom-icon" />
@@ -159,10 +158,9 @@ const Gallery: React.FC = () => {
                 variants={idx % 2 === 0 ? fadeLeft : fadeRight}
               >
                 <div className="gallery-page__custom-order-image">
-                  <img
+                  <LazyImage
                     src={order.image}
                     alt={order.title}
-                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
                   />
                 </div>
                 <div className="gallery-page__custom-order-info">
@@ -216,20 +214,20 @@ const Gallery: React.FC = () => {
             {customerShowcase.map((item) => (
               <motion.div key={item.id} className="gallery-page__showcase-card" variants={fadeUp}>
                 <div className="gallery-page__showcase-artwork">
-                  <img
+                  <LazyImage
                     src={item.artworkPhoto}
                     alt="Customer artwork display"
-                    onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
                   />
                 </div>
                 <div className="gallery-page__showcase-content">
                   <p className="gallery-page__showcase-review">"{item.review}"</p>
                   <div className="gallery-page__showcase-user">
                     <div className="gallery-page__showcase-avatar">
-                      <img
+                      <LazyImage
                         src={item.customerPhoto}
                         alt={item.name}
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                        hideOnError
+                        fallbackSrc=""
                       />
                       <span>{item.name.charAt(0)}</span>
                     </div>
@@ -287,10 +285,11 @@ const Gallery: React.FC = () => {
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <LazyImage
                 src={filtered[lightboxIndex]?.image}
                 alt={filtered[lightboxIndex]?.title}
-                onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+                loading="eager"
+                objectFit="contain"
               />
               <div className="gallery-page__lightbox-info">
                 <h3>{filtered[lightboxIndex]?.title}</h3>

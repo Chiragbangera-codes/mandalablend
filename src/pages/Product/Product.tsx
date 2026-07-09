@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaStar, FaCheckCircle } from 'react-icons/fa';
-import { FiPackage, FiAward, FiTruck, FiEdit3, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiPackage, FiAward, FiTruck, FiEdit3, FiChevronLeft, FiChevronRight, FiShare2, FiCopy, FiCheck } from 'react-icons/fi';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
 import { createWhatsappLink } from '@/services/whatsapp';
 import { fadeLeft, fadeRight, staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
 import ProductCard from '@/components/product/ProductCard/ProductCard';
 import InstagramFeed from '@/components/sections/InstagramFeed/InstagramFeed';
+import LazyImage from '@/components/common/LazyImage';
 import './Product.scss';
 
 // Chapter 5.13 — Trust Indicators (outline icons only)
@@ -35,10 +36,47 @@ const Product: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
   const [sizeError, setSizeError] = useState(false);
+  const [showShareOptions, setShowShareOptions] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShareWhatsApp = () => {
+    if (!product) return;
+    const text = `Check out this beautiful ${product.name} on Mandala Blend! 🎨\n\n${window.location.href}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  const handleNativeShare = async () => {
+    if (!product) return;
+    if ('share' in navigator && typeof (navigator as { share?: unknown }).share === 'function') {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: `Check out this beautiful ${product.name} on Mandala Blend! 🎨`,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    }
+  };
+
+  const handleShareClick = () => {
+    if ('share' in navigator && typeof (navigator as { share?: unknown }).share === 'function') {
+      handleNativeShare();
+    } else {
+      setShowShareOptions(!showShareOptions);
+    }
+  };
 
   if (!product) return <Navigate to="/collections" replace />;
 
-  const related = getRelatedProducts(product, 4);
+  const related = useMemo(() => getRelatedProducts(product, 4), [product]);
 
   // Chapter 5.12 — pre-filled WhatsApp message
   const handleWhatsApp = () => {
@@ -83,10 +121,11 @@ const Product: React.FC = () => {
           >
             {/* Main Image */}
             <div className="product-page__main-img" role="img" aria-label={product.name}>
-              <img
+              <LazyImage
                 src={product.images[activeImage]}
                 alt={`${product.name} — view ${activeImage + 1}`}
-                onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
+                priority
+                objectFit="cover"
               />
               {product.images.length > 1 && (
                 <>
@@ -120,10 +159,9 @@ const Product: React.FC = () => {
                     aria-pressed={activeImage === i}
                     role="listitem"
                   >
-                    <img
+                    <LazyImage
                       src={img}
                       alt={`${product.name} thumbnail ${i + 1}`}
-                      onError={(e) => { (e.target as HTMLImageElement).src = '/images/hero-mandala.png'; }}
                     />
                   </button>
                 ))}
@@ -244,16 +282,73 @@ const Product: React.FC = () => {
               </div>
             </div>
 
-            {/* Chapter 5.12 — WhatsApp CTA */}
-            <button
-              className="product-page__order-btn"
-              onClick={handleWhatsApp}
-              id="product-order-whatsapp-btn"
-              aria-label={`Order ${product.name} on WhatsApp`}
-            >
-              <FaWhatsapp aria-hidden="true" />
-              Order on WhatsApp
-            </button>
+            {/* Action Buttons */}
+            <div className="product-page__actions">
+              <button
+                className="product-page__order-btn"
+                onClick={handleWhatsApp}
+                id="product-order-whatsapp-btn"
+                aria-label={`Order ${product.name} on WhatsApp`}
+              >
+                <FaWhatsapp aria-hidden="true" />
+                Order on WhatsApp
+              </button>
+
+              <div className="product-page__share-container">
+                <button
+                  className={`product-page__share-btn ${showShareOptions ? 'active' : ''}`}
+                  onClick={() => setShowShareOptions(!showShareOptions)}
+                  aria-expanded={showShareOptions}
+                  aria-haspopup="true"
+                  aria-label="Share this product"
+                >
+                  <FiShare2 aria-hidden="true" />
+                  Share Product
+                </button>
+
+                <AnimatePresence>
+                  {showShareOptions && (
+                    <motion.div
+                      className="product-page__share-dropdown"
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <button
+                        className="product-page__share-item"
+                        onClick={handleShareWhatsApp}
+                      >
+                        <FaWhatsapp className="icon-whatsapp" aria-hidden="true" />
+                        Share on WhatsApp
+                      </button>
+
+                      <button
+                        className="product-page__share-item"
+                        onClick={handleCopyLink}
+                      >
+                        {copied ? (
+                          <FiCheck className="icon-check" aria-hidden="true" />
+                        ) : (
+                          <FiCopy className="icon-copy" aria-hidden="true" />
+                        )}
+                        {copied ? 'Link Copied!' : 'Copy Link'}
+                      </button>
+
+                      {'share' in navigator && (
+                        <button
+                          className="product-page__share-item"
+                          onClick={handleNativeShare}
+                        >
+                          <FiShare2 className="icon-share" aria-hidden="true" />
+                          Share via Devices
+                        </button>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
 
             {/* Chapter 5.13 — Trust Indicators */}
             <div className="product-page__trust" aria-label="Trust indicators">
@@ -302,8 +397,8 @@ const Product: React.FC = () => {
                   <p>
                     <strong>Materials:</strong> {product.material}.<br /><br />
                     All inks used are archival-quality, UV-resistant, and carefully selected for
-                    vibrant, lasting color. The wood frames are sustainably sourced and finished with
-                    an anti-dust matte coating.
+                    vibrant, lasting color. The MDF base is precision-cut and sealed with a smooth
+                    resin finish coat for a glossy, premium look and long-lasting durability.
                   </p>
                 )}
                 {activeTab === 'care' && (
@@ -360,14 +455,58 @@ const Product: React.FC = () => {
             `₹${product.price.toLocaleString('en-IN')}`
           )}
         </div>
-        <button
-          className="product-page__mobile-order"
-          onClick={handleWhatsApp}
-          aria-label={`Order ${product.name} on WhatsApp`}
-        >
-          <FaWhatsapp aria-hidden="true" />
-          Order on WhatsApp
-        </button>
+        <div className="product-page__mobile-actions">
+          <button
+            className="product-page__mobile-order"
+            onClick={handleWhatsApp}
+            aria-label={`Order ${product.name} on WhatsApp`}
+          >
+            <FaWhatsapp aria-hidden="true" />
+            Order
+          </button>
+          
+          <div className="product-page__mobile-share-wrapper">
+            <button
+              className={`product-page__mobile-share ${showShareOptions ? 'active' : ''}`}
+              onClick={handleShareClick}
+              aria-label="Share this product"
+            >
+              <FiShare2 aria-hidden="true" />
+            </button>
+
+            <AnimatePresence>
+              {showShareOptions && !navigator.share && (
+                <motion.div
+                  className="product-page__mobile-share-dropdown"
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <button
+                    className="product-page__share-item"
+                    onClick={handleShareWhatsApp}
+                  >
+                    <FaWhatsapp className="icon-whatsapp" aria-hidden="true" />
+                    WhatsApp
+                  </button>
+
+                  <button
+                    className="product-page__share-item"
+                    onClick={handleCopyLink}
+                  >
+                    {copied ? (
+                      <FiCheck className="icon-check" aria-hidden="true" />
+                    ) : (
+                      <FiCopy className="icon-copy" aria-hidden="true" />
+                    )}
+                    {copied ? 'Copied!' : 'Copy Link'}
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </div>
   );

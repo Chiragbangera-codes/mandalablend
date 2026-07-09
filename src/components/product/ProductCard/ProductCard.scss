@@ -21,10 +21,6 @@
     .product-card__img {
       transform: scale(1.05);
     }
-
-    .product-card__whatsapp {
-      opacity: 1;
-    }
   }
 
   // Image wrap — 70% of card
@@ -182,27 +178,23 @@
     text-decoration: line-through;
   }
 
-  // WhatsApp CTA — full width, green
-  &__whatsapp {
-    display: flex;
+  // Shop Now link
+  &__shop-now {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 7px;
-    height: 42px;
-    background: $color-whatsapp;
-    color: #fff;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-top: auto;
+    gap: 4px;
     margin-top: 8px;
-    transition: all 0.2s ease-out;
-
-    svg { font-size: 16px; }
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-wine;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: gap 0.2s ease-out, opacity 0.2s ease-out;
+    opacity: 0.85;
 
     &:hover {
-      background: $color-whatsapp-dark;
-      transform: translateY(-1px);
+      gap: 8px;
+      opacity: 1;
     }
   }
 }

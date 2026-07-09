@@ -241,17 +241,35 @@
   }
 
   &__custom-btn {
-    display: block;
-    text-align: center;
-    padding: 10px;
-    background: $color-whatsapp;
-    color: #fff;
-    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    background: $color-card;
+    color: $color-text-primary;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-pill;
     font-size: 13px;
     font-weight: 600;
-    transition: all 0.2s ease;
+    text-decoration: none;
+    transition: all 0.2s ease-out;
 
-    &:hover { background: $color-whatsapp-dark; }
+    svg {
+      font-size: 16px;
+      color: $color-whatsapp;
+    }
+
+    &:hover {
+      border-color: $color-wine;
+      color: $color-wine;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(122,23,56,.12);
+
+      svg { color: $color-wine; }
+    }
   }
 
   // Main content

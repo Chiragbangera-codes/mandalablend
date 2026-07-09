@@ -5,6 +5,7 @@ import { FiX } from 'react-icons/fi';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { NAV_LINKS } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import LazyImage from '@/components/common/LazyImage';
 import './MobileMenu.scss';
 
 interface MobileMenuProps {
@@ -44,7 +45,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="mobile-menu__header">
               <div className="mobile-menu__logo">
-                <img src="/logo.png?v=2" alt="The Mandala Blend" className="mobile-menu__logo-img" />
+                <LazyImage
+                  src="/logo.png?v=2"
+                  alt="The Mandala Blend"
+                  className="mobile-menu__logo-img"
+                  loading="eager"
+                />
               </div>
               <button className="mobile-menu__close" onClick={onClose} aria-label="Close menu">
                 <FiX />

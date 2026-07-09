@@ -6,8 +6,9 @@ import { staggerContainer, fadeUp, viewportConfig } from '@/animations/variants'
 import { testimonials } from '@/data/testimonials';
 import './Testimonials.scss';
 
-const Testimonials: React.FC = () => {
-  const featured = testimonials.slice(0, 3);
+const featured = testimonials.slice(0, 3);
+
+const Testimonials: React.FC = React.memo(() => {
 
   return (
     <section className="testimonials section" aria-labelledby="testimonials-heading">
@@ -72,6 +73,6 @@ const Testimonials: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Testimonials;

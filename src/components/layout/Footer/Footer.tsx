@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa';
-import { INSTAGRAM_URL, FACEBOOK_URL, EMAIL, PHONE } from '@/utils/constants';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { INSTAGRAM_URL, GMAIL_URL, EMAIL, PHONE } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import LazyImage from '@/components/common/LazyImage';
 import './Footer.scss';
 
 const Footer: React.FC = () => {
@@ -20,19 +22,18 @@ const Footer: React.FC = () => {
         {/* Column 1: Brand */}
         <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <img
+            <LazyImage
               src="/logo-white.png?v=2"
               alt="The Mandala Blend"
               className="footer__logo-img"
-              onError={(e) => {
-                // Fallback to text if white logo not found
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
+              loading="lazy"
+              hideOnError
+              fallbackSrc=""
             />
             <span className="footer__brand-name">Mandala Blend</span>
           </div>
           <p className="footer__brand-desc">
-            Premium handmade mandala art crafted with love from Jaipur, India.
+            Premium handmade mandala art crafted with love from Mangalore, India.
             Every piece is unique, every stroke is intentional.
           </p>
           <div className="footer__socials">
@@ -46,13 +47,11 @@ const Footer: React.FC = () => {
               <FaInstagram />
             </a>
             <a
-              href={FACEBOOK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Follow on Facebook"
+              href={GMAIL_URL}
+              aria-label="Email us on Gmail"
               className="footer__social-link"
             >
-              <FaFacebookF />
+              <MdEmail />
             </a>
             <a
               href={createGeneralWhatsappLink()}

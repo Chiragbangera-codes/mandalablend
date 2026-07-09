@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaHeart, FaStar } from 'react-icons/fa';
+import { FaHeart, FaStar } from 'react-icons/fa';
 import { Product } from '@/data/products';
-import { createWhatsappLink } from '@/services/whatsapp';
 import { fadeUp } from '@/animations/variants';
+import LazyImage from '@/components/common/LazyImage';
 import './ProductCard.scss';
 
 interface ProductCardProps {
@@ -12,7 +12,7 @@ interface ProductCardProps {
   showBadge?: boolean;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, showBadge = true }) => {
+const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge = true }) => {
   const [wished, setWished] = useState(false);
 
   return (
@@ -28,14 +28,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showBadge = true }) 
         aria-label={`View ${product.name}`}
         tabIndex={-1}
       >
-        <img
+        <LazyImage
           src={product.images[0]}
           alt={product.name}
           className="product-card__img"
-          loading="lazy"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/images/hero-mandala.png';
-          }}
         />
         <div className="product-card__img-overlay" aria-hidden="true" />
 
@@ -90,22 +86,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showBadge = true }) 
           )}
         </div>
 
-        {/* WhatsApp CTA — full width green */}
-        <a
-          href={createWhatsappLink(product.name, product.price)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="product-card__whatsapp"
-          id={`product-whatsapp-${product.id}`}
-          onClick={(e) => e.stopPropagation()}
-          aria-label={`Order ${product.name} on WhatsApp`}
+        {/* Shop Now link */}
+        <Link
+          to={`/collections/${product.slug}`}
+          className="product-card__shop-now"
+          id={`product-shop-${product.id}`}
+          aria-label={`Shop ${product.name}`}
         >
-          <FaWhatsapp aria-hidden="true" />
-          Order on WhatsApp
-        </a>
+          Shop Now →
+        </Link>
       </div>
     </motion.article>
   );
-};
+});
 
 export default ProductCard;

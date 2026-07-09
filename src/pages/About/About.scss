@@ -101,7 +101,8 @@
     overflow: hidden;
     aspect-ratio: 4/3;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -183,7 +184,8 @@
     aspect-ratio: 4/3;
     background: $color-surface;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -416,7 +418,8 @@
     overflow: hidden;
     box-shadow: $shadow-card;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -622,7 +625,8 @@
     box-shadow: $shadow-card-hover;
     background: $color-surface;
 
-    img {
+    img,
+    .lazy-img {
       width: 100%;
       height: 100%;
       object-fit: cover;

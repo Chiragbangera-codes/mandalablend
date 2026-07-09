@@ -1,6 +1,7 @@
 // ============================================================
 //  MIXINS — Mandala Blend Design System
 // ============================================================
+@use "sass:color";
 @use "variables" as *;
 
 // Container
@@ -89,7 +90,7 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: $shadow-btn;
-    background: darken(#7A1738, 5%);
+    background: color.adjust(#7A1738, $lightness: -5%);
   }
 
   &:active {

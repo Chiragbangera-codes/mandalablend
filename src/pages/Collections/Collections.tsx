@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiFilter, FiX, FiChevronDown } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { staggerContainer, fadeUp, fadeLeft, viewportConfig } from '@/animations/variants';
 import { products, getProductsByCategory } from '@/data/products';
 import { PRODUCT_CATEGORIES } from '@/utils/constants';
@@ -38,15 +39,15 @@ const Collections: React.FC = () => {
     return result;
   }, [activeCategory, sortBy, maxPrice, availability]);
 
-  const setCategory = (cat: string) => {
+  const setCategory = useCallback((cat: string) => {
     setSearchParams(cat === 'all' ? {} : { cat });
-  };
+  }, [setSearchParams]);
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     setMaxPrice(5000);
     setSortBy('default');
     setAvailability({ available: false, custom: false });
-  };
+  }, []);
 
   return (
     <div className="collections-page">
@@ -152,12 +153,13 @@ const Collections: React.FC = () => {
             <div className="collections-page__custom-cta">
               <h4>Need a Custom Order?</h4>
               <p>Tell us your design and we'll create it just for you.</p>
-              <a
+                <a
                 href="https://wa.me/919480675351"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="collections-page__custom-btn"
               >
+                <FaWhatsapp aria-hidden="true" />
                 WhatsApp Us
               </a>
             </div>
