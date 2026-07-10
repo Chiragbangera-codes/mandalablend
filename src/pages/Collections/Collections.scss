@@ -225,7 +225,7 @@
     border-radius: 14px;
     padding: 18px;
 
-    h4 {
+    h3 {
       font-size: 14px;
       font-weight: 600;
       color: $color-wine;
@@ -275,6 +275,62 @@
   // Main content
   &__main {
     min-width: 0;
+  }
+
+  // Search Bar
+  &__search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1.5px solid $color-border;
+    border-radius: 12px;
+    padding: 0 14px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus-within {
+      border-color: $color-wine;
+      box-shadow: 0 0 0 3px rgba(122, 23, 56, 0.08);
+    }
+  }
+
+  &__search-icon {
+    font-size: 18px;
+    color: $color-text-muted;
+    flex-shrink: 0;
+  }
+
+  &__search-input {
+    flex: 1;
+    height: 48px;
+    border: none;
+    outline: none;
+    font-size: $fs-body;
+    font-family: inherit;
+    color: $color-text-primary;
+    background: transparent;
+
+    &::placeholder { color: $color-text-muted; }
+  }
+
+  &__search-clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: $color-surface;
+    color: $color-text-muted;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+
+    &:hover {
+      background: $color-border;
+      color: $color-text-primary;
+    }
   }
 
   // Chapter 4.7 — Toolbar

@@ -7,6 +7,8 @@ import Navbar from '@/components/layout/Navbar/Navbar';
 import Footer from '@/components/layout/Footer/Footer';
 import AppRoutes from '@/routes/AppRoutes';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import { initAnalytics } from '@/analytics';
+import { usePageTracking } from '@/hooks/usePageTracking';
 import { fabFloat } from '@/animations/variants';
 import '@/styles/global.scss';
 import './App.scss';
@@ -14,6 +16,8 @@ import './App.scss';
 // Scroll to top on every route change
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
+  usePageTracking(); // Track route pageview
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
@@ -21,6 +25,10 @@ const ScrollToTop: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    initAnalytics(); // Initialize GA4 + Clarity + Web Vitals
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />

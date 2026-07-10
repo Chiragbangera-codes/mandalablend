@@ -56,7 +56,7 @@ export interface LazyImageProps {
 
   /**
    * URL to display when the image fails to load.
-   * Defaults to "/images/hero-mandala.png".
+   * Defaults to "/images/hero-mandala.webp".
    * Pass an empty string to suppress fallback (e.g. footer logo).
    */
   fallbackSrc?: string;

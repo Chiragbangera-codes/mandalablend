@@ -85,7 +85,6 @@ const Footer: React.FC = () => {
             <li><Link to="/collections?cat=keychains">Keychains</Link></li>
             <li><Link to="/collections?cat=name-boards">Name Boards</Link></li>
             <li><Link to="/collections?cat=customized-gifts">Customized Gifts</Link></li>
-            <li><Link to="/collections?cat=new-arrivals">New Arrivals</Link></li>
           </ul>
         </div>
 
@@ -130,7 +129,7 @@ const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p>© {new Date().getFullYear()} Mandala Blend. All rights reserved. Made with ❤️ in India.</p>
+          <p>© {new Date().getFullYear()} Mandala Blend. All rights reserved. Developed by Bangera-Coders.</p>
         </div>
       </div>
     </footer>

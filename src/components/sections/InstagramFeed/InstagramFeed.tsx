@@ -8,13 +8,13 @@ import './InstagramFeed.scss';
 
 // Chapter 3.10 — 7 images
 const instagramImages = [
-  '/images/cat-frames.png',
-  '/images/cat-keychains.png',
-  '/images/cat-nameboards.png',
-  '/images/cat-gifts.png',
-  '/images/cat-newarrivals.png',
-  '/images/hero-mandala.png',
-  '/images/cat-frames.png',
+  '/images/cat-frames.webp',
+  '/images/cat-keychains.webp',
+  '/images/cat-nameboards.webp',
+  '/images/cat-gifts.webp',
+  '/images/cat-newarrivals.webp',
+  '/images/hero-mandala.webp',
+  '/images/cat-frames.webp',
 ];
 
 const InstagramFeed: React.FC = React.memo(() => {

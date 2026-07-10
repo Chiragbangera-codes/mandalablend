@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '@/components/common/SEO/SEO';
 import Hero from '@/components/sections/Hero/Hero';
 import CollectionsSection from '@/components/sections/Collections/CollectionsSection';
 import WhyChooseUs from '@/components/sections/WhyChooseUs/WhyChooseUs';
@@ -17,6 +18,10 @@ const FEATURE_PILLS = [
 const Home: React.FC = () => {
   return (
     <>
+      <SEO
+        title="The Mandala Blend | Handmade Mandala Art, Frames & Personalized Gifts"
+        description="Discover handcrafted mandala frames, keychains, wall décor and personalized gifts made with passion. Explore the complete Mandala Blend collection."
+      />
       <Hero />
       <div className="home__feature-strip">
         <div className="container home__features">

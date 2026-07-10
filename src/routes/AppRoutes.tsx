@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import PageLoader from '@/components/common/PageLoader';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
@@ -55,8 +55,8 @@ const NotFound = lazy(() =>
         <p style={{ color: '#6F6F6F', marginBottom: '24px' }}>
           This page seems to have wandered off like a mandala petal.
         </p>
-        <a
-          href="/"
+        <Link
+          to="/"
           style={{
             padding: '12px 28px',
             background: '#7A1738',
@@ -67,7 +67,7 @@ const NotFound = lazy(() =>
           }}
         >
           Back to Home
-        </a>
+        </Link>
       </div>
     ),
   })

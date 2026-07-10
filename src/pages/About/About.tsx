@@ -7,6 +7,7 @@ import { STATS } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import Counter from '@/components/common/Counter/Counter';
 import LazyImage from '@/components/common/LazyImage';
+import SEO from '@/components/common/SEO/SEO';
 import './About.scss';
 
 // Chapter 7.7 — Mission & Vision cards
@@ -55,6 +56,10 @@ const WHY_CARDS = [
 const About: React.FC = () => {
   return (
     <div className="about-page">
+      <SEO
+        title="About | The Mandala Blend"
+        description="Learn more about the story behind Mandala Blend, our master craftsmanship, our premium materials, and our dedication to authentic hand-painted dot mandala art."
+      />
 
       {/* Chapter 7.5 — Hero Section */}
       <section className="about-page__hero section" aria-labelledby="about-hero-heading">
@@ -78,7 +83,7 @@ const About: React.FC = () => {
             </div>
             <p className="about-page__hero-desc">
               Mandala Blend was born from a simple belief — that handmade art can transform spaces and
-              uplift souls. We are a boutique mandala art studio based in Jaipur, India, creating
+              uplift souls. We are a boutique mandala art studio based in Mangaluru, India, creating
               premium handcrafted artwork one stroke at a time.
             </p>
             <div className="about-page__hero-actions">
@@ -105,7 +110,7 @@ const About: React.FC = () => {
             viewport={viewportConfig}
           >
             <LazyImage
-              src="/images/artist.png"
+              src="/images/artist.webp"
               alt="Our artist creating a mandala — Mandala Blend"
             />
           </motion.div>
@@ -127,7 +132,7 @@ const About: React.FC = () => {
               <h2 className="about-page__section-title" id="story-heading">From Passion to Purpose</h2>
               
               <p>
-                What began as meditative drawing sessions in Jaipur grew into something extraordinary.
+                What began as meditative drawing sessions in Mangaluru grew into something extraordinary.
                 The founder discovered that mandala art wasn't just beautiful — it was healing.
                 Every symmetrical line, every intricate detail, brought calm and focus. What started
                 as a private form of meditation quickly captured the hearts of everyone who saw the process.
@@ -149,7 +154,7 @@ const About: React.FC = () => {
             <motion.div className="about-page__story-img" variants={fadeRight}>
               <div className="about-page__story-img-wrap">
                 <LazyImage
-                  src="/images/hero-mandala.png"
+                  src="/images/hero-mandala.webp"
                   alt="Mandala art creation process"
                 />
               </div>
@@ -246,7 +251,7 @@ const About: React.FC = () => {
               variants={fadeLeft}
             >
               <LazyImage
-                src="/images/hero-mandala.png"
+                src="/images/hero-mandala.webp"
                 alt="Intricate handmade mandala process detail"
               />
             </motion.div>
@@ -317,7 +322,7 @@ const About: React.FC = () => {
             <motion.div className="about-page__artist-image" variants={fadeLeft}>
               <div className="about-page__artist-circle">
                 <LazyImage
-                  src="/images/artist.png"
+                  src="/images/artist.webp"
                   alt="Founder and Artist of Mandala Blend"
                   objectFit="cover"
                 />
@@ -328,14 +333,16 @@ const About: React.FC = () => {
               <span className="about-page__eyebrow">The Creator</span>
               <h2 id="artist-heading" className="about-page__section-title">Meet the Artist</h2>
               <p>
-                Hello, I am the artist behind Mandala Blend. My artistic journey started right here in the
-                culturally rich city of Jaipur. Surrounded by ancient architectures, block prints, and royal
-                heritage, I fell in love with symmetry and traditional patterns early on.
+                Hi, I'm Deepthi, the artist and creator behind every mandala you see here.
               </p>
               <p>
-                Each mandala I create is a personal meditation. I sit with a compass, ruler, and fine pens
-                for hours—sometimes days—to finish a single piece. For me, these drawings are not just decor;
-                they are symbols of center, calm, and positive energy that I hope radiates inside your home.
+                My journey with mandala art began with a simple love for creating. What started as a hobby soon became a passion that taught me the beauty of patience, precision, and creativity, transforming every blank canvas into a story told through intricate patterns and thoughtful details. With every piece I completed, my love for the craft grew stronger, inspiring me to share it with others.
+              </p>
+              <p>
+                Driven by the belief that handmade art carries a unique emotion, I turned my passion into a brand dedicated to creating timeless, personalized pieces. Every mandala is carefully designed and handcrafted with meticulous attention to detail, using quality materials to ensure it is as lasting as it is beautiful. From elegant wall art to customized keepsakes, each creation is made to celebrate special moments and become a cherished part of your home or a heartfelt gift for someone you love.
+              </p>
+              <p>
+                This journey is built on creativity, dedication, and the joy of bringing meaningful ideas to life. Thank you for supporting handmade artistry and for allowing my creations to become a part of your story.
               </p>
               <div className="about-page__artist-signature">
                 <span>The Mandala Blend</span>

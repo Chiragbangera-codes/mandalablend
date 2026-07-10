@@ -10,6 +10,8 @@ import { createGeneralWhatsappLink } from '@/services/whatsapp';
 import InstagramFeed from '@/components/sections/InstagramFeed/InstagramFeed';
 import Counter from '@/components/common/Counter/Counter';
 import LazyImage from '@/components/common/LazyImage';
+import SEO from '@/components/common/SEO/SEO';
+import { trackGalleryImageOpened, trackGalleryCategoryChanged } from '@/analytics';
 import './Gallery.scss';
 
 const Gallery: React.FC = () => {
@@ -41,6 +43,10 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="gallery-page">
+      <SEO
+        title="Gallery | The Mandala Blend"
+        description="Explore the gallery of our finest handcrafted mandala art, custom-made creations, behind-the-scenes processes, and showcases from our happy customers."
+      />
       {/* Chapter 6.5 — Gallery Hero */}
       <div className="gallery-page__banner">
         <div className="container gallery-page__banner-inner">
@@ -66,8 +72,8 @@ const Gallery: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <LazyImage
-              src="/images/hero-mandala.png"
-              alt="Featured custom mandala frame artwork"
+              src="/logo.png"
+              alt="Mandala Blend Logo"
               fallbackSrc="/logo.png"
             />
           </motion.div>
@@ -82,7 +88,10 @@ const Gallery: React.FC = () => {
               <button
                 key={cat.value}
                 className={`gallery-page__pill ${activeCategory === cat.value ? 'gallery-page__pill--active' : ''}`}
-                onClick={() => setActiveCategory(cat.value)}
+                onClick={() => {
+                  setActiveCategory(cat.value);
+                  trackGalleryCategoryChanged(cat.value);
+                }}
                 id={`gallery-filter-${cat.value}`}
               >
                 {cat.label}
@@ -112,7 +121,10 @@ const Gallery: React.FC = () => {
                 >
                   <button
                     className="gallery-page__item-btn"
-                    onClick={() => openLightbox(idx)}
+                    onClick={() => {
+                      openLightbox(idx);
+                      trackGalleryImageOpened(item.id, item.title);
+                    }}
                     aria-label={`View ${item.title} in fullscreen`}
                   >
                     <LazyImage
@@ -223,13 +235,14 @@ const Gallery: React.FC = () => {
                   <p className="gallery-page__showcase-review">"{item.review}"</p>
                   <div className="gallery-page__showcase-user">
                     <div className="gallery-page__showcase-avatar">
-                      <LazyImage
-                        src={item.customerPhoto}
-                        alt={item.name}
-                        hideOnError
-                        fallbackSrc=""
-                      />
-                      <span>{item.name.charAt(0)}</span>
+                      {item.customerPhoto ? (
+                        <LazyImage
+                          src={item.customerPhoto}
+                          alt={item.name}
+                        />
+                      ) : (
+                        <span>{item.name.charAt(0)}</span>
+                      )}
                     </div>
                     <div>
                       <h4 className="gallery-page__showcase-name">{item.name}</h4>

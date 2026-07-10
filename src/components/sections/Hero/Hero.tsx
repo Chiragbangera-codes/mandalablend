@@ -10,6 +10,7 @@ import {
   viewportConfig,
 } from '@/animations/variants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import { trackHeroCtaClick, trackExploreCollections } from '@/analytics';
 import LazyImage from '@/components/common/LazyImage';
 import './Hero.scss';
 
@@ -77,6 +78,7 @@ const Hero: React.FC = () => {
               to="/collections"
               className="hero__btn hero__btn--primary"
               id="hero-explore-btn"
+              onClick={trackExploreCollections}
             >
               Explore Collections
               <span className="hero__btn-arrow">→</span>
@@ -87,6 +89,7 @@ const Hero: React.FC = () => {
               rel="noopener noreferrer"
               className="hero__btn hero__btn--secondary"
               id="hero-whatsapp-btn"
+              onClick={trackHeroCtaClick}
             >
               <FaWhatsapp aria-hidden="true" />
               Order on WhatsApp

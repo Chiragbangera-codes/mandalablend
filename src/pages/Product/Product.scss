@@ -316,6 +316,39 @@
     gap: 4px;
   }
 
+  // Custom Word Input
+  &__custom-word {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input {
+      width: 100%;
+      max-width: 320px;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid $color-border;
+      font-size: $fs-body;
+      font-family: inherit;
+      color: $color-text-primary;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s ease;
+
+      &:focus {
+        border-color: $color-wine;
+      }
+    }
+
+    &-hint {
+      font-size: 13px;
+      color: $color-text-muted;
+      margin-top: -4px;
+      margin-bottom: 8px;
+    }
+  }
+
   // Chapter 5.11 — Quantity
   &__qty {
     display: flex;

@@ -4,8 +4,10 @@ import { FaWhatsapp, FaInstagram, FaEnvelope, FaMapMarkerAlt } from 'react-icons
 import { FiChevronDown } from 'react-icons/fi';
 import { staggerContainer, fadeLeft, fadeRight, fadeUp, viewportConfig } from '@/animations/variants';
 import { faqs } from '@/data/faq';
-import { PHONE, EMAIL, ADDRESS, INSTAGRAM_URL } from '@/utils/constants';
+import { PHONE, EMAIL, ADDRESS, INSTAGRAM_URL, WHATSAPP_NUMBER } from '@/utils/constants';
 import { createGeneralWhatsappLink } from '@/services/whatsapp';
+import SEO from '@/components/common/SEO/SEO';
+import { trackContactWhatsAppClick, trackContactEmailClick, trackContactInstagramClick } from '@/analytics';
 import './Contact.scss';
 
 // Chapter 8.6 — Contact Info Cards (4 cards, 2x2)
@@ -56,12 +58,23 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Hello Mandala Blend! 🎨\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nInquiry: ${form.type}\n\nMessage:\n${form.message}\n\nThank you!`;
-    window.open(`https://wa.me/919480675351?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
+  };
+
+  const handleCardClick = (cardId: string) => {
+    if (cardId === 'whatsapp') trackContactWhatsAppClick();
+    if (cardId === 'instagram') trackContactInstagramClick();
+    if (cardId === 'email') trackContactEmailClick();
   };
 
   return (
     <div className="contact-page">
+      <SEO
+        title="Contact | The Mandala Blend"
+        description="Have queries about custom sizes, colors, pricing, or shipping? Reach out to us via WhatsApp, Instagram or Email, or check out our frequently asked questions."
+        faqData={faqs.map((f) => ({ question: f.question, answer: f.answer }))}
+      />
 
       {/* Chapter 8.5 — Hero */}
       <div className="contact-page__hero">
@@ -99,6 +112,7 @@ const Contact: React.FC = () => {
               id={`contact-card-${card.id}`}
               variants={fadeUp}
               aria-label={`Contact via ${card.label}`}
+              onClick={() => handleCardClick(card.id)}
             >
               <div
                 className="contact-page__card-icon"

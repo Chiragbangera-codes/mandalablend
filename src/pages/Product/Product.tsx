@@ -4,11 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaStar, FaCheckCircle } from 'react-icons/fa';
 import { FiPackage, FiAward, FiTruck, FiEdit3, FiChevronLeft, FiChevronRight, FiShare2, FiCopy, FiCheck } from 'react-icons/fi';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
-import { createWhatsappLink } from '@/services/whatsapp';
+import { WHATSAPP_NUMBER } from '@/utils/constants';
 import { fadeLeft, fadeRight, staggerContainer, fadeUp, viewportConfig } from '@/animations/variants';
 import ProductCard from '@/components/product/ProductCard/ProductCard';
 import InstagramFeed from '@/components/sections/InstagramFeed/InstagramFeed';
 import LazyImage from '@/components/common/LazyImage';
+import SEO from '@/components/common/SEO/SEO';
+import {
+  trackProductViewed,
+  trackWhatsAppOrderClicked,
+  trackShareButtonClicked,
+  trackProductImageViewed
+} from '@/analytics';
 import './Product.scss';
 
 // Chapter 5.13 — Trust Indicators (outline icons only)
@@ -38,16 +45,39 @@ const Product: React.FC = () => {
   const [sizeError, setSizeError] = useState(false);
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [customWord, setCustomWord] = useState('');
+
+  // Track product viewed event
+  React.useEffect(() => {
+    if (product) {
+      trackProductViewed(product.id, product.name, product.price);
+    }
+  }, [product]);
+
+  // Track image viewed event
+  React.useEffect(() => {
+    if (product) {
+      trackProductImageViewed(product.id, activeImage);
+    }
+  }, [activeImage, product]);
+
+  const letterCount = useMemo(() => {
+    if (!product || product.id !== 'p66') return 1;
+    const cleanWord = customWord.replace(/[^a-zA-Z]/g, '');
+    return cleanWord.length > 0 ? cleanWord.length : 1;
+  }, [customWord, product]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
     setCopied(true);
+    if (product) trackShareButtonClicked(product.id, 'clipboard');
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleShareWhatsApp = () => {
     if (!product) return;
     const text = `Check out this beautiful ${product.name} on Mandala Blend! 🎨\n\n${window.location.href}`;
+    trackShareButtonClicked(product.id, 'whatsapp');
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -55,6 +85,7 @@ const Product: React.FC = () => {
     if (!product) return;
     if ('share' in navigator && typeof (navigator as { share?: unknown }).share === 'function') {
       try {
+        trackShareButtonClicked(product.id, 'native');
         await navigator.share({
           title: product.name,
           text: `Check out this beautiful ${product.name} on Mandala Blend! 🎨`,
@@ -74,20 +105,33 @@ const Product: React.FC = () => {
     }
   };
 
-  if (!product) return <Navigate to="/collections" replace />;
+  const related = useMemo(
+    () => (product ? getRelatedProducts(product, 4) : []),
+    [product]
+  );
 
-  const related = useMemo(() => getRelatedProducts(product, 4), [product]);
+  if (!product) return <Navigate to="/collections" replace />;
 
   // Chapter 5.12 — pre-filled WhatsApp message
   const handleWhatsApp = () => {
-    if (product.sizes.length > 0 && !selectedSize) {
+    if (product.id !== 'p66' && product.sizes.length > 0 && !selectedSize) {
       setSizeError(true);
       return;
     }
     setSizeError(false);
 
-    const message = `Hello Mandala Blend! 🎨\n\nI would like to order:\nProduct: ${product.name}\nSize: ${selectedSize || 'Standard'}\nQuantity: ${quantity}\n\nPlease share payment details.\nThank you!`;
-    window.open(`https://wa.me/919480675351?text=${encodeURIComponent(message)}`, '_blank');
+    let message = '';
+    if (product.id === 'p66') {
+      const cleanWord = customWord.replace(/[^a-zA-Z]/g, '');
+      const wordToSubmit = cleanWord.length > 0 ? cleanWord.toUpperCase() : 'None Specified';
+      const calculatedPrice = 649 * (cleanWord.length > 0 ? cleanWord.length : 1);
+      message = `Hello Mandala Blend! 🎨\n\nI would like to order:\n📦 Product: ${product.name}\n🔤 Custom Word/Name: ${wordToSubmit} (${cleanWord.length > 0 ? cleanWord.length : 1} Letter(s))\n💰 Total Price: ₹${(calculatedPrice * quantity).toLocaleString('en-IN')}\n🔢 Quantity: ${quantity}\n\nPlease share availability and payment details.\nThank you! 🙏`;
+    } else {
+      const currentPrice = product.sizePrices && selectedSize ? product.sizePrices[selectedSize] : product.price;
+      message = `Hello Mandala Blend! 🎨\n\nI would like to order:\n📦 Product: ${product.name}\n📐 Size: ${selectedSize || 'Standard'}\n💰 Total Price: ₹${(currentPrice * quantity).toLocaleString('en-IN')}\n🔢 Quantity: ${quantity}\n\nPlease share payment details.\nThank you! 🙏`;
+    }
+    trackWhatsAppOrderClicked(product.id, product.name, product.price, selectedSize, quantity);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const prevImage = () => setActiveImage(i => (i - 1 + product.images.length) % product.images.length);
@@ -95,6 +139,26 @@ const Product: React.FC = () => {
 
   return (
     <div className="product-page">
+      <SEO
+        title={`${product.name} | The Mandala Blend`}
+        description={`Buy ${product.name} under ${product.category.replace(/-/g, ' ')}. 100% handmade dot mandala artwork. ${product.customizable ? 'Custom orders and personalization options available.' : ''} Delivery time: ${product.deliveryTime}.`}
+        ogType="product"
+        ogImage={product.images[0]}
+        productData={{
+          name: product.name,
+          description: product.description,
+          category: product.category,
+          image: product.images[0],
+          price: product.price,
+          customizable: product.customizable,
+          slug: product.slug
+        }}
+        breadcrumbs={[
+          { name: 'Home', item: 'https://themandalablend.in/' },
+          { name: 'Collections', item: 'https://themandalablend.in/collections' },
+          { name: product.name, item: `https://themandalablend.in/collections/${product.slug}` }
+        ]}
+      />
       <div className="container">
         {/* Chapter 5.5 — Breadcrumb */}
         <nav className="product-page__breadcrumb" aria-label="Breadcrumb">
@@ -200,7 +264,9 @@ const Product: React.FC = () => {
             {/* Price */}
             <div className="product-page__price-row">
               <span className="product-page__price">
-                {product.sizePrices ? (
+                {product.id === 'p66' ? (
+                  `₹${(649 * letterCount).toLocaleString('en-IN')}`
+                ) : product.sizePrices ? (
                   selectedSize ? (
                     `₹${product.sizePrices[selectedSize].toLocaleString('en-IN')}`
                   ) : (
@@ -262,6 +328,26 @@ const Product: React.FC = () => {
                     ⚠️ Please select a size before placing your order.
                   </p>
                 )}
+              </div>
+            )}
+
+            {/* Custom word input for p66 */}
+            {product.id === 'p66' && (
+              <div className="product-page__custom-word">
+                <label className="product-page__sizes-label">Custom Word / Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. MANDALA"
+                  value={customWord}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                    setCustomWord(val);
+                  }}
+                  className="product-page__custom-word-input"
+                />
+                <p className="product-page__custom-word-hint">
+                  {customWord.replace(/[^a-zA-Z]/g, '').length} letter(s) detected (₹649 per letter).
+                </p>
               </div>
             )}
 
@@ -445,7 +531,9 @@ const Product: React.FC = () => {
       {/* Chapter 5.21 — Sticky Mobile Bottom Bar */}
       <div className="product-page__mobile-bar">
         <div className="product-page__mobile-price">
-          {product.sizePrices ? (
+          {product.id === 'p66' ? (
+            `₹${(649 * letterCount).toLocaleString('en-IN')}`
+          ) : product.sizePrices ? (
             selectedSize ? (
               `₹${product.sizePrices[selectedSize].toLocaleString('en-IN')}`
             ) : (

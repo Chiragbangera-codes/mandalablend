@@ -7,11 +7,10 @@ import './CollectionsSection.scss';
 
 // Chapter 3.7 — 5 equal cards
 const categories = [
-  { label: 'Keychains', slug: 'keychains', image: '/images/cat-keychains.png', count: '20+ Designs' },
-  { label: 'Frames', slug: 'frames', image: '/images/cat-frames.png', count: '35+ Designs' },
-  { label: 'Name Boards', slug: 'name-boards', image: '/images/cat-nameboards.png', count: '15+ Designs' },
-  { label: 'Customized Gifts', slug: 'customized-gifts', image: '/images/cat-gifts.png', count: '25+ Gift Sets' },
-  { label: 'New Arrivals', slug: 'new-arrivals', image: '/images/cat-newarrivals.png', count: 'Latest Drops' },
+  { label: 'Keychains', slug: 'keychains', image: '/images/cat-keychains.webp', count: '20+ Designs' },
+  { label: 'Frames', slug: 'frames', image: '/images/cat-frames.webp', count: '35+ Designs' },
+  { label: 'Name Boards', slug: 'name-boards', image: '/images/cat-nameboards.webp', count: '15+ Designs' },
+  { label: 'Customized Gifts', slug: 'customized-gifts', image: '/images/cat-gifts.webp', count: '25+ Gift Sets' },
 ];
 
 const CollectionsSection: React.FC = React.memo(() => {

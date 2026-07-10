@@ -1,10 +1,10 @@
 export const BRAND_NAME = 'Mandala Blend';
-export const WHATSAPP_NUMBER = '919480675351';
+export const WHATSAPP_NUMBER = '918197718018';
 export const INSTAGRAM_URL = 'https://www.instagram.com/themandalablend?igsh=OGNyd2U1bDRzOXd1';
 export const GMAIL_URL = 'mailto:themandalablend@gmail.com';
 export const PINTEREST_URL = 'https://pinterest.com/mandalablend';
 export const EMAIL = 'themandalablend@gmail.com';
-export const PHONE = '+91 9480675351';
+export const PHONE = '+91 81977 18018';
 export const ADDRESS = 'Mangalore, Karnataka, India';
 
 export const ANNOUNCEMENT_TEXT = '✨ Free Shipping on Orders Above ₹999 | Handmade with Love in India 🇮🇳';
@@ -29,7 +29,6 @@ export const PRODUCT_CATEGORIES = [
   { label: 'Keychains', value: 'keychains' },
   { label: 'Name Boards', value: 'name-boards' },
   { label: 'Customized Gifts', value: 'customized-gifts' },
-  { label: 'New Arrivals', value: 'new-arrivals' },
 ];
 
 export const GALLERY_CATEGORIES = [

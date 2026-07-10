@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { LazyImageProps } from './LazyImage.types';
 import './LazyImage.scss';
 
-const DEFAULT_FALLBACK = '/images/hero-mandala.png';
+const DEFAULT_FALLBACK = '/images/hero-mandala.webp';
 
 /**
  * LazyImage
@@ -40,6 +40,17 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
   const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc((current) => {
+      if (current !== src) {
+        setLoaded(false);
+        setErrored(false);
+        return src;
+      }
+      return current;
+    });
+  }, [src]);
 
   // Derive effective loading attributes from priority flag
   const effectiveLoading: 'lazy' | 'eager' = priority ? 'eager' : loading;

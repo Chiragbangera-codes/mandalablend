@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaHeart, FaStar } from 'react-icons/fa';
 import { Product } from '@/data/products';
 import { fadeUp } from '@/animations/variants';
+import { trackProductCardClicked } from '@/analytics';
 import LazyImage from '@/components/common/LazyImage';
 import './ProductCard.scss';
 
@@ -14,6 +15,10 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge = true }) => {
   const [wished, setWished] = useState(false);
+
+  const handleTrackClick = () => {
+    trackProductCardClicked(product.id, product.name);
+  };
 
   return (
     <motion.article
@@ -27,6 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge
         className="product-card__img-wrap"
         aria-label={`View ${product.name}`}
         tabIndex={-1}
+        onClick={handleTrackClick}
       >
         <LazyImage
           src={product.images[0]}
@@ -46,9 +52,6 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge
             {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
           </span>
         )}
-        {showBadge && product.category === 'new-arrivals' && !product.bestSeller && (
-          <span className="product-card__badge product-card__badge--new">New</span>
-        )}
       </Link>
 
       {/* Wishlist — top right */}
@@ -67,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge
           {product.category.replace(/-/g, ' ')}
         </span>
 
-        <Link to={`/collections/${product.slug}`}>
+        <Link to={`/collections/${product.slug}`} onClick={handleTrackClick}>
           <h3 className="product-card__name">{product.name}</h3>
         </Link>
 
@@ -92,6 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, showBadge
           className="product-card__shop-now"
           id={`product-shop-${product.id}`}
           aria-label={`Shop ${product.name}`}
+          onClick={handleTrackClick}
         >
           Shop Now →
         </Link>
