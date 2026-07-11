@@ -45,11 +45,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="mobile-menu__header">
               <div className="mobile-menu__logo">
-                <LazyImage
-                  src="/logo.png?v=2"
+                <img
+                  src="/logo-text.png"
                   alt="The Mandala Blend"
-                  className="mobile-menu__logo-img"
-                  loading="eager"
+                  className="mobile-menu__logo-text"
                 />
               </div>
               <button className="mobile-menu__close" onClick={onClose} aria-label="Close menu">
@@ -57,8 +56,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               </button>
             </div>
 
-            {/* Mandala decoration */}
-            <div className="mobile-menu__decor">✦</div>
 
             {/* Links */}
             <nav className="mobile-menu__nav">
@@ -91,7 +88,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               className="mobile-menu__whatsapp"
               onClick={onClose}
             >
-              <FaWhatsapp />
+              <FaWhatsapp className="mobile-menu__whatsapp-icon" />
               Order on WhatsApp
             </a>
 

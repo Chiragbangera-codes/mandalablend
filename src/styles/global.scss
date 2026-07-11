@@ -227,6 +227,10 @@ select {
   &:hover &__tooltip {
     opacity: 1;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 @keyframes fabFloat {

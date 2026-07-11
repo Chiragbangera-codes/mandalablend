@@ -28,7 +28,7 @@ export interface CustomerShowcaseItem {
 export const galleryItems: GalleryItem[] = [
   { id: 'g1', image: '/images/frame1.webp', category: 'frames', title: 'Royal Lotus Mandala Frame', height: 'tall' },
   { id: 'g2', image: '/images/blue_keychain.webp', category: 'keychains', title: 'Peacock Mandala Keychain', height: 'short' },
-  { id: 'g3', image: '/images/sharma_name_board.webp', category: 'name-boards', title: 'Sharma Family Name Board', height: 'medium' },
+  { id: 'g3', image: '/images/welcomeframe2.webp', category: 'name-boards', title: 'Welcome Home Name Board', height: 'medium' },
   { id: 'g4', image: '/images/fullframe-crimson-rose.webp', category: 'frames', title: 'Crimson Rose Full Mandala Frame', height: 'tall' },
   { id: 'g5', image: '/images/pot1.webp', category: 'happy-customers', title: 'Happy Customer — Priya from Mumbai', height: 'medium' },
   { id: 'g6', image: '/images/golden_blue_keychain.webp', category: 'keychains', title: 'Lotus Resin Keychain Set', height: 'short' },
@@ -42,9 +42,9 @@ export const galleryItems: GalleryItem[] = [
 export const customOrders: CustomOrder[] = [
   {
     id: 'co1',
-    image: '/images/clean_sharma_name_board.webp',
-    title: 'Sharma Family Welcoming Name Board',
-    requirement: 'A customized 16x16 inch family name board with gold detailing and blue background representing calmness and prosperity for their new home entrance.',
+    image: '/images/welcomeframe3.webp',
+    title: 'Customized Floral Welcoming Name Board',
+    requirement: 'A customized 16x16 inch home entrance welcoming name board with gold detailing and circular mandala motifs representing prosperity and peace.',
     inspiration: 'Inspired by traditional Rajasthani motifs and concentric lotus petals representing wealth and peace.',
     completionTime: '7 days',
     materials: 'Acrylic on MDF, gold pigment ink, high gloss resin protective coat.',
@@ -64,7 +64,7 @@ export const customerShowcase: CustomerShowcaseItem[] = [
   {
     id: 'cs1',
     customerPhoto: '',
-    artworkPhoto: '/images/sharma_name_board.webp',
+    artworkPhoto: '/images/welcomeframe1.webp',
     review: 'The Teal & Copper Welcome Name Board looks stunning at our main door. Almost every visitor has paused to admire it. The custom process on WhatsApp was extremely smooth!',
     name: 'Priya Sharma',
     location: 'Mumbai, Maharashtra',
@@ -72,7 +72,7 @@ export const customerShowcase: CustomerShowcaseItem[] = [
   {
     id: 'cs2',
     customerPhoto: '',
-    artworkPhoto: '/images/sahasrara_mandala.webp',
+    artworkPhoto: '/images/fullframe-azure-peacock.webp',
     review: 'The Teal Peacock Wall Frame is a masterpiece in our living room. The teal and gold dots shine beautifully in the evening lights. Safe shipping and perfect packaging.',
     name: 'Arjun Mehta',
     location: 'Bangalore, Karnataka',

@@ -80,9 +80,16 @@
     }
 
     &--active {
-      background: $color-wine;
-      color: #fff;
-      border-color: $color-wine;
+      background: $color-wine !important;
+      color: #fff !important;
+      border-color: $color-wine !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff !important;
+        background: $color-wine !important;
+      }
     }
   }
 
