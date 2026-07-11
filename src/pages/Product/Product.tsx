@@ -47,10 +47,15 @@ const Product: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [customWord, setCustomWord] = useState('');
 
-  // Track product viewed event
+  // Track product viewed event and reset product-specific states
   React.useEffect(() => {
     if (product) {
       trackProductViewed(product.id, product.name, product.price);
+      setSelectedSize(product.sizes.length === 1 ? product.sizes[0] : '');
+      setQuantity(1);
+      setActiveImage(0);
+      setSizeError(false);
+      setCustomWord('');
     }
   }, [product]);
 

@@ -326,10 +326,10 @@ export const products: Product[] = [
     slug: 'marigold-ochre-photo-frame',
     name: 'Marigold Ochre Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted marigold and ochre concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-marigold-ochre.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -344,17 +344,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -362,10 +357,10 @@ export const products: Product[] = [
     slug: 'forest-blush-photo-frame',
     name: 'Forest Blush Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted forest green and blush pink concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-forest-blush.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -380,17 +375,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -398,10 +388,10 @@ export const products: Product[] = [
     slug: 'ocean-azure-photo-frame',
     name: 'Ocean Azure Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted ocean blue and azure concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-ocean-azure.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -416,17 +406,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -434,10 +419,10 @@ export const products: Product[] = [
     slug: 'royal-plum-photo-frame',
     name: 'Royal Plum Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted royal plum and violet concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-royal-plum.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -452,17 +437,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -470,10 +450,10 @@ export const products: Product[] = [
     slug: 'crimson-rust-photo-frame',
     name: 'Crimson Rust Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted crimson red and rust concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-crimson-rust.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -488,17 +468,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -506,10 +481,10 @@ export const products: Product[] = [
     slug: 'sunfire-amber-photo-frame',
     name: 'Sunfire Amber Customized Photo Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A beautiful customized wall-hanging frame featuring hand-painted sunfire amber and gold concentric mandala artwork surrounding a central space where your personalized photo is mounted. Straight design ready to be hung on your wall. Price varies based on size selected.',
     images: ['/images/photoframe-sunfire-amber.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Premium MDF base, acrylics, high-gloss protective resin coat',
     customizable: true,
     featured: true,
@@ -524,17 +499,12 @@ export const products: Product[] = [
       'Finish': 'Glossy resin finish'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -542,10 +512,10 @@ export const products: Product[] = [
     slug: 'azure-peacock-full-mandala-frame',
     name: 'Azure Peacock Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 999,
     description: 'A breathtaking hand-painted full circular dot mandala featuring vibrant sky blue and cyan peacock feather petals radiating from the center, accented with raised metallic bronze-gold beaded rings and crisp white dot details. Mounted on a premium dark frame, ready to hang.',
     images: ['/images/fullframe-azure-peacock.webp'],
-    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
+    sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches'],
     material: 'Archival cotton paper, Wood frame, Acrylic paint, Gold embellishments, Gloss finish',
     customizable: false,
     featured: true,
@@ -560,17 +530,12 @@ export const products: Product[] = [
       'Mounting': 'Hanging hook & wire included'
     },
     sizePrices: {
-      '4 inches': 279,
-      '6 inches': 559,
-      '8 inches': 839,
-      '10 inches': 1199,
-      '12 inches': 1599,
-      '14 inches': 2199,
-      '16 inches': 2799,
-      '18 inches': 3499,
-      '20 inches': 4499,
-      '22 inches': 5699,
-      '24 inches': 6999
+      '4 inches': 229,
+      '6 inches': 499,
+      '8 inches': 749,
+      '10 inches': 999,
+      '12 inches': 1299,
+      '14 inches': 1599
     }
   },
   {
@@ -578,7 +543,7 @@ export const products: Product[] = [
     slug: 'crimson-rose-full-mandala-frame',
     name: 'Crimson Rose Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 1599,
     description: 'An exquisite hand-painted full circular dot mandala in deep crimson red and rose gold tones, with intricate peacock feather petal patterns and raised metallic copper-gold beaded rings. A bold, passionate statement piece for any wall.',
     images: ['/images/fullframe-crimson-rose.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -614,7 +579,7 @@ export const products: Product[] = [
     slug: 'emerald-forest-full-mandala-frame',
     name: 'Emerald Forest Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 1599,
     description: 'A lush hand-painted full circular dot mandala in rich emerald green and forest teal tones, featuring intricate peacock feather petal patterns radiating from the center with raised metallic gold beaded rings. Brings the calm of nature to your walls.',
     images: ['/images/fullframe-emerald-forest.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -650,7 +615,7 @@ export const products: Product[] = [
     slug: 'violet-lavender-full-mandala-frame',
     name: 'Violet Lavender Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 1599,
     description: 'A dreamy hand-painted full circular dot mandala in rich violet purple and soft lavender tones, with peacock feather petal patterns and raised metallic silver beaded rings. A truly enchanting and meditative piece of wall art.',
     images: ['/images/fullframe-violet-lavender.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -686,7 +651,7 @@ export const products: Product[] = [
     slug: 'sunset-amber-full-mandala-frame',
     name: 'Sunset Amber Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 1599,
     description: 'A warm and radiant hand-painted full circular dot mandala in sunset orange and amber golden tones, with intricate peacock feather petal patterns and raised metallic bronze-gold beaded rings. Instantly warms up any living space.',
     images: ['/images/fullframe-sunset-amber.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -722,7 +687,7 @@ export const products: Product[] = [
     slug: 'magenta-bloom-full-mandala-frame',
     name: 'Magenta Bloom Full Mandala Frame',
     category: 'frames',
-    price: 279,
+    price: 1599,
     description: 'A vibrant and striking hand-painted full circular dot mandala in rich magenta and hot pink tones, featuring peacock feather petal patterns radiating from a luminous center with raised metallic rose-gold beaded rings and white dot accents.',
     images: ['/images/fullframe-magenta-bloom.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -1019,10 +984,10 @@ export const products: Product[] = [
     slug: 'teal-peacock-dot-mandala-wall-frame',
     name: 'Teal Peacock Dot Mandala Wall Frame',
     category: 'frames',
-    price: 3000,
+    price: 6999,
     description: 'A breathtaking round circular MDF wall art piece featuring a deeply detailed peacock feather dot mandala on a black base. Layered teal and cyan peacock feather petals radiate outward in multiple rings, accented by two bold concentric gold metallic dot rings and delicate gold coral branch motifs at the outer border. White dot scatter fills the black background. A small decorative mirror inlay gleams at the very center, adding a magical finishing touch. Sealed with a gloss protective coat.',
     images: ['/images/frame1.webp'],
-    sizes: ['12 inches', '24 inches'],
+    sizes: ['24 inches'],
     material: 'Premium MDF disc, Acrylic paint, Metallic gold paint, Mirror inlay, Gloss varnish',
     customizable: false,
     featured: true,
@@ -1041,8 +1006,7 @@ export const products: Product[] = [
       'Mounting': 'Hanging hook & wire included',
     },
     sizePrices: {
-      '12 inches': 3000,
-      '24 inches': 6000
+      '24 inches': 6999
     }
   },
   {
@@ -1050,7 +1014,7 @@ export const products: Product[] = [
     slug: 'teal-copper-welcome-frame',
     name: 'Teal & Copper Welcome Mandala Frame',
     category: 'name-boards',
-    price: 279,
+    price: 1599,
     
     description: 'A gorgeous round circular "Welcome" name board featuring detailed handpainted mandala art in a sophisticated teal and copper/rose-gold color scheme. Beautifully crafted with acrylic paint on a premium wood base and finished with a glossy protective resin coat. A perfect entrance piece to greet your guests.',
     images: ['/images/welcomeframe1.webp'],
@@ -1089,7 +1053,7 @@ export const products: Product[] = [
     slug: 'purple-pink-welcome-frame',
     name: 'Purple & Pink Welcome Mandala Frame',
     category: 'name-boards',
-    price: 279,
+    price: 1599,
     
     description: 'A beautiful round circular "Welcome" name board featuring detailed handpainted mandala art in a vibrant purple, pink, and white color scheme. Hand-crafted with high-quality acrylic paint on a premium MDF base, sealed under a glossy protective resin layer.',
     images: ['/images/welcomeframe2.webp'],
@@ -1128,7 +1092,7 @@ export const products: Product[] = [
     slug: 'sunset-gold-welcome-frame',
     name: 'Sunset Gold Welcome Mandala Frame',
     category: 'name-boards',
-    price: 279,
+    price: 1599,
     
     description: 'A warm and inviting round circular "Welcome" name board featuring handpainted mandala art in rich shades of yellow, orange, and metallic gold, reminiscent of a glowing sunset. Domed under a protective glossy resin coat for a premium feel.',
     images: ['/images/welcomeframe3.webp'],
