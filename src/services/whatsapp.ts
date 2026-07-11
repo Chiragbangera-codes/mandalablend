@@ -7,7 +7,7 @@ export const createWhatsappLink = (
   quantity?: number
 ): string => {
   const message = encodeURIComponent(
-    `Hello Mandala Blend! 🎨\n\nI would like to order:\n\n📦 Product: ${productName}\n💰 Price: ₹${price}${size ? `\n📐 Size: ${size}` : ''}${quantity ? `\n🔢 Quantity: ${quantity}` : ''}\n\nPlease share availability and payment details.\n\nThank you! 🙏`
+    `Hello Mandala Blend! ♡\n\nI would like to order:\n\n📦 Product: ${productName}\nPrice: ₹${price}${size ? `\nSize: ${size}` : ''}${quantity ? `\nQuantity: ${quantity}` : ''}\n\nPlease share availability and payment details.\n\nThank you! ✨`
   );
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 };
@@ -15,6 +15,6 @@ export const createWhatsappLink = (
 export const createGeneralWhatsappLink = (message?: string): string => {
   const text = message
     ? encodeURIComponent(message)
-    : encodeURIComponent('Hello Mandala Blend! 🎨\n\nI would like to inquire about a custom order.\n\nThank you!');
+    : encodeURIComponent('Hello Mandala Blend! ♡\n\nI would like to inquire about a custom order.\n\nThank you! ✨');
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 };

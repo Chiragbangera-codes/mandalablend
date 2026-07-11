@@ -181,15 +181,14 @@
   &__story-img-wrap {
     border-radius: 20px;
     overflow: hidden;
-    aspect-ratio: 4/3;
-    background: $color-surface;
+    background: $color-card;
 
     img,
     .lazy-img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      object-fit: cover;
     }
   }
 

@@ -110,8 +110,8 @@ const About: React.FC = () => {
             viewport={viewportConfig}
           >
             <LazyImage
-              src="/images/artist.webp"
-              alt="Our artist creating a mandala — Mandala Blend"
+              src="/images/about_hero_product.webp"
+              alt="Premium handcrafted round dot mandala art frame — Mandala Blend"
             />
           </motion.div>
         </div>
@@ -154,8 +154,8 @@ const About: React.FC = () => {
             <motion.div className="about-page__story-img" variants={fadeRight}>
               <div className="about-page__story-img-wrap">
                 <LazyImage
-                  src="/images/hero-mandala.webp"
-                  alt="Mandala art creation process"
+                  src="/images/PassiontoPurpose.jpg.jpeg"
+                  alt="Mandala Blend story creation process - From Passion to Purpose"
                 />
               </div>
             </motion.div>
@@ -251,8 +251,8 @@ const About: React.FC = () => {
               variants={fadeLeft}
             >
               <LazyImage
-                src="/images/hero-mandala.webp"
-                alt="Intricate handmade mandala process detail"
+                src="/images/about_workflow_handmade.webp"
+                alt="Artist hand-painting an intricate dot mandala artwork — Mandala Blend"
               />
             </motion.div>
             

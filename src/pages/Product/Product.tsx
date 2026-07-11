@@ -125,10 +125,10 @@ const Product: React.FC = () => {
       const cleanWord = customWord.replace(/[^a-zA-Z]/g, '');
       const wordToSubmit = cleanWord.length > 0 ? cleanWord.toUpperCase() : 'None Specified';
       const calculatedPrice = 649 * (cleanWord.length > 0 ? cleanWord.length : 1);
-      message = `Hello Mandala Blend! 🎨\n\nI would like to order:\n📦 Product: ${product.name}\n🔤 Custom Word/Name: ${wordToSubmit} (${cleanWord.length > 0 ? cleanWord.length : 1} Letter(s))\n💰 Total Price: ₹${(calculatedPrice * quantity).toLocaleString('en-IN')}\n🔢 Quantity: ${quantity}\n\nPlease share availability and payment details.\nThank you! 🙏`;
+      message = `Hello Mandala Blend! ♡\n\nI would like to order:\n📦 Product: ${product.name}\nCustom Word/Name: ${wordToSubmit} (${cleanWord.length > 0 ? cleanWord.length : 1} Letter(s))\nTotal Price: ₹${(calculatedPrice * quantity).toLocaleString('en-IN')}\nQuantity: ${quantity}\n\nPlease share availability and payment details.\nThank you! ✨`;
     } else {
       const currentPrice = product.sizePrices && selectedSize ? product.sizePrices[selectedSize] : product.price;
-      message = `Hello Mandala Blend! 🎨\n\nI would like to order:\n📦 Product: ${product.name}\n📐 Size: ${selectedSize || 'Standard'}\n💰 Total Price: ₹${(currentPrice * quantity).toLocaleString('en-IN')}\n🔢 Quantity: ${quantity}\n\nPlease share payment details.\nThank you! 🙏`;
+      message = `Hello Mandala Blend! ♡\n\nI would like to order:\n📦 Product: ${product.name}\nSize: ${selectedSize || 'Standard'}\nTotal Price: ₹${(currentPrice * quantity).toLocaleString('en-IN')}\nQuantity: ${quantity}\n\nPlease share payment details.\nThank you! ✨`;
     }
     trackWhatsAppOrderClicked(product.id, product.name, product.price, selectedSize, quantity);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');

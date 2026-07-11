@@ -43,6 +43,11 @@
     position: sticky;
     top: calc(40px + 88px); // announcement + navbar
     z-index: 50;
+    transition: top 0.3s ease-out;
+
+    body.is-scrolled & {
+      top: 88px;
+    }
   }
 
   &__pills {

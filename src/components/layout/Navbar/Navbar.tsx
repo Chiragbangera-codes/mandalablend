@@ -22,8 +22,17 @@ const Navbar: React.FC = () => {
   const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 20;
+      setIsScrolled(scrolled);
+      if (scrolled) {
+        document.body.classList.add('is-scrolled');
+      } else {
+        document.body.classList.remove('is-scrolled');
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -42,12 +51,22 @@ const Navbar: React.FC = () => {
     <>
       <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
         <div className="container navbar__inner">
-          {/* Logo */}
-          <Link to="/" className="navbar__logo" aria-label="Mandala Blend — Home">
+          {/* Desktop Logo */}
+          <Link to="/" className="navbar__logo navbar__logo--desktop" aria-label="Mandala Blend — Home">
             <LazyImage
               src="/logo.png?v=2"
               alt="The Mandala Blend — Handcrafted with Love"
               className="navbar__logo-img"
+              priority
+            />
+          </Link>
+
+          {/* Mobile Centered Brand Text */}
+          <Link to="/" className="navbar__logo-mobile-text-link" aria-label="Mandala Blend — Home">
+            <LazyImage
+              src="/logo-text.png"
+              alt="The Mandala Blend"
+              className="navbar__logo-mobile-text-img"
               priority
             />
           </Link>

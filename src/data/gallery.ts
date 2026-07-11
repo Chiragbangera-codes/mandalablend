@@ -32,7 +32,6 @@ export const galleryItems: GalleryItem[] = [
   { id: 'g4', image: '/images/fullframe-crimson-rose.webp', category: 'frames', title: 'Crimson Rose Full Mandala Frame', height: 'tall' },
   { id: 'g5', image: '/images/pot1.webp', category: 'happy-customers', title: 'Happy Customer — Priya from Mumbai', height: 'medium' },
   { id: 'g6', image: '/images/golden_blue_keychain.webp', category: 'keychains', title: 'Lotus Resin Keychain Set', height: 'short' },
-  { id: 'g7', image: '/images/artist.webp', category: 'work-in-progress', title: 'Creating a Geometric Mandala', height: 'tall' },
   { id: 'g8', image: '/images/fullframe-emerald-forest.webp', category: 'frames', title: 'Floral Grand Mandala Frame', height: 'medium' },
   { id: 'g9', image: '/images/welcomeframe1.webp', category: 'name-boards', title: 'Welcome Home Name Board', height: 'short' },
   { id: 'g10', image: '/images/pot2.webp', category: 'happy-customers', title: 'Happy Customer — Arjun from Bangalore', height: 'medium' },
@@ -43,7 +42,7 @@ export const galleryItems: GalleryItem[] = [
 export const customOrders: CustomOrder[] = [
   {
     id: 'co1',
-    image: '/images/sharma_name_board.webp',
+    image: '/images/clean_sharma_name_board.webp',
     title: 'Sharma Family Welcoming Name Board',
     requirement: 'A customized 16x16 inch family name board with gold detailing and blue background representing calmness and prosperity for their new home entrance.',
     inspiration: 'Inspired by traditional Rajasthani motifs and concentric lotus petals representing wealth and peace.',
@@ -52,7 +51,7 @@ export const customOrders: CustomOrder[] = [
   },
   {
     id: 'co2',
-    image: '/images/sahasrara_mandala.webp',
+    image: '/images/clean_sahasrara_mandala.webp',
     title: 'The Eternal Sahasrara Living Room Mandala',
     requirement: 'A massive 24x24 inch center-piece mandala frame with metallic gold and deep burgundy accents to align with modern wooden living room interiors.',
     inspiration: 'Inspired by the Sahasrara (Crown) Chakra representing pure consciousness and spiritual connection.',
