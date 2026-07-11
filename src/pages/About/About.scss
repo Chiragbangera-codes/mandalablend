@@ -675,6 +675,14 @@
 
     @media (max-width: $tablet) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      padding: 32px 24px;
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 24px 16px;
     }
   }
 
@@ -686,12 +694,21 @@
     color: $color-wine;
     line-height: 1;
     margin-bottom: 8px;
+
+    @media (max-width: $mobile) {
+      font-size: 2rem;
+    }
   }
 
   &__stat-label {
     display: block;
     font-size: $fs-small;
     color: $color-text-muted;
+    word-break: break-word;
+
+    @media (max-width: $mobile) {
+      font-size: 11px;
+    }
   }
 
   &__cta-wrap {
