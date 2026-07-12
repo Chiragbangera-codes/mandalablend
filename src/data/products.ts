@@ -1015,7 +1015,7 @@ export const products: Product[] = [
     name: 'Teal & Copper Welcome Mandala Frame',
     category: 'name-boards',
     price: 1599,
-    
+
     description: 'A gorgeous round circular "Welcome" name board featuring detailed handpainted mandala art in a sophisticated teal and copper/rose-gold color scheme. Beautifully crafted with acrylic paint on a premium wood base and finished with a glossy protective resin coat. A perfect entrance piece to greet your guests.',
     images: ['/images/welcomeframe1.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -1054,7 +1054,7 @@ export const products: Product[] = [
     name: 'Purple & Pink Welcome Mandala Frame',
     category: 'name-boards',
     price: 1599,
-    
+
     description: 'A beautiful round circular "Welcome" name board featuring detailed handpainted mandala art in a vibrant purple, pink, and white color scheme. Hand-crafted with high-quality acrylic paint on a premium MDF base, sealed under a glossy protective resin layer.',
     images: ['/images/welcomeframe2.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -1093,7 +1093,7 @@ export const products: Product[] = [
     name: 'Sunset Gold Welcome Mandala Frame',
     category: 'name-boards',
     price: 1599,
-    
+
     description: 'A warm and inviting round circular "Welcome" name board featuring handpainted mandala art in rich shades of yellow, orange, and metallic gold, reminiscent of a glowing sunset. Domed under a protective glossy resin coat for a premium feel.',
     images: ['/images/welcomeframe3.webp'],
     sizes: ['4 inches', '6 inches', '8 inches', '10 inches', '12 inches', '14 inches', '16 inches', '18 inches', '20 inches', '22 inches', '24 inches'],
@@ -1131,7 +1131,7 @@ export const products: Product[] = [
     slug: 'royal-purple-mandala-car-hanging',
     name: 'Royal Purple Mandala Car Hanging',
     category: 'customized-gifts',
-    price: 349,
+    price: 399,
     originalPrice: 499,
     description: 'A beautiful double-sided handpainted mandala car hanging accessory featuring concentric rings of royal purple, lavender, lilac, white, and metallic gold dot art. Topped with a shiny magenta gemstone at the center and finished with a matching royal purple silky tassel. Bring spiritual charm and elegance to your car dashboard or rearview mirror.',
     images: ['/images/carhanging1.webp'],
@@ -1156,7 +1156,7 @@ export const products: Product[] = [
     slug: 'maroon-gold-mandala-car-hanging',
     name: 'Maroon & Gold Mandala Car Hanging',
     category: 'customized-gifts',
-    price: 349,
+    price: 399,
     originalPrice: 499,
     description: 'A warm and festive double-sided handpainted mandala car hanging ornament. Painted on a deep maroon base with detailed dot art in metallic gold, magenta, soft pink, and white. Completed with a magenta gemstone centerpiece and a matching magenta silky tassel at the bottom.',
     images: ['/images/carhanging2.webp'],
@@ -1181,7 +1181,7 @@ export const products: Product[] = [
     slug: 'ocean-blue-mandala-car-hanging',
     name: 'Ocean Blue Mandala Car Hanging',
     category: 'customized-gifts',
-    price: 349,
+    price: 399,
     originalPrice: 499,
     description: 'A serene and cool double-sided handpainted mandala car hanging accessory. Features an intricate 8-petal floral/sun-style mandala design on a black base with ocean blue, cobalt blue, turquoise, and white dots/strokes. Finished with a cobalt blue gemstone center and a royal blue silky thread tassel.',
     images: ['/images/carhanging3.webp'],
@@ -1282,7 +1282,7 @@ export const products: Product[] = [
     name: 'Sage Green Mandala Dot Art Mirror Frame',
     category: 'frames',
     price: 1799,
-    originalPrice: 1199,
+    originalPrice: 1999,
     description: 'A stunning handcrafted circular wall mirror framed with an exquisite dot mandala design in refreshing sage green, forest green, and crisp white tones. The hand-painted artwork features concentric rings of delicate raised dotting patterns that beautifully surround the high-quality central mirror. Adds a serene, nature-inspired elegance and spiritual calm to any hallway, bedroom, or living room wall. Protected with a high-gloss, crystal-clear resin finish.',
     images: ['/images/mirrorframe1.webp'],
     sizes: ['14 inches', '16 inches', '18 inches', '20 inches', '24 inches'],
@@ -1306,30 +1306,30 @@ export const products: Product[] = [
       '16 inches': 2199,
       '18 inches': 2799,
       '20 inches': 3599,
-      '24 inches': 4599
+      '24 inches': 4799
     }
   },
   {
     id: 'p57',
-    slug: 'terracotta-rust-mandala-mirror-frame',
-    name: 'Terracotta Rust Mandala Dot Art Mirror Frame',
+    slug: 'royal-blue-gold-mandala-mirror-frame',
+    name: 'Royal Blue & Gold Mandala Dot Art Mirror Frame',
     category: 'frames',
     price: 1799,
-    originalPrice: 1199,
-    description: 'Warm, earthy, and inviting, this handcrafted circular wall mirror features a rich dot mandala design in terracotta orange, rust brown, and metallic gold accents. Symmetrical rings of meticulously placed raised dots encircle a polished central mirror. The vibrant earthy hues create a cozy, bohemian ambiance in your space. Sealed under a premium glossy resin coat for a brilliant shine and long-lasting durability.',
-    images: ['/images/mirrorframe2.webp'],
+    originalPrice: 1999,
+    description: 'A luxurious handcrafted circular wall mirror framed with an exquisite dot mandala design in majestic royal blue, vibrant yellow, and shimmering metallic gold tones. The hand-painted artwork features concentric rings of delicate raised dotting patterns that beautifully surround the high-quality central mirror. Adds a regal, vibrant elegance and positive energy to any hallway, bedroom, or living room wall. Protected with a high-gloss, crystal-clear resin finish.',
+    images: ['/images/mirror.webp'],
     sizes: ['14 inches', '16 inches', '18 inches', '20 inches', '24 inches'],
     material: 'Premium MDF base, High-quality mirror, Acrylic paint, Gold metallic paint, Gloss protective resin',
     customizable: true,
     featured: true,
-    bestSeller: false,
+    bestSeller: true,
     deliveryTime: '7-10 business days',
-    rating: 4.8,
-    reviewCount: 29,
+    rating: 4.9,
+    reviewCount: 38,
     specifications: {
       'Frame Type': 'Circular Mirror Frame',
       'Art Style': 'Concentric Dot Mandala',
-      'Primary Colors': 'Terracotta Orange, Rust Brown, Metallic Gold',
+      'Primary Colors': 'Royal Blue, Mustard Yellow, Metallic Gold',
       'Center': 'High-quality circular mirror',
       'Finish': 'Glossy resin protective coat',
       'Mounting': 'Sturdy wall hanging hook included'
@@ -1339,16 +1339,17 @@ export const products: Product[] = [
       '16 inches': 2199,
       '18 inches': 2799,
       '20 inches': 3599,
-      '24 inches': 4599
+      '24 inches': 4799
     }
   },
+
   {
     id: 'p58',
     slug: 'mustard-gold-mandala-mirror-frame',
     name: 'Mustard Gold Mandala Dot Art Mirror Frame',
     category: 'frames',
     price: 1799,
-    originalPrice: 1199,
+    originalPrice: 1999,
     description: 'A luxurious handcrafted wall mirror adorned with a radiant concentric dot mandala in shades of warm mustard yellow, rich ochre, and shimmering metallic gold. The detailed patterns of raised dots draw the eye inward to a sparkling central mirror, bringing positive energy and a sun-drenched glow to your home decor. Handpainted on a premium MDF base and finished with a glossy protective resin coat.',
     images: ['/images/mirrorframe3.webp'],
     sizes: ['14 inches', '16 inches', '18 inches', '20 inches', '24 inches'],
@@ -1372,7 +1373,7 @@ export const products: Product[] = [
       '16 inches': 2199,
       '18 inches': 2799,
       '20 inches': 3599,
-      '24 inches': 4599
+      '24 inches': 4799
     }
   },
   {
@@ -1381,7 +1382,7 @@ export const products: Product[] = [
     name: 'Golden Ochre Handpainted Dot Mandala Clock',
     category: 'customized-gifts',
     price: 3299,
-    originalPrice: 1999,
+    originalPrice: 4999,
     description: 'Brighten up your wall with this beautiful handcrafted silent wall clock. Painted on a natural wood-finish MDF base, it features concentric rings of detailed dot mandala art in metallic gold, warm ochre, and crisp white. Comes with a silent sweep quartz movement (no ticking sound) and elegant gold clock hands. Sealed with a thick, glassy coat of premium protective resin.',
     images: ['/images/clock1.webp'],
     sizes: ['14 inches'],
@@ -1410,7 +1411,7 @@ export const products: Product[] = [
     name: 'Cosmic Lavender Handpainted Dot Mandala Clock',
     category: 'customized-gifts',
     price: 3299,
-    originalPrice: 1999,
+    originalPrice: 4999,
     description: 'A mesmerizing handcrafted wall clock featuring a cosmic dot mandala design in rich violet, lavender, and silver tones on a deep black background. The symmetrical rings of raised dots radiate from the center, creating a stunning galaxy effect. Equipped with a silent quartz sweep mechanism and metallic silver hands. Protected under a thick layer of high-gloss resin for a smooth, glass-like finish.',
     images: ['/images/clock2.webp'],
     sizes: ['14 inches'],
@@ -1439,7 +1440,7 @@ export const products: Product[] = [
     name: 'Emerald Forest Handpainted Dot Mandala Clock',
     category: 'customized-gifts',
     price: 3299,
-    originalPrice: 1999,
+    originalPrice: 4999,
     description: 'Bring the calming and restorative energy of nature indoors with this hand-painted wall clock. Adorned with a lush dot mandala in shades of emerald green, fresh sage, mint, and white accents on a dark green base. The silent sweep clock hands glide smoothly without a sound. Finished with a professional high-gloss resin coat for lasting beauty and vibrant colors.',
     images: ['/images/clock3.webp'],
     sizes: ['14 inches'],
@@ -1468,7 +1469,7 @@ export const products: Product[] = [
     name: 'Burgundy Wine Handpainted Dot Mandala Clock',
     category: 'customized-gifts',
     price: 3299,
-    originalPrice: 1999,
+    originalPrice: 4999,
     description: 'A luxurious, dramatic wall clock featuring a deeply detailed dot mandala frame hand-painted in rich shades of burgundy wine, crimson red, rose gold, and soft pink. A stunning focal piece that adds warmth and sophisticated elegance to any room. Equipped with silent sweep movement and sleek rose gold hands. Fully sealed under a glassy protective resin finish.',
     images: ['/images/clock4.webp'],
     sizes: ['14 inches'],
@@ -1497,7 +1498,7 @@ export const products: Product[] = [
     name: 'Midnight Navy Handpainted Dot Mandala Clock',
     category: 'customized-gifts',
     price: 3299,
-    originalPrice: 1999,
+    originalPrice: 4999,
     description: 'Evoking the quiet beauty of a starry night over the ocean, this silent wall clock features concentric dot mandala rings in deep midnight navy, royal blue, turquoise, and white. Each dot is hand-painted with precision on a dark base. Comes with silver silent sweep hands that glide noiselessly. Domed under a glossy protective resin coat that creates a sleek, high-end reflection.',
     images: ['/images/clock5.webp'],
     sizes: ['14 inches'],
