@@ -52,7 +52,7 @@ export const customOrders: CustomOrder[] = [
   {
     id: 'co2',
     image: '/images/clean_sahasrara_mandala.webp',
-    title: 'The Eternal Sahasrara Living Room Mandala',
+    title: 'The Eternal Living Room Mandala',
     requirement: 'A massive 24x24 inch center-piece mandala frame with metallic gold and deep burgundy accents to align with modern wooden living room interiors.',
     inspiration: 'Inspired by the Sahasrara (Crown) Chakra representing pure consciousness and spiritual connection.',
     completionTime: '12 days',
